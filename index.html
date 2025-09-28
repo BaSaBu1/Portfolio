@@ -97,8 +97,8 @@
                                 </a>
                             </div>
                             <div class="hero-actions-secondary">
-                                <a href="#experience" class="btn-primary">
-                                    View My Experience
+                                <a href="#contact" class="btn-primary">
+                                    Get in Touch
                                 </a>
                                 <a
                                     href="misc/Batsambuu_Batbold_Resume.pdf"
@@ -1356,5 +1356,29 @@
                 </div>
             </div>
         </footer>
+
+        <!-- Back to Top Button -->
+        <button id="backToTopBtn" class="back-to-top" aria-label="Back to top">
+            <span class="back-to-top-icon">↑</span>
+        </button>
+
+        <script>
+            const backToTopBtn = document.getElementById("backToTopBtn");
+
+            window.addEventListener("scroll", function () {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add("show");
+                } else {
+                    backToTopBtn.classList.remove("show");
+                }
+            });
+
+            backToTopBtn.addEventListener("click", function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                });
+            });
+        </script>
     </body>
 </html>
