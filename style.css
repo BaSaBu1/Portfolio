@@ -969,26 +969,42 @@ a:not(.btn-primary):not(.btn-tertiary):not(.certificate-btn):not(
 .project-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: var(--spacing-md);
+    gap: var(--spacing-md);
 }
 
 .project-header h4 {
     color: var(--primary-color);
     font-size: 1.25rem;
+    flex: 1;
 }
 
 .project-links {
     display: flex;
     gap: var(--spacing-xs);
+    flex-shrink: 0;
+    align-self: center;
 }
 
 .project-link {
     color: var(--text-secondary);
     text-decoration: none;
-    padding: 0.25rem;
+    padding: 0.4rem 0.75rem;
     border-radius: var(--border-radius);
     transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.8rem;
+    border: 1px solid transparent;
+    white-space: nowrap;
+}
+
+.project-link:hover {
+    color: var(--primary-color);
+    background: var(--background-accent);
+    border-color: var(--border-color);
 }
 
 .project-link:hover {
@@ -997,7 +1013,11 @@ a:not(.btn-primary):not(.btn-tertiary):not(.certificate-btn):not(
 }
 
 .link-icon {
-    font-size: 1.125rem;
+    font-size: 0.9rem;
+}
+
+.link-text {
+    font-weight: 500;
 }
 
 .project-description {
@@ -1069,7 +1089,6 @@ a:not(.btn-primary):not(.btn-tertiary):not(.certificate-btn):not(
 
 .gallery-overlay {
     position: absolute;
-    top: 0;
     left: 0;
     right: 0;
     bottom: 0;
@@ -1078,33 +1097,29 @@ a:not(.btn-primary):not(.btn-tertiary):not(.certificate-btn):not(
     transition: transform 0.4s ease;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
     padding: var(--spacing-lg) var(--spacing-xl);
-    padding-top: var(--spacing-md);
     color: white;
+    height: auto;
+    min-height: 30%;
+}
+
+.gallery-overlay-content {
+    text-align: center;
+    width: 100%;
+}
+
+.gallery-long-desc {
+    text-align: center;
 }
 
 .gallery-item:hover .gallery-overlay {
-    transform: translateY(10%);
+    transform: translateY(0%);
 }
 
 .gallery-item:hover .gallery-image {
     transform: scale(1.1);
-}
-
-.gallery-title {
-    font-size: 1.4rem;
-    margin-bottom: var(--spacing-sm);
-    color: white;
-    font-weight: 700;
-    line-height: 1.2;
-}
-
-.gallery-short-desc {
-    font-size: 1rem;
-    opacity: 0.95;
-    margin-bottom: var(--spacing-md);
-    line-height: 1.4;
 }
 
 .gallery-long-desc {
@@ -1121,6 +1136,7 @@ a:not(.btn-primary):not(.btn-tertiary):not(.certificate-btn):not(
 
 .photo-meta {
     display: flex;
+    justify-content: center;
     gap: var(--spacing-md);
     font-size: 0.8rem;
     opacity: 0.8;
