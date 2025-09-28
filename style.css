@@ -890,20 +890,29 @@ a:not(.btn-primary):not(.btn-tertiary):not(.certificate-btn):not(
 
 .work-header {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--spacing-sm);
+    flex-direction: column;
+    gap: 0.25rem;
     margin-bottom: var(--spacing-md);
+}
+
+.work-title-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
 }
 
 .work-header h4 {
     color: var(--primary-color);
     font-size: 1.25rem;
+    margin: 0;
 }
 
 .company-name {
     color: var(--text-secondary);
     font-weight: 500;
+    font-size: 1rem;
 }
 
 .work-duration {
@@ -912,7 +921,7 @@ a:not(.btn-primary):not(.btn-tertiary):not(.certificate-btn):not(
     font-size: 0.875rem;
     padding: 0.25rem 0.5rem;
     border-radius: var(--border-radius);
-    margin-left: auto;
+    flex-shrink: 0;
 }
 
 .work-description {
@@ -1435,13 +1444,10 @@ a:not(.btn-primary):not(.btn-tertiary):not(.certificate-btn):not(
         padding: var(--spacing-md);
     }
 
-    .work-header {
+    .work-title-line {
         flex-direction: column;
         align-items: flex-start;
-    }
-
-    .work-duration {
-        margin-left: 0;
+        gap: 0.5rem;
     }
 
     .gallery-overlay {
