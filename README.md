@@ -2,7 +2,7 @@
 
 Welcome to my personal portfolio website! This website showcases my work, experience, interests, and provides ways to contact me.
 
-[View the website]((https://basabu1.github.io/Portfolio/))
+[View the website](https://basabu1.github.io/Portfolio/)
 
 ## About This Page
 
@@ -22,4 +22,5 @@ This portfolio website is built using **HTML** and **CSS** after completing Free
 -   CSS
 -   Git & GitHub for version control
 -   GitHub Pages for hosting
+
 
