@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -6,291 +6,1019 @@
 
         <meta
             name="description"
-            content="Batsambuu Batbold - Mathematics & Computer Science Student from Mongolia, IMO Medalist, Amateur Photographer"
+            content="Batsambuu Batbold - Mathematics & Computer Science Student from Mongolia, IMO Medalist, Software Developer, AI Researcher"
         />
         <meta
             name="keywords"
-            content="Batsambuu Batbold, Mathematics, Computer Science, IMO, International Mathematical Olympiad, Mongolia, Photography, Macalester College"
+            content="Batsambuu Batbold, Software Developer, AI Researcher, Mathematics, Computer Science, IMO, International Mathematical Olympiad, Mongolia, Macalester College, React, Python, Full Stack"
         />
         <meta name="author" content="Batsambuu Batbold" />
 
         <meta property="og:title" content="Batsambuu Batbold - Portfolio" />
         <meta
             property="og:description"
-            content="Mathematics & Computer Science Student | IMO Medalist | Amateur Photographer from Mongolia"
+            content="Mathematics & Computer Science Student | Software Developer | AI Researcher | IMO Medalist"
         />
         <meta property="og:type" content="website" />
 
-        <title>Batsambuu Batbold - Portfolio</title>
+        <title>Batsambuu Batbold - Software Developer & CS Student</title>
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap"
+            rel="stylesheet"
+        />
 
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <nav class="main-navigation">
+        <!-- Navigation -->
+        <nav class="navbar" id="navbar">
             <div class="nav-container">
-                <div class="nav-logo">
-                    <a href="#">Batsambuu Batbold</a>
-                </div>
+                <a href="#" class="nav-logo">
+                    <span class="logo-text">BB</span>
+                </a>
 
-                <ul class="nav-menu">
-                    <li><a href="#">About</a></li>
-                    <li><a href="#personal">My Story</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#experience" class="nav-link">Experience</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#projects" class="nav-link">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#achievements" class="nav-link"
+                            >Achievements</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a href="#story" class="nav-link">My Story</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#gallery" class="nav-link">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </li>
+                    <li class="nav-item nav-resume">
+                        <a
+                            href="misc/Batsambuu_Batbold_Resume.pdf"
+                            class="nav-link resume-btn"
+                            target="_blank"
+                            rel="noopener"
+                            >Resume</a
+                        >
+                    </li>
                 </ul>
 
-                <div class="mobile-menu-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+                <button
+                    class="nav-toggle"
+                    id="nav-toggle"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="hamburger"></span>
+                </button>
             </div>
         </nav>
 
-        <!-- ========================================
-             MAIN CONTENT SECTIONS
-        ======================================== -->
-        <main class="main-content">
-            <!-- ========================================
-                 SECTION 1: INTRODUCTION & HERO
-            ======================================== -->
-            <section id="introduction" class="introduction-section">
+        <main>
+            <!-- Hero Section -->
+            <section id="hero" class="hero">
                 <div class="hero-container">
                     <div class="hero-content">
-                        <header class="hero-header">
-                            <h1 class="hero-name">Hi, I'm Batsambuu Batbold</h1>
-                            <h2 class="hero-title">
-                                Mathematics & Computer Science Student
-                            </h2>
+                        <p class="hero-greeting">Hi, my name is</p>
+                        <h1 class="hero-name">Batsambuu Batbold</h1>
+                        <h2 class="hero-title">
+                            I build things and solve problems.
+                        </h2>
+                        <p class="hero-description">
+                            I'm a
+                            <strong>Mathematics & Computer Science</strong>
+                            student at Macalester College, passionate about
+                            problem-solving, programming, and data analysis.
+                            Currently seeking
+                            <strong
+                                >internship and research opportunities</strong
+                            >
+                            in math, CS, and statistics related fields.
+                        </p>
 
-                            <p class="hero-tagline">
-                                IMO Medalist | Amateur Photographer | Traveler
-                            </p>
-                        </header>
-
-                        <div class="hero-stats">
-                            <div class="stat-item">
-                                <span class="stat-number">2027</span>
-                                <span class="stat-label">Class of</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">12</span>
-                                <span class="stat-label"
-                                    >Countries Visited</span
+                        <div class="hero-highlights">
+                            <div class="highlight-item">
+                                <span class="highlight-icon">🏅</span>
+                                <span class="highlight-text"
+                                    >IMO Bronze Medalist</span
                                 >
                             </div>
-                            <div class="stat-item">
-                                <span class="stat-number">1000+</span>
-                                <span class="stat-label">Photos Captured</span>
+                            <div class="highlight-item">
+                                <span class="highlight-icon">🎓</span>
+                                <span class="highlight-text"
+                                    >Class of 2027</span
+                                >
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-icon">📸</span>
+                                <span class="highlight-text"
+                                    >Aspiring Photographer</span
+                                >
                             </div>
                         </div>
 
-                        <!-- HERO ACTION BUTTONS -->
-                        <div class="hero-actions">
-                            <div class="hero-actions-primary">
-                                <a href="#personal" class="btn-primary">
-                                    Explore My Story
-                                </a>
-                                <a href="#gallery" class="btn-primary">
-                                    Browse My Gallery
-                                </a>
-                            </div>
-                            <div class="hero-actions-secondary">
-                                <a href="#contact" class="btn-primary">
-                                    Get in Touch
-                                </a>
-                                <a
-                                    href="misc/Batsambuu_Batbold_Resume.pdf"
-                                    class="btn-tertiary"
-                                    download="Batsambuu_Batbold_Resume.pdf"
-                                    target="_blank"
-                                    rel="noopener"
-                                >
-                                    Download Resume
-                                </a>
-                            </div>
+                        <div class="hero-cta">
+                            <a href="#experience" class="btn btn-primary"
+                                >View My Work</a
+                            >
+                            <a
+                                href="misc/Batsambuu_Batbold_Resume.pdf"
+                                class="btn btn-outline"
+                                target="_blank"
+                                rel="noopener"
+                                >Download Resume</a
+                            >
                         </div>
                     </div>
 
                     <div class="hero-image">
-                        <img
-                            src="misc/pro.JPG"
-                            alt="Batsambuu Batbold - Profile photo"
-                            class="profile-photo"
-                        />
+                        <div class="hero-image-wrapper">
+                            <img
+                                src="misc/pro.JPG"
+                                alt="Batsambuu Batbold"
+                                class="profile-photo"
+                            />
+                            <div class="hero-image-border"></div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- ABOUT ME SECTION -->
-                <div class="about-content">
-                    <div class="about-section about-me">
-                        <h3>About Me</h3>
-                        <p class="summary-text">
-                            I'm a problem solver who loves good stories. I
-                            discovered the beauty of mathematics in 7th grade
-                            through logic games, eventually earning medals at
-                            national and international math competitions,
-                            including the
-                            <a
-                                href="https://www.imo-official.org/"
-                                target="_blank"
-                                rel="noopener"
-                                >International Mathematical Olympiad (IMO)</a
-                            >. Now at Macalester College, I'm applying the same
-                            curiosity and discipline from math to programming
-                            and data analysis, and I'm passionate about turning
-                            abstract mathematical ideas into practical,
-                            human-centered tools. I believe the problem-solving
-                            mindset and analytical skills I've built through
-                            mathematics will help me succeed and adapt in the
-                            ever-changing world of technology.
-                        </p>
+                <div class="hero-scroll">
+                    <a
+                        href="#about"
+                        class="scroll-indicator"
+                        aria-label="Scroll to about section"
+                    >
+                        <span class="scroll-arrow"></span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" class="section about-section">
+                <div class="container">
+                    <h2 class="section-title">
+                        <span class="section-number">01.</span> About Me
+                    </h2>
+
+                    <div class="about-content">
+                        <div class="about-text">
+                            <p>
+                                I'm a problem solver who loves good stories. I
+                                discovered the beauty of mathematics in 7th
+                                grade through logic games, eventually earning
+                                medals at national and international math
+                                competitions, including the
+                                <a
+                                    href="https://www.imo-official.org/team_r.aspx?code=MNG&year=2021"
+                                    target="_blank"
+                                    rel="noopener"
+                                    >International Mathematical Olympiad
+                                    (IMO)</a
+                                >.
+                            </p>
+                            <p>
+                                Now at <strong>Macalester College</strong>, I'm
+                                applying the same curiosity and discipline from
+                                math to programming and data analysis. I'm
+                                passionate about turning abstract mathematical
+                                ideas into practical, human-centered tools.
+                            </p>
+                            <p>
+                                I believe the problem-solving mindset and
+                                analytical skills I've built through mathematics
+                                will help me succeed and adapt in the
+                                ever-changing world of technology.
+                            </p>
+
+                            <div class="skills-section">
+                                <h3>Technologies I've been working with:</h3>
+                                <ul class="skills-list">
+                                    <li>Python</li>
+                                    <li>JavaScript</li>
+                                    <li>C</li>
+                                    <li>Java</li>
+                                    <li>R / R Studio</li>
+                                    <li>SQL</li>
+                                    <li>TypeScript</li>
+                                    <li>HTML & CSS</li>
+                                    <li>React</li>
+                                    <li>Node.js</li>
+                                    <li>Git & GitHub</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- ========================================
-                 SECTION 2: MY PERSONAL STORY
-            ======================================== -->
-            <section id="personal" class="personal-section">
-                <div class="section-container">
-                    <div class="section-header">
-                        <h2>My Story</h2>
-                        <p class="section-intro">
-                            Get to know me: the person behind the academics, the
-                            numbers, and the achievements.
-                        </p>
-                    </div>
+            <!-- Experience Section -->
+            <section id="experience" class="section experience-section">
+                <div class="container">
+                    <h2 class="section-title">
+                        <span class="section-number">02.</span> Experience
+                    </h2>
 
-                    <div class="personal-content">
-                        <!-- ================================
-                             SUBSECTION 1: MY BACKGROUND
-                        ================================ -->
-                        <div class="personal-subsection background-section">
-                            <div class="subsection-header">
-                                <h3>
-                                    <span class="section-number">01</span>My
-                                    Background
+                    <div class="experience-tabs">
+                        <div class="tabs-list" role="tablist">
+                            <button
+                                class="tab-btn active"
+                                data-tab="mercor"
+                                role="tab"
+                                aria-selected="true"
+                            >
+                                Mercor
+                            </button>
+                            <button
+                                class="tab-btn"
+                                data-tab="mef"
+                                role="tab"
+                                aria-selected="false"
+                            >
+                                KHU Math
+                            </button>
+                            <button
+                                class="tab-btn"
+                                data-tab="preceptor"
+                                role="tab"
+                                aria-selected="false"
+                            >
+                                Macalester
+                            </button>
+                            <button
+                                class="tab-btn"
+                                data-tab="teaching"
+                                role="tab"
+                                aria-selected="false"
+                            >
+                                Teaching
+                            </button>
+                        </div>
+
+                        <div class="tabs-content">
+                            <div
+                                class="tab-panel active"
+                                id="mercor"
+                                role="tabpanel"
+                            >
+                                <h3 class="job-title">
+                                    Mathematics Consultant (Frontier AI)
+                                    <span class="company">@ Mercor</span>
                                 </h3>
-                                <div class="section-divider"></div>
+                                <p class="job-duration">Dec 2025 - Feb 2026</p>
+                                <ul class="job-description">
+                                    <li>
+                                        Authored original, IMO-level
+                                        mathematical problems in Algebra,
+                                        Combinatorics, and Number Theory to
+                                        benchmark and train next-generation AI
+                                        models.
+                                    </li>
+                                    <li>
+                                        Evaluated State-of-the-Art (SOTA)
+                                        AI-generated proofs, identifying subtle
+                                        logical flaws and ensuring rigorous
+                                        mathematical precision.
+                                    </li>
+                                    <li>
+                                        Developed comprehensive "chain of
+                                        thought" solutions using LaTeX, creating
+                                        high-quality datasets to improve model
+                                        reasoning capabilities
+                                    </li>
+                                </ul>
+                                <div class="job-skills">
+                                    <span class="skill-tag">AI Training</span>
+                                    <span class="skill-tag"
+                                        >Problem Writing</span
+                                    >
+                                    <span class="skill-tag"
+                                        >Quality Assessment</span
+                                    >
+                                </div>
                             </div>
 
-                            <div class="background-content">
-                                <div class="background-text">
-                                    <p>
-                                        I grew up in the northernmost rural part
-                                        of Mongolia, where it takes a full day
-                                        to reach Ulaanbaatar, the world's
-                                        coldest capital. Life there wasn't
-                                        extraordinary; people mostly minded
-                                        their own business. My parents were no
-                                        different. They had never left our town
-                                        or gone to college, but they provided me
-                                        and my sister with a happy childhood. At
-                                        first, this seemed like a limitation,
-                                        but I now see it as my greatest
-                                        advantage. Because they had never
-                                        experienced college or life abroad, they
-                                        never hesitated to let me chase every
-                                        opportunity I could find.
-                                    </p>
-                                    <p>
-                                        That freedom allowed me to study math
-                                        for hours without interruption, even
-                                        though I was the strongest at home and
-                                        could have helped with physically
-                                        demanding chores. Eventually, it opened
-                                        doors I could never have imagined. I
-                                        moved alone to the capital to attend one
-                                        of Mongolia's most prestigious high
-                                        schools after winning a silver medal at
-                                        the national math olympiad, which came
-                                        with a full scholarship. This was during
-                                        Covid, and living alone at such a young
-                                        age was one of the hardest challenges I
-                                        had faced. But it also gave me focus. I
-                                        pursued my high school dream: to be
-                                        selected as one of the six top math
-                                        students in the country, represent
-                                        Mongolia, and win a medal at the
-                                        International Mathematical Olympiad. I
-                                        did. I fulfilled my dream, and I was
-                                        ready for the next chapter.
-                                    </p>
-                                    <p>
-                                        Growing up in a rural town, I had never
-                                        realized the importance of English. No
-                                        one around me spoke it, except my older
-                                        sister in later years. Luckily, the
-                                        principal of my high school noticed my
-                                        determination and encouraged me to apply
-                                        to United World College in Maastricht,
-                                        Netherlands. For two years, I lived
-                                        among students from around the world,
-                                        learning English, embracing new
-                                        cultures, and discovering who I could
-                                        become. Those years changed me the most.
-                                        I went from a boy leaving his country
-                                        for the first time to someone confident
-                                        in facing any challenge, making friends
-                                        across six continents.
-                                    </p>
-                                    <p>
-                                        Now, I'm in the U.S., studying at a
-                                        liberal arts college. I'm exploring a
-                                        wide range of subjects, from art history
-                                        and environmental studies to economics,
-                                        and discovering new passions in computer
-                                        science and data science. I'm meeting
-                                        people from different backgrounds,
-                                        learning from them, and shaping the next
-                                        chapter of my life. I'm not here because
-                                        I was born into wealth or privilege, but
-                                        because of supportive parents, inspiring
-                                        teachers, and friends I could always
-                                        count on.
-                                    </p>
-
-                                    <p>
-                                        <strong
-                                            >In short, I'm rooted in nomadic
-                                            traditions, shaped by Soviet echoes,
-                                            guided by Asian philosophy, all
-                                            while embracing a Western
-                                            mindset.</strong
+                            <div class="tab-panel" id="mef" role="tabpanel">
+                                <h3 class="job-title">
+                                    Full Stack Developer & Organizer
+                                    <span class="company"
+                                        >@ Young Mathematicians of Khuvsgul
+                                        (NGO)</span
+                                    >
+                                </h3>
+                                <p class="job-duration">May 2019 - Present</p>
+                                <ul class="job-description">
+                                    <li>
+                                        Architected a comprehensive
+                                        <a
+                                            href="https://khu-math.vercel.app/"
+                                            target="_blank"
+                                            rel="noopener"
+                                            >LMS platform</a
                                         >
+                                        using Next.js 16, TypeScript, and
+                                        PostgreSQL (Supabase) to host math
+                                        courses and manage contests for 60+
+                                        annual participants.
+                                    </li>
+                                    <li>
+                                        Designed a relational database schema to
+                                        model complex dependencies between
+                                        courses, users, and problem attempts,
+                                        and implemented Role-Based Access
+                                        Control (RBAC) for admin security.
+                                    </li>
+                                    <li>
+                                        Organize free summer mathematics
+                                        programs for rural students in Mongolia,
+                                        improving access to STEM education.
+                                    </li>
+                                </ul>
+                                <div class="job-skills">
+                                    <span class="skill-tag">React</span>
+                                    <span class="skill-tag">TypeScript</span>
+                                    <span class="skill-tag"
+                                        >Web Development</span
+                                    >
+                                    <span class="skill-tag">Teaching</span>
+                                </div>
+                            </div>
+
+                            <div
+                                class="tab-panel"
+                                id="preceptor"
+                                role="tabpanel"
+                            >
+                                <h3 class="job-title">
+                                    Preceptor
+                                    <span class="company"
+                                        >@ Macalester College</span
+                                    >
+                                </h3>
+                                <p class="job-duration">2023 - Present</p>
+                                <ul class="job-description">
+                                    <li>
+                                        Facilitate learning for undergraduate
+                                        courses, including Computational Linear
+                                        Algebra, Linear Algebra, and Intro to
+                                        Computer Science.
+                                    </li>
+                                    <li>
+                                        Grade assignments and provide detailed,
+                                        constructive feedback to students
+                                    </li>
+                                    <li>
+                                        Hold office hours to clarify course
+                                        concepts and guide students through
+                                        challenging assignments
+                                    </li>
+                                </ul>
+                                <div class="job-skills">
+                                    <span class="skill-tag">Python</span>
+                                    <span class="skill-tag">R Studio</span>
+                                    <span class="skill-tag"
+                                        >Linear Algebra</span
+                                    >
+                                    <span class="skill-tag">Teaching</span>
+                                </div>
+                            </div>
+
+                            <div
+                                class="tab-panel"
+                                id="teaching"
+                                role="tabpanel"
+                            >
+                                <h3 class="job-title">
+                                    Teaching Assistant
+                                    <span class="company"
+                                        >@ Delgermurun Secondary School</span
+                                    >
+                                </h3>
+                                <p class="job-duration">Summer 2025</p>
+                                <ul class="job-description">
+                                    <li>
+                                        Taught advanced-level Math,
+                                        beginner-level English, and basic
+                                        Programming to high school students
+                                    </li>
+                                    <li>
+                                        Prepared students for the International
+                                        Math Contest for Juniors; coached one
+                                        student to a Silver Medal.
+                                    </li>
+                                    <li>
+                                        Designed and maintained a
+                                        <a
+                                            href="https://basabu1.github.io/Lessons/"
+                                            target="_blank"
+                                            rel="noopener"
+                                            >Quarto Website</a
+                                        >
+                                        to host interactive math, programming,
+                                        and English lessons.
+                                    </li>
+                                </ul>
+                                <div class="job-skills">
+                                    <span class="skill-tag">Quarto</span>
+                                    <span class="skill-tag">Communication</span>
+                                    <span class="skill-tag">Teaching</span>
+                                    <span class="skill-tag">Mathematics</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="section projects-section">
+                <div class="container">
+                    <h2 class="section-title">
+                        <span class="section-number">03.</span> Projects
+                    </h2>
+
+                    <!-- Featured Projects -->
+                    <div class="featured-projects">
+                        <article class="featured-project">
+                            <div class="project-content">
+                                <p class="project-overline">Featured Project</p>
+                                <h3 class="project-title">
+                                    <a
+                                        href="https://khu-math.vercel.app/"
+                                        target="_blank"
+                                        rel="noopener"
+                                    >
+                                        KHU Math Education Website
+                                    </a>
+                                </h3>
+                                <div class="project-description">
+                                    <p>
+                                        Official website for "Young
+                                        Mathematicians of Khuvsgul", a
+                                        non-profit organization focused on
+                                        mathematics education. Built with modern
+                                        web technologies featuring responsive
+                                        design, accessibility, and optimized
+                                        performance to serve students across
+                                        Mongolia.
                                     </p>
+                                </div>
+                                <ul class="project-tech-list">
+                                    <li>React</li>
+                                    <li>TypeScript</li>
+                                    <li>Web Development</li>
+                                    <li>Responsive Design</li>
+                                </ul>
+                                <div class="project-links">
+                                    <a
+                                        href="https://khu-math.vercel.app/"
+                                        target="_blank"
+                                        rel="noopener"
+                                        class="project-link"
+                                        aria-label="View live website"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="20"
+                                            height="20"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        >
+                                            <path
+                                                d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                                            ></path>
+                                            <polyline
+                                                points="15 3 21 3 21 9"
+                                            ></polyline>
+                                            <line
+                                                x1="10"
+                                                y1="14"
+                                                x2="21"
+                                                y2="3"
+                                            ></line>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <a
+                                href="https://khu-math.vercel.app/"
+                                target="_blank"
+                                rel="noopener"
+                                class="project-image"
+                                aria-label="View NGO Math Education Website"
+                            >
+                                <img
+                                    src="misc/khu-math.png"
+                                    alt="Home page of the KHU Math website"
+                                />
+                            </a>
+                        </article>
+
+                        <article class="featured-project reverse">
+                            <div class="project-content">
+                                <p class="project-overline">Featured Project</p>
+                                <h3 class="project-title">
+                                    <a
+                                        href="https://basabu1.github.io/Map-Generation/"
+                                        target="_blank"
+                                        rel="noopener"
+                                    >
+                                        Procedural Map Generation
+                                    </a>
+                                </h3>
+                                <div class="project-description">
+                                    <p>
+                                        A computational geometry capstone
+                                        project exploring procedural terrain and
+                                        map generation algorithms. Implements
+                                        various techniques for generating
+                                        realistic landscapes and game maps using
+                                        mathematical concepts from computational
+                                        geometry.
+                                    </p>
+                                </div>
+                                <ul class="project-tech-list">
+                                    <li>Python</li>
+                                    <li>Computational Geometry</li>
+                                    <li>Algorithms</li>
+                                    <li>Visualization</li>
+                                </ul>
+                                <div class="project-links">
+                                    <a
+                                        href="https://basabu1.github.io/Map-Generation/"
+                                        target="_blank"
+                                        rel="noopener"
+                                        class="project-link"
+                                        aria-label="View project blog"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="20"
+                                            height="20"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        >
+                                            <path
+                                                d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                                            ></path>
+                                            <polyline
+                                                points="15 3 21 3 21 9"
+                                            ></polyline>
+                                            <line
+                                                x1="10"
+                                                y1="14"
+                                                x2="21"
+                                                y2="3"
+                                            ></line>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <a
+                                href="https://basabu1.github.io/Map-Generation/"
+                                target="_blank"
+                                rel="noopener"
+                                class="project-image"
+                                aria-label="View Procedural Map Generation project"
+                            >
+                                <img
+                                    src="misc/3D-land.png"
+                                    alt="Final 3D Map rendered in Blender"
+                                />
+                            </a>
+                        </article>
+                    </div>
+
+                    <!-- Other Projects Grid -->
+                    <h3 class="other-projects-title">Other Course Projects</h3>
+                    <div class="projects-grid">
+                        <article class="project-card">
+                            <div class="project-card-header">
+                                <div class="project-card-icon">📊</div>
+                                <div class="project-card-links">
+                                    <a
+                                        href="misc/example_data_viz.png"
+                                        target="_blank"
+                                        rel="noopener"
+                                        aria-label="View example"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="18"
+                                            height="18"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        >
+                                            <path
+                                                d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                                            ></path>
+                                            <polyline
+                                                points="15 3 21 3 21 9"
+                                            ></polyline>
+                                            <line
+                                                x1="10"
+                                                y1="14"
+                                                x2="21"
+                                                y2="3"
+                                            ></line>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <h4 class="project-card-title">
+                                Data Visualizations
+                            </h4>
+                            <p class="project-card-description">
+                                Created several data visualizations using R
+                                Studio and
+                                <a
+                                    href="https://github.com/rfordatascience/tidytuesday"
+                                    target="_blank"
+                                    rel="noopener"
+                                    >TidyTuesday datasets</a
+                                >, including a visualization tracking Mongolia's
+                                IMO ranks over the years.
+                            </p>
+                            <ul class="project-card-tech">
+                                <li>R Studio</li>
+                                <li>Data Viz</li>
+                                <li>Data Cleaning</li>
+                            </ul>
+                        </article>
+
+                        <article class="project-card">
+                            <div class="project-card-header">
+                                <div class="project-card-icon">🧮</div>
+                                <div class="project-card-links">
+                                    <a
+                                        href="https://github.com/BaSaBu1/Python-Calculator"
+                                        target="_blank"
+                                        rel="noopener"
+                                        aria-label="View code"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="18"
+                                            height="18"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        >
+                                            <path
+                                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                                            ></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <h4 class="project-card-title">
+                                Python Calculator
+                            </h4>
+                            <p class="project-card-description">
+                                A calculator that solves interesting math
+                                puzzles and problems, such as cryptarithms and
+                                polynomial interpolation. First CS project for
+                                my intro course.
+                            </p>
+                            <ul class="project-card-tech">
+                                <li>Python</li>
+                                <li>Mathematics</li>
+                                <li>Algorithms</li>
+                            </ul>
+                        </article>
+
+                        <article class="project-card">
+                            <div class="project-card-header">
+                                <div class="project-card-icon">⚡</div>
+                                <div class="project-card-links">
+                                    <a
+                                        href="https://basabu1.github.io/Power-Diagram/"
+                                        target="_blank"
+                                        rel="noopener"
+                                        aria-label="View project"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="18"
+                                            height="18"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        >
+                                            <path
+                                                d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                                            ></path>
+                                            <polyline
+                                                points="15 3 21 3 21 9"
+                                            ></polyline>
+                                            <line
+                                                x1="10"
+                                                y1="14"
+                                                x2="21"
+                                                y2="3"
+                                            ></line>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <h4 class="project-card-title">
+                                Power Diagram Visualization
+                            </h4>
+                            <p class="project-card-description">
+                                Interactive visualization of power diagrams and
+                                weighted Voronoi tessellations, exploring
+                                advanced computational geometry concepts learned
+                                in my coursework.
+                            </p>
+                            <ul class="project-card-tech">
+                                <li>Python</li>
+                                <li>Computational Geometry</li>
+                                <li>Visualization</li>
+                            </ul>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Achievements Section -->
+            <section id="achievements" class="section achievements-section">
+                <div class="container">
+                    <h2 class="section-title">
+                        <span class="section-number">04.</span> Achievements
+                    </h2>
+
+                    <div class="achievements-grid">
+                        <div class="achievement-category">
+                            <h3 class="category-title">
+                                <span class="category-icon">⭐</span>
+                                High School Awards
+                            </h3>
+                            <div class="achievement-list">
+                                <div class="achievement-item featured">
+                                    <div class="achievement-badge bronze">
+                                        🥉
+                                    </div>
+                                    <div class="achievement-details">
+                                        <h4>
+                                            International Mathematical Olympiad
+                                            (IMO)
+                                        </h4>
+                                        <p>
+                                            Bronze Medal & Honorable Mention.
+                                            Represented Mongolia at the world's
+                                            most prestigious high school
+                                            mathematics competition. Our team
+                                            ranked 11th, the best result in
+                                            Mongolia's history.
+                                        </p>
+                                        <span class="achievement-year"
+                                            >2020-2021</span
+                                        >
+                                        <a
+                                            href="misc/imo_certificate.pdf"
+                                            class="certificate-link"
+                                            target="_blank"
+                                            rel="noopener"
+                                            >View Certificate →</a
+                                        >
+                                    </div>
+                                </div>
+                                <div class="achievement-item">
+                                    <div class="achievement-badge silver">
+                                        🥈
+                                    </div>
+                                    <div class="achievement-details">
+                                        <h4>National Mathematical Olympiad</h4>
+                                        <p>
+                                            Silver & 2 Bronze Medals. Achieved
+                                            top results in national-level
+                                            contests after two years of
+                                            intensive training.
+                                        </p>
+                                        <span class="achievement-year"
+                                            >2018-2021</span
+                                        >
+                                    </div>
+                                </div>
+                                <div class="achievement-item">
+                                    <div class="achievement-badge special">
+                                        🎖️
+                                    </div>
+                                    <div class="achievement-details">
+                                        <h4>Mongolian Presidential Award</h4>
+                                        <p>
+                                            Received a special award from the
+                                            President of Mongolia as a member of
+                                            the national math team.
+                                        </p>
+                                        <span class="achievement-year"
+                                            >2020-2021</span
+                                        >
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- ================================
-                             SUBSECTION 2: MY INTERESTS & HOBBIES
-                        ================================ -->
-                        <div class="personal-subsection interests-section">
-                            <div class="subsection-header">
-                                <h3>
-                                    <span class="section-number">02</span>My
-                                    Interests & Hobbies
-                                </h3>
-                                <div class="section-divider"></div>
-                            </div>
-
-                            <div class="interests-grid">
-                                <div class="interest-card">
-                                    <div class="interest-icon">📸</div>
-                                    <h4>Photography</h4>
-                                    <p>
-                                        <q
-                                            cite="Kurt Vonnegut, A Man Without a Country"
-                                            >Practicing an art, no matter how
-                                            well or badly, is a way to make your
-                                            soul grow, for heaven's sake.</q
+                        <div class="achievement-category">
+                            <h3 class="category-title">
+                                <span class="category-icon">⭐</span>
+                                College Awards
+                            </h3>
+                            <div class="achievement-list">
+                                <div class="achievement-item">
+                                    <div class="achievement-badge gold">🏆</div>
+                                    <div class="achievement-details">
+                                        <h4>DataFest Macalester</h4>
+                                        <p>
+                                            Winner. Competed in ASA DataFest,
+                                            analyzing real-world datasets and
+                                            presenting data-driven insights
+                                            within 24 hours.
+                                        </p>
+                                        <span class="achievement-year"
+                                            >2025</span
                                         >
-                                        <br />
-                                        - <em>Kurt Vonnegut</em>
-                                    </p>
+                                    </div>
+                                </div>
+                                <div class="achievement-item">
+                                    <div class="achievement-badge gold">🏆</div>
+                                    <div class="achievement-details">
+                                        <h4>Local Programming Competitions</h4>
+                                        <p>
+                                            Winner. Participated in collegiate
+                                            programming contests, showcasing
+                                            algorithmic thinking and coding
+                                            skills.
+                                        </p>
+                                        <span class="achievement-year"
+                                            >2025</span
+                                        >
+                                    </div>
+                                </div>
+                                <div class="achievement-item">
+                                    <div class="achievement-badge third">
+                                        🥉
+                                    </div>
+                                    <div class="achievement-details">
+                                        <h4>
+                                            Konhauser Mathematics Problemfest
+                                        </h4>
+                                        <p>
+                                            Third Place. Annual three-person
+                                            team competition between Macalester,
+                                            Carleton, St. Olaf, University of
+                                            St. Thomas, and Gustavus Adolphus.
+                                        </p>
+                                        <span class="achievement-year"
+                                            >2025</span
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- My Story Section -->
+            <section id="story" class="section story-section">
+                <div class="container">
+                    <h2 class="section-title">
+                        <span class="section-number">05.</span> My Story
+                    </h2>
+
+                    <div class="story-content">
+                        <!-- Background -->
+                        <div class="story-subsection">
+                            <h3 class="story-subtitle">
+                                <span class="story-number">01</span>
+                                My Background
+                            </h3>
+                            <div class="story-text">
+                                <p>
+                                    I grew up in the northernmost rural part of
+                                    Mongolia, where it takes a full day to reach
+                                    Ulaanbaatar, the world's coldest capital.
+                                    Life there wasn't extraordinary; people
+                                    mostly minded their own business. My parents
+                                    were no different. They had never left our
+                                    town or gone to college, but they provided
+                                    me and my sister with a happy childhood. At
+                                    first, this seemed like a limitation, but I
+                                    now see it as my greatest advantage. Because
+                                    they had never experienced college or life
+                                    abroad, they never hesitated to let me chase
+                                    every opportunity I could find.
+                                </p>
+                                <p>
+                                    That freedom allowed me to study math for
+                                    hours without interruption, even though I
+                                    was the strongest at home and could have
+                                    helped with physically demanding chores.
+                                    Eventually, it opened doors I could never
+                                    have imagined. I moved alone to the capital
+                                    to attend one of Mongolia's most prestigious
+                                    high schools after winning a silver medal at
+                                    the national math olympiad, which came with
+                                    a full scholarship. This was during Covid,
+                                    and living alone at such a young age was one
+                                    of the hardest challenges I had faced. But
+                                    it also gave me focus. I pursued my high
+                                    school dream: to be selected as one of the
+                                    six top math students in the country,
+                                    represent Mongolia, and win a medal at the
+                                    International Mathematical Olympiad. I did.
+                                    I fulfilled my dream, and I was ready for
+                                    the next chapter.
+                                </p>
+                                <p>
+                                    Growing up in a rural town, I had never
+                                    realized the importance of English. No one
+                                    around me spoke it, except my older sister
+                                    in later years. Luckily, the principal of my
+                                    high school noticed my determination and
+                                    encouraged me to apply to United World
+                                    College in Maastricht, Netherlands. For two
+                                    years, I lived among students from around
+                                    the world, learning English, embracing new
+                                    cultures, and discovering who I could
+                                    become. Those years changed me the most. I
+                                    went from a boy leaving his country for the
+                                    first time to someone confident in facing
+                                    any challenge, making friends across six
+                                    continents.
+                                </p>
+                                <p>
+                                    Now, I'm in the U.S., studying at a liberal
+                                    arts college. I'm exploring a wide range of
+                                    subjects, from art history and environmental
+                                    studies to economics, and discovering new
+                                    passions in computer science and data
+                                    science. I'm meeting people from different
+                                    backgrounds, learning from them, and shaping
+                                    the next chapter of my life. I'm not here
+                                    because I was born into wealth or privilege,
+                                    but because of supportive parents, inspiring
+                                    teachers, and friends I could always count
+                                    on.
+                                </p>
+                                <p class="story-highlight">
+                                    <strong
+                                        >In short, I'm rooted in nomadic
+                                        traditions, shaped by Soviet echoes,
+                                        guided by Asian philosophy, all while
+                                        embracing a Western mindset.</strong
+                                    >
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Interests & Hobbies -->
+                        <div class="story-subsection">
+                            <h3 class="story-subtitle">
+                                <span class="story-number">02</span>
+                                Interests & Hobbies
+                            </h3>
+                            <div class="hobbies-grid">
+                                <div class="hobby-card">
+                                    <div class="hobby-icon">📸</div>
+                                    <h4>Photography</h4>
+                                    <blockquote>
+                                        "Practicing an art, no matter how well
+                                        or badly, is a way to make your soul
+                                        grow, for heaven's sake."
+                                        <cite>— Kurt Vonnegut</cite>
+                                    </blockquote>
                                     <p>
                                         I like observing my surroundings and
                                         listening to the sounds of life.
@@ -307,17 +1035,15 @@
                                         as I experience the world.
                                     </p>
                                 </div>
-                                <div class="interest-card">
-                                    <div class="interest-icon">🏀</div>
+
+                                <div class="hobby-card">
+                                    <div class="hobby-icon">🏀</div>
                                     <h4>Basketball</h4>
-                                    <p>
-                                        <q
-                                            >Three seconds left, Batsambuu
-                                            catches the ball, three, two, one,
-                                            he shoots it, BANGGG! BUZZER
-                                            BEATER!</q
-                                        >
-                                    </p>
+                                    <blockquote>
+                                        "Three seconds left, Batsambuu catches
+                                        the ball, three, two, one, he shoots it,
+                                        BANGGG! BUZZER BEATER!"
+                                    </blockquote>
                                     <p>
                                         This is how seven-year-old me used to
                                         imagine and commentate on myself while
@@ -336,18 +1062,15 @@
                                         about it.
                                     </p>
                                 </div>
-                                <div class="interest-card">
-                                    <div class="interest-icon">🎮</div>
+
+                                <div class="hobby-card">
+                                    <div class="hobby-icon">🎮</div>
                                     <h4>Video Games</h4>
-                                    <p>
-                                        <q
-                                            cite="Ezio Auditore, Assassin's Creed 2"
-                                            >Wanting something does not give you
-                                            the right to have it.</q
-                                        >
-                                        <br />
-                                        - <em>Assassin's Creed 2</em>
-                                    </p>
+                                    <blockquote>
+                                        "Wanting something does not give you the
+                                        right to have it."
+                                        <cite>— Assassin's Creed 2</cite>
+                                    </blockquote>
                                     <p>
                                         Video games are my way to relax and take
                                         a break from reality. I often prefer a
@@ -358,8 +1081,8 @@
                                         experience things you'd never do in real
                                         life. I find myself arguing with friends
                                         over their choices in a game, focusing
-                                        on puzzles , or riding a horse across
-                                        the open world of Ancient Egypt. It's a
+                                        on puzzles, or riding a horse across the
+                                        open world of Ancient Egypt. It's a
                                         unique form of storytelling that truly
                                         makes you part of the story.
                                     </p>
@@ -367,20 +1090,14 @@
                             </div>
                         </div>
 
-                        <!-- ================================
-                             SUBSECTION 3: MY BELIEFS & VIEWS
-                        ================================ -->
-                        <div class="personal-subsection beliefs-section">
-                            <div class="subsection-header">
-                                <h3>
-                                    <span class="section-number">03</span>My
-                                    Beliefs & Views
-                                </h3>
-                                <div class="section-divider"></div>
-                            </div>
-
+                        <!-- Beliefs & Views -->
+                        <div class="story-subsection">
+                            <h3 class="story-subtitle">
+                                <span class="story-number">03</span>
+                                My Beliefs & Views
+                            </h3>
                             <div class="beliefs-content">
-                                <div class="core-belief">
+                                <div class="belief-card">
                                     <h4>On Education & Teaching</h4>
                                     <p>
                                         I believe that better education is the
@@ -405,7 +1122,7 @@
                                         everything I know and helping them grow.
                                     </p>
                                 </div>
-                                <div class="core-belief">
+                                <div class="belief-card">
                                     <h4>On Other Things</h4>
                                     <p>
                                         I'm still gathering my thoughts. More of
@@ -419,918 +1136,303 @@
                 </div>
             </section>
 
-            <!-- ================================
-                 SECTION 3: EXPERIENCE & ACHIEVEMENTS  
-            ================================ -->
-            <section id="experience" class="experience-section">
-                <div class="section-container">
-                    <div class="section-header">
-                        <h2>Experience & Achievements</h2>
-                        <p class="section-intro">
-                            A showcase of my academic achievements, experience,
-                            and technical projects
-                        </p>
-                    </div>
+            <!-- Gallery Section -->
+            <section id="gallery" class="section gallery-section">
+                <div class="container">
+                    <h2 class="section-title">
+                        <span class="section-number">06.</span> Photography
+                        Gallery
+                    </h2>
+                    <p class="section-description">
+                        A collection of my favorite moments captured since I got
+                        my first digital camera in the winter of 2024. Hover
+                        over each image to discover the story behind the shot.
+                    </p>
 
-                    <div class="experience-content">
-                        <!-- ================================
-                             SUBSECTION 1: ACHIEVEMENTS & CERTIFICATES
-                        ================================ -->
-                        <div class="experience-subsection achievements-section">
-                            <div class="subsection-header">
-                                <h3>
-                                    <span class="section-number">01</span
-                                    >Achievements & Certificates
-                                </h3>
-                                <div class="section-divider"></div>
-                            </div>
-
-                            <div class="achievements-grid">
-                                <div class="achievement-card">
-                                    <div class="achievement-icon">🏅</div>
-                                    <div class="achievement-content">
-                                        <h4>High School Awards</h4>
-                                        <div class="award-list">
-                                            <div
-                                                class="award-item bronze-medal"
-                                            >
-                                                <strong
-                                                    >Bronze Medal & Honorable
-                                                    Mention <br />
-                                                    International Mathematical
-                                                    Olympiad (IMO)</strong
-                                                >
-                                                <p class="award-detail">
-                                                    I represented Mongolia at
-                                                    the world's most prestigious
-                                                    high school mathematics
-                                                    competition, where our team
-                                                    ranked 11th, the best result
-                                                    in Mongolia's history.
-                                                </p>
-                                                <span class="award-year"
-                                                    >2020-2021</span
-                                                >
-                                                <a
-                                                    href="misc\imo_certificate.pdf"
-                                                    class="certificate-btn"
-                                                    target="_blank"
-                                                    rel="noopener"
-                                                >
-                                                    View IMO Certificate
-                                                </a>
-                                            </div>
-                                            <div
-                                                class="award-item silver-medal"
-                                            >
-                                                <strong
-                                                    >Silver & Bronze Medals
-                                                    <br />
-                                                    National Mathematical
-                                                    Olympiad</strong
-                                                >
-                                                <p class="award-detail">
-                                                    After two years of training,
-                                                    I started achieving top
-                                                    results in national-level
-                                                    contests, including the
-                                                    National Mathematical
-                                                    Olympiad.
-                                                </p>
-                                                <span class="award-year"
-                                                    >2018-2021</span
-                                                >
-                                            </div>
-                                            <div class="award-item">
-                                                <strong
-                                                    >Mongolian Presidential
-                                                    Award</strong
-                                                >
-                                                <p class="award-detail">
-                                                    As a member of Mongolia's
-                                                    national math team, I was
-                                                    honored to receive a special
-                                                    award from the President of
-                                                    Mongolia.
-                                                </p>
-                                                <span class="award-year"
-                                                    >2020-2021</span
-                                                >
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="achievement-card">
-                                    <div class="achievement-icon">🎓</div>
-                                    <div class="achievement-content">
-                                        <h4>College Awards</h4>
-                                        <div class="award-list">
-                                            <div
-                                                class="award-item winner-award"
-                                            >
-                                                <strong
-                                                    >Winner <br />DataFest
-                                                    Macalester
-                                                </strong>
-                                                <p class="award-detail">
-                                                    Following my newly developed
-                                                    interest in statistics and
-                                                    data science, I competed in
-                                                    the ASA DataFest at
-                                                    Macalester, teaming up with
-                                                    three fellow students to
-                                                    analyze real-world datasets
-                                                    and present data-driven
-                                                    insights within 24 hours.
-                                                </p>
-                                                <span class="award-year"
-                                                    >2025</span
-                                                >
-                                            </div>
-                                            <div
-                                                class="award-item winner-award"
-                                            >
-                                                <strong
-                                                    >Winner <br />Local
-                                                    Programming
-                                                    Competitions</strong
-                                                >
-                                                <p class="award-detail">
-                                                    I see competitive
-                                                    programming as the computer
-                                                    science counterpart to
-                                                    mathematical olympiad. I've
-                                                    participated in a collegiate
-                                                    programming contest,
-                                                    showcasing my algorithmic
-                                                    thinking and coding skills.
-                                                </p>
-                                                <span class="award-year"
-                                                    >2025</span
-                                                >
-                                            </div>
-                                            <div class="award-item third-place">
-                                                <strong
-                                                    >Third Place <br />Konhauser
-                                                    Mathematics
-                                                    Problemfest</strong
-                                                >
-                                                <p class="award-detail">
-                                                    I continue to enjoy
-                                                    participating in math
-                                                    contests even in college.
-                                                    The Konhauser Problemfest is
-                                                    an annual competition for
-                                                    three-person teams from
-                                                    Macalester, Carleton, St.
-                                                    Olaf, University of St.
-                                                    Thomas, and Gustavus
-                                                    Adolphus.
-                                                </p>
-                                                <span class="award-year"
-                                                    >2025</span
-                                                >
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="achievement-card">
-                                    <div class="achievement-icon">📜</div>
-                                    <div class="achievement-content">
-                                        <h4>Technical Certificates</h4>
-                                        <div class="award-list">
-                                            <div class="award-item">
-                                                <strong
-                                                    >FreeCodeCamp - Responsive
-                                                    Web Design</strong
-                                                >
-                                                <p class="award-detail">
-                                                    I completed a comprehensive
-                                                    HTML and CSS curriculum. The
-                                                    certification project was to
-                                                    build a personal portfolio
-                                                    webpage, which inspired the
-                                                    idea for creating this
-                                                    website.
-                                                </p>
-                                                <span class="award-year"
-                                                    >2025</span
-                                                >
-                                                <a
-                                                    href="misc/web_certificate.pdf"
-                                                    class="certificate-btn"
-                                                    target="_blank"
-                                                    rel="noopener"
-                                                >
-                                                    View HTML/CSS Certificate
-                                                </a>
-                                            </div>
-
-                                            <div class="award-item">
-                                                <strong>More to Come</strong>
-                                                <p class="award-detail">
-                                                    I continue studying
-                                                    independently to develop
-                                                    more technical skills.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ================================
-                             SUBSECTION 2: EXPERIENCE
-                        ================================ -->
-                        <div class="experience-subsection work-section">
-                            <div class="subsection-header">
-                                <h3>
-                                    <span class="section-number">02</span>
-                                    Experience
-                                </h3>
-                                <div class="section-divider"></div>
-                            </div>
-
-                            <div class="work-timeline">
-                                <div class="work-item">
-                                    <div class="work-timeline-marker"></div>
-                                    <div class="work-content">
-                                        <div class="work-header">
-                                            <div class="work-title-line">
-                                                <h4>Teaching Assistant</h4>
-                                                <span class="work-duration"
-                                                    >Summer 2025</span
-                                                >
-                                            </div>
-                                            <span class="company-name">
-                                                Delgermurun Secondary School
-                                            </span>
-                                        </div>
-                                        <p class="work-description">
-                                            I studied at this school for four
-                                            years, until 2019. Doing this
-                                            internship was my way of giving back
-                                            to the community. I taught
-                                            advanced-level Math, beginner-level
-                                            English, and basic Programming.
-                                            Other key responsibilities included
-                                            preparing and administering entry
-                                            exams for primary school students,
-                                            helping 9th graders prepare for
-                                            their national end-of-middle-school
-                                            exams, and training students for
-                                            math competitions. I also created a
-                                            <a
-                                                href="https://basabu1.github.io/Lessons/"
-                                                target="_blank"
-                                                rel="noopener"
-                                                >Quarto Website</a
-                                            >
-                                            that stores two months of course
-                                            materials. It will remain available
-                                            for students and will continue to be
-                                            developed over time.
-                                        </p>
-                                        <div class="work-skills">
-                                            <span class="skill-tag"
-                                                >Quarto</span
-                                            >
-                                            <span class="skill-tag"
-                                                >Communication</span
-                                            >
-                                            <span class="skill-tag"
-                                                >Teaching</span
-                                            >
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="work-item">
-                                    <div class="work-timeline-marker"></div>
-                                    <div class="work-content">
-                                        <div class="work-header">
-                                            <div class="work-title-line">
-                                                <h4>Preceptor</h4>
-                                                <span class="work-duration"
-                                                    >2023 - 2025</span
-                                                >
-                                            </div>
-                                            <span class="company-name"
-                                                >Macalester College</span
-                                            >
-                                        </div>
-                                        <p class="work-description">
-                                            I served as a preceptor for the
-                                            "Linear Algebra" and "Intro to
-                                            Computer Science" courses. As a
-                                            preceptor, I grade assignments and
-                                            provide detailed feedback, hold
-                                            office hours to clarify course
-                                            concepts, answer questions, and
-                                            guide students through challenging
-                                            assignments.
-                                        </p>
-                                        <div class="work-skills">
-                                            <span class="skill-tag"
-                                                >Python</span
-                                            >
-                                            <span class="skill-tag"
-                                                >R Studio</span
-                                            >
-                                            <span class="skill-tag"
-                                                >Linear Algebra</span
-                                            >
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="work-item">
-                                    <div class="work-timeline-marker"></div>
-                                    <div class="work-content">
-                                        <div class="work-header">
-                                            <div class="work-title-line">
-                                                <h4>Grounds Person</h4>
-                                                <span class="work-duration"
-                                                    >Summer 2024</span
-                                                >
-                                            </div>
-                                            <span class="company-name"
-                                                >Macalester College</span
-                                            >
-                                        </div>
-                                        <p class="work-description">
-                                            I worked as a ground person,
-                                            planting trees around the campus,
-                                            caring for the greenery, and
-                                            assisting with general maintenance.
-                                            It was my first full-time,
-                                            40-hour-per-week job, and it helped
-                                            me develop strong time management
-                                            skills as well as a deep
-                                            appreciation for responsibility and
-                                            teamwork.
-                                        </p>
-                                        <div class="work-skills">
-                                            <span class="skill-tag"
-                                                >Time Management</span
-                                            >
-                                            <span class="skill-tag"
-                                                >Responsibility</span
-                                            >
-                                            <span class="skill-tag"
-                                                >Teamwork</span
-                                            >
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="work-item">
-                                    <div class="work-timeline-marker"></div>
-                                    <div class="work-content">
-                                        <div class="work-header">
-                                            <div class="work-title-line">
-                                                <h4>More to Come</h4>
-                                                <span class="work-duration"
-                                                    >TBD</span
-                                                >
-                                            </div>
-                                        </div>
-                                        <p class="work-description">
-                                            I believe I will have more
-                                            opportunities to gain experience,
-                                            particularly in technical fields
-                                            such as software development or data
-                                            analysis.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ================================
-                             SUBSECTION 3: PROJECTS
-                        ================================ -->
-                        <div class="experience-subsection projects-section">
-                            <div class="subsection-header">
-                                <h3>
-                                    <span class="section-number">03</span>Course
-                                    & Personal Projects
-                                </h3>
-                                <div class="section-divider"></div>
-                            </div>
-
-                            <div class="projects-grid">
-                                <div class="project-card">
-                                    <div class="project-header">
-                                        <h4>Portfolio Website</h4>
-                                        <div class="project-links">
-                                            <!-- Update the link once it's public -->
-                                            <a
-                                                href="#"
-                                                class="project-link"
-                                                aria-label="View live demo"
-                                                target="_blank"
-                                            >
-                                                <span class="link-icon"
-                                                    >🔗</span
-                                                >
-                                                <span class="link-text"
-                                                    >View Demo</span
-                                                >
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <p class="project-description">
-                                        A responsive personal portfolio website
-                                        showcasing my work and personal story,
-                                        built with HTML and CSS after completing
-                                        a FreeCodeCamp course.
-                                    </p>
-                                    <div class="project-tech">
-                                        <span class="tech-tag">HTML</span>
-                                        <span class="tech-tag">CSS</span>
-                                        <span class="tech-tag"
-                                            >Responsive Design</span
-                                        >
-                                    </div>
-                                </div>
-
-                                <div class="project-card">
-                                    <div class="project-header">
-                                        <h4>Data Visualizations</h4>
-                                        <div class="project-links">
-                                            <a
-                                                href="misc/example_data_viz.png"
-                                                class="project-link"
-                                                aria-label="View data visualization example"
-                                                target="_blank"
-                                                rel="noopener"
-                                            >
-                                                <span class="link-icon"
-                                                    >🔗</span
-                                                >
-                                                <span class="link-text"
-                                                    >View Example</span
-                                                >
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <p class="project-description">
-                                        In my first Data Science course, I
-                                        created several data visualizations
-                                        using R Studio and
-                                        <a
-                                            href="https://github.com/rfordatascience/tidytuesday"
-                                            target="_blank"
-                                            rel="noopener"
-                                            >TidyTuesday datasets</a
-                                        >. One of these visualizations tracks
-                                        Mongolia's ranks in the IMO over the
-                                        years.
-                                    </p>
-                                    <div class="project-tech">
-                                        <span class="tech-tag">R Studio</span>
-                                        <span class="tech-tag">Data Viz</span>
-                                        <span class="tech-tag"
-                                            >Data Cleaning</span
-                                        >
-                                    </div>
-                                </div>
-
-                                <div class="project-card">
-                                    <div class="project-header">
-                                        <h4>Python Calculator</h4>
-                                        <div class="project-links">
-                                            <a
-                                                href="https://github.com/BaSaBu1/Python-Calculator"
-                                                class="project-link"
-                                                aria-label="View source code"
-                                                target="_blank"
-                                                rel="noopener"
-                                            >
-                                                <span class="link-icon"
-                                                    >🔗</span
-                                                >
-                                                <span class="link-text"
-                                                    >View Code</span
-                                                >
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <p class="project-description">
-                                        The first CS project for my first CS
-                                        course. I created a calculator that
-                                        could solve interesting math puzzles and
-                                        problems, such as cryptarithms and
-                                        polynomial interpolation.
-                                    </p>
-                                    <div class="project-tech">
-                                        <span class="tech-tag">Python</span>
-                                        <span class="tech-tag"
-                                            >Mathematics</span
-                                        >
-                                        <span class="tech-tag">Calculator</span>
-                                    </div>
-                                </div>
-
-                                <div class="project-card">
-                                    <div class="project-header">
-                                        <h4>Art Gallery Problem</h4>
-                                        <div class="project-links">
-                                            <a
-                                                href="https://github.com/BaSaBu1/Art-Gallery-Problem"
-                                                class="project-link"
-                                                aria-label="View source code"
-                                                target="_blank"
-                                                rel="noopener"
-                                            >
-                                                <span class="link-icon"
-                                                    >🔗</span
-                                                >
-                                                <span class="link-text"
-                                                    >View Code</span
-                                                >
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <p class="project-description">
-                                        After learning about the Art Gallery
-                                        Problem in my computational geometry
-                                        course, I implemented a simulation of it
-                                        in Python. The project will be developed
-                                        further.
-                                    </p>
-                                    <div class="project-tech">
-                                        <span class="tech-tag">Python</span>
-                                        <span class="tech-tag"
-                                            >Mathematics</span
-                                        >
-                                        <span class="tech-tag"
-                                            >Computational Geometry</span
-                                        >
-                                    </div>
-                                </div>
-                                <div class="project-card">
-                                    <div class="project-header">
-                                        <h4>Other Course Projects</h4>
-                                    </div>
-                                    <p class="project-description">
-                                        Other course projects include an
-                                        object-oriented, arcade-style game with
-                                        collision detection and score tracking,
-                                        as well as a 2D escape room game built
-                                        in Unity.
-                                    </p>
-                                    <div class="project-tech">
-                                        <span class="tech-tag">C#</span>
-                                        <span class="tech-tag">Java</span>
-                                        <span class="tech-tag">Unity</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ================================
-                 SECTION 4: PHOTOGRAPHY GALLERY
-            ================================ -->
-            <section id="gallery" class="gallery-section">
-                <div class="section-container">
-                    <div class="section-header">
-                        <h2>Photography Gallery</h2>
-                        <p class="section-intro">
-                            A collection of my favorite moments captured since I
-                            got my first digital camera in the winter of 2024.
-                            Hover over each image to discover the story behind
-                            the shot.
-                        </p>
-                    </div>
-
-                    <div class="gallery-content">
-                        <div class="gallery-grid">
-                            <div class="gallery-item">
-                                <div class="gallery-image-container">
-                                    <img
-                                        src="gallery/first_ducks.jpg"
-                                        alt="Five ducks swimming in a river in winter, with snowy banks."
-                                        class="gallery-image"
-                                    />
-                                    <div class="gallery-overlay">
-                                        <div class="gallery-overlay-content">
-                                            <div class="gallery-long-desc">
-                                                <p>
-                                                    One of my first photos after
-                                                    I got my first digital
-                                                    camera. I rushed to my
-                                                    favorite off-campus spot,
-                                                    Minnehaha Falls, right after
-                                                    buying it to take this
-                                                    picture.
-                                                </p>
-                                                <div class="photo-meta">
-                                                    <span class="location-info"
-                                                        >📍 Minnehaha Falls,
-                                                        Minneapolis, US</span
-                                                    >
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="gallery-item">
-                                <div class="gallery-image-container">
-                                    <img
-                                        src="gallery/culture.jpg"
-                                        alt="Five horses equipped and ready to ride, tied in front of a majestic mountain with snowy peaks."
-                                        class="gallery-image"
-                                    />
-                                    <div class="gallery-overlay">
-                                        <div class="gallery-overlay-content">
-                                            <div class="gallery-long-desc">
-                                                <p>
-                                                    Taken during a trip to
-                                                    western Mongolia in the
-                                                    summer of 2025. This photo
-                                                    captures the horse culture
-                                                    of Mongolia and the stunning
-                                                    landscapes of the Altai
-                                                    Tavan Bogd National Park
-                                                    region.
-                                                </p>
-                                                <div class="photo-meta">
-                                                    <span class="location-info"
-                                                        >📍 Altai Tavan Bogd,
-                                                        Bayan-Ulgii,
-                                                        Mongolia</span
-                                                    >
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="gallery-item">
-                                <div class="gallery-image-container">
-                                    <img
-                                        src="gallery/home_lake.jpg"
-                                        alt="A small boat floating on a large lake surrounded by forested hills."
-                                        class="gallery-image"
-                                    />
-                                    <div class="gallery-overlay">
-                                        <div class="gallery-overlay-content">
-                                            <div class="gallery-long-desc">
-                                                <p>
-                                                    This lake near my home in
-                                                    Khuvsgul Province is the
-                                                    second-most voluminous
-                                                    freshwater lake in Asia and
-                                                    one of Mongolia's major
-                                                    tourist destinations.
-                                                </p>
-                                                <div class="photo-meta">
-                                                    <span class="location-info"
-                                                        >📍 Khuvsgul Lake,
-                                                        Khuvsgul, Mongolia</span
-                                                    >
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="gallery-item">
-                                <div class="gallery-image-container">
-                                    <img
-                                        src="gallery/horse_racing.jpg"
-                                        alt="Two children riding horses and competing in a horse race during a Naadam Festival event."
-                                        class="gallery-image"
-                                    />
-                                    <div class="gallery-overlay">
-                                        <div class="gallery-overlay-content">
-                                            <div class="gallery-long-desc">
-                                                <p>
-                                                    Horse racing is a central
-                                                    part of Mongolia's National
-                                                    Holiday, Naadam. Horses race
-                                                    for about 20 km (12.5 miles)
-                                                    and are ridden by children
-                                                    aged 8 to 13. This photo was
-                                                    taken during the 2025 Naadam
-                                                    Festival in Khuvsgul
-                                                    Province.
-                                                </p>
-                                                <div class="photo-meta">
-                                                    <span class="location-info"
-                                                        >📍 Naadam Festival,
-                                                        Khuvsgul, Mongolia</span
-                                                    >
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="gallery-item">
-                                <div class="gallery-image-container">
-                                    <img
-                                        src="gallery/nature.jpg"
-                                        alt="Long and majestic mountain range with snowy peaks and wide valleys and rivers below."
-                                        class="gallery-image"
-                                    />
-                                    <div class="gallery-overlay">
-                                        <div class="gallery-overlay-content">
-                                            <div class="gallery-long-desc">
-                                                <p>
-                                                    <q
-                                                        >I'll live as pure as my
-                                                        water <br />
-                                                        think as wide as my land
-                                                        <br />
-                                                        dream as clean as my sky
-                                                        <br />
-                                                        stand as tall as my
-                                                        mountains <br />
-                                                        and carry it all within
-                                                        me</q
-                                                    >
-                                                </p>
-                                                <div class="photo-meta">
-                                                    <span class="location-info"
-                                                        >📍 Altai Tavan Bogd,
-                                                        Bayan-Ulgii,
-                                                        Mongolia</span
-                                                    >
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Coming Soon Message -->
-                            <div class="gallery-item gallery-coming-soon">
-                                <div class="coming-soon-content">
-                                    <div class="coming-soon-icon">🚧</div>
-                                    <h4>Gallery Coming Soon</h4>
-                                    <p>Building a better gallery experience</p>
-                                    <div class="coming-soon-tags">
-                                        <span>📸</span>
-                                        <span>🎨</span>
-                                        <span>📱</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="gallery-footer">
-                            <p class="gallery-note">
-                                Follow my photography journey on Instagram
-                                <a
-                                    href="https://www.instagram.com/sambuu.photos/"
-                                    class="gallery-link"
-                                    target="_blank"
-                                    rel="noopener"
-                                    >@sambuu.photos</a
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img
+                                src="gallery/first_ducks.jpg"
+                                alt="Five ducks swimming in a river in winter"
+                                class="gallery-image"
+                                loading="lazy"
+                            />
+                            <div class="gallery-overlay">
+                                <p>
+                                    One of my first photos after I got my first
+                                    digital camera. I rushed to my favorite
+                                    off-campus spot, Minnehaha Falls, right
+                                    after buying it.
+                                </p>
+                                <span class="gallery-location"
+                                    >📍 Minnehaha Falls, Minneapolis, US</span
                                 >
-                            </p>
+                            </div>
                         </div>
+
+                        <div class="gallery-item">
+                            <img
+                                src="gallery/culture.jpg"
+                                alt="Five horses equipped and ready to ride"
+                                class="gallery-image"
+                                loading="lazy"
+                            />
+                            <div class="gallery-overlay">
+                                <p>
+                                    Taken during a trip to western Mongolia in
+                                    the summer of 2025. This photo captures the
+                                    horse culture of Mongolia and the stunning
+                                    landscapes of the Altai Tavan Bogd region.
+                                </p>
+                                <span class="gallery-location"
+                                    >📍 Altai Tavan Bogd, Bayan-Ulgii,
+                                    Mongolia</span
+                                >
+                            </div>
+                        </div>
+
+                        <div class="gallery-item">
+                            <img
+                                src="gallery/home_lake.jpg"
+                                alt="A small boat floating on a large lake"
+                                class="gallery-image"
+                                loading="lazy"
+                            />
+                            <div class="gallery-overlay">
+                                <p>
+                                    This lake near my home in Khuvsgul Province
+                                    is the second-most voluminous freshwater
+                                    lake in Asia and one of Mongolia's major
+                                    tourist destinations.
+                                </p>
+                                <span class="gallery-location"
+                                    >📍 Khuvsgul Lake, Khuvsgul, Mongolia</span
+                                >
+                            </div>
+                        </div>
+
+                        <div class="gallery-item">
+                            <img
+                                src="gallery/horse_racing.jpg"
+                                alt="Children riding horses in a race"
+                                class="gallery-image"
+                                loading="lazy"
+                            />
+                            <div class="gallery-overlay">
+                                <p>
+                                    Horse racing is a central part of Mongolia's
+                                    National Holiday, Naadam. Horses race for
+                                    about 20 km and are ridden by children aged
+                                    8 to 13.
+                                </p>
+                                <span class="gallery-location"
+                                    >📍 Naadam Festival, Khuvsgul,
+                                    Mongolia</span
+                                >
+                            </div>
+                        </div>
+
+                        <div class="gallery-item">
+                            <img
+                                src="gallery/nature.jpg"
+                                alt="Majestic mountain range with snowy peaks"
+                                class="gallery-image"
+                                loading="lazy"
+                            />
+                            <div class="gallery-overlay">
+                                <p>
+                                    <em
+                                        >"I'll live as pure as my water, think
+                                        as wide as my land, dream as clean as my
+                                        sky, stand as tall as my mountains, and
+                                        carry it all within me"</em
+                                    >
+                                </p>
+                                <span class="gallery-location"
+                                    >📍 Altai Tavan Bogd, Bayan-Ulgii,
+                                    Mongolia</span
+                                >
+                            </div>
+                        </div>
+
+                        <div class="gallery-item gallery-cta">
+                            <div class="gallery-cta-content">
+                                <span class="gallery-cta-icon">📸</span>
+                                <h4>More Coming Soon</h4>
+                                <p>Building a better gallery experience</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-footer">
+                        <p>
+                            Follow my photography journey on Instagram
+                            <a
+                                href="https://www.instagram.com/sambuu.photos/"
+                                target="_blank"
+                                rel="noopener"
+                                >@sambuu.photos</a
+                            >
+                        </p>
                     </div>
                 </div>
             </section>
 
-            <!-- ================================
-                 SECTION 5: CONTACT
-            ================================ -->
-            <section id="contact" class="contact-section">
-                <div class="section-container">
-                    <div class="section-header">
-                        <h2>Let's Connect</h2>
-                        <p class="section-intro">
-                            Ready to collaborate, chat about tech, or share
-                            photography tips? I'd love to hear from you. Choose
-                            your preferred way to get in touch.
-                        </p>
-                    </div>
+            <!-- Contact Section -->
+            <section id="contact" class="section contact-section">
+                <div class="container">
+                    <h2 class="section-title">
+                        <span class="section-number">07.</span> Get In Touch
+                    </h2>
 
                     <div class="contact-content">
-                        <div class="contact-grid">
-                            <div class="contact-card">
-                                <div class="contact-icon">
-                                    <span class="icon">📧</span>
-                                </div>
-                                <div class="contact-info">
-                                    <h3>Email</h3>
-                                    <p class="contact-description">
-                                        For professional inquiries or
-                                        collaborations
-                                    </p>
-                                    <a
-                                        href="mailto:batsambuub2425@gmail.com"
-                                        class="contact-link"
-                                    >
-                                        batsambuub2425@gmail.com
-                                    </a>
-                                </div>
-                            </div>
+                        <p class="contact-description">
+                            I'm currently seeking
+                            <strong
+                                >internship and research opportunities</strong
+                            >
+                            in math, computer science, statistics, or data
+                            science related fields for summer 2026 or further.
+                            Whether you have a question, an opportunity, or just
+                            want to say hi, my inbox is always open!
+                        </p>
 
-                            <div class="contact-card">
-                                <div class="contact-icon">
-                                    <span class="icon">💼</span>
-                                </div>
-                                <div class="contact-info">
-                                    <h3>LinkedIn</h3>
-                                    <p class="contact-description">
-                                        Professional networking and career
-                                        updates.
-                                    </p>
-                                    <a
-                                        href="https://www.linkedin.com/in/batsambuu-batbold/"
-                                        class="contact-link"
-                                        target="_blank"
-                                        rel="noopener"
-                                    >
-                                        in/batsambuu-batbold/
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="contact-card">
-                                <div class="contact-icon">
-                                    <span class="icon">💻</span>
-                                </div>
-                                <div class="contact-info">
-                                    <h3>GitHub</h3>
-                                    <p class="contact-description">
-                                        Check out my code, projects, and
-                                        contributions.
-                                    </p>
-                                    <a
-                                        href="https://github.com/BaSaBu1"
-                                        class="contact-link"
-                                        target="_blank"
-                                        rel="noopener"
-                                    >
-                                        github.com/BaSaBu1
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="contact-card">
-                                <div class="contact-icon">
-                                    <span class="icon">📱</span>
-                                </div>
-                                <div class="contact-info">
-                                    <h3>Instagram</h3>
-                                    <p class="contact-description">
-                                        Personal moments, travel, or just to say
-                                        hello.
-                                    </p>
-                                    <a
-                                        href="https://www.instagram.com/_.basabu._/"
-                                        class="contact-link"
-                                        target="_blank"
-                                        rel="noopener"
-                                    >
-                                        @_.basabu._
-                                    </a>
-                                </div>
-                            </div>
+                        <div class="contact-cta">
+                            <a
+                                href="mailto:batsambuub2425@gmail.com"
+                                class="btn btn-primary btn-large"
+                                >Say Hello</a
+                            >
                         </div>
 
-                        <div class="contact-additional">
-                            <div class="contact-availability">
-                                <h3>Availability</h3>
-                                <p>
-                                    Currently seeking winter 2025, or summer
-                                    2026 entry-level internships in software
-                                    development, data science, mathematics, or
-                                    related fields. Open to remote opportunities
-                                    and willing to relocate for the right
-                                    position.
-                                </p>
+                        <div class="contact-links">
+                            <a
+                                href="mailto:batsambuub2425@gmail.com"
+                                class="contact-link"
+                                aria-label="Email"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                                    ></path>
+                                    <polyline
+                                        points="22,6 12,13 2,6"
+                                    ></polyline>
+                                </svg>
+                            </a>
+                            <a
+                                href="https://www.linkedin.com/in/batsambuu-batbold/"
+                                target="_blank"
+                                rel="noopener"
+                                class="contact-link"
+                                aria-label="LinkedIn"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <path
+                                        d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                                    ></path>
+                                    <rect
+                                        x="2"
+                                        y="9"
+                                        width="4"
+                                        height="12"
+                                    ></rect>
+                                    <circle cx="4" cy="4" r="2"></circle>
+                                </svg>
+                            </a>
+                            <a
+                                href="https://github.com/BaSaBu1"
+                                target="_blank"
+                                rel="noopener"
+                                class="contact-link"
+                                aria-label="GitHub"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <path
+                                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                                    ></path>
+                                </svg>
+                            </a>
+                            <a
+                                href="https://www.instagram.com/_.basabu._/"
+                                target="_blank"
+                                rel="noopener"
+                                class="contact-link"
+                                aria-label="Instagram"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <rect
+                                        x="2"
+                                        y="2"
+                                        width="20"
+                                        height="20"
+                                        rx="5"
+                                        ry="5"
+                                    ></rect>
+                                    <path
+                                        d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                                    ></path>
+                                    <line
+                                        x1="17.5"
+                                        y1="6.5"
+                                        x2="17.51"
+                                        y2="6.5"
+                                    ></line>
+                                </svg>
+                            </a>
+                        </div>
 
-                                <div class="availability-tags">
-                                    <span class="availability-tag"
-                                        >Internships</span
-                                    >
-                                    <span class="availability-tag">Remote</span>
-                                    <span class="availability-tag"
-                                        >Full-time (2027+)</span
-                                    >
-                                    <span class="availability-tag"
-                                        >Part-time</span
-                                    >
-                                </div>
+                        <div class="availability-info">
+                            <div class="availability-tags">
+                                <span class="availability-tag"
+                                    >Open to Internships</span
+                                >
+                                <span class="availability-tag"
+                                    >Remote Friendly</span
+                                >
+                                <span class="availability-tag"
+                                    >Full-time (2027+)</span
+                                >
                             </div>
                         </div>
                     </div>
@@ -1339,53 +1441,238 @@
         </main>
 
         <!-- Footer -->
-        <footer class="site-footer">
+        <footer class="footer">
             <div class="footer-content">
-                <p>&copy; 2025 Batsambuu Batbold. All rights reserved.</p>
+                <p>Designed & Built by Batsambuu Batbold</p>
+                <p class="footer-year">© 2025 - 2026</p>
+            </div>
+        </footer>
 
-                <div class="footer-links">
-                    <a href="mailto:batsambuub2425@gmail.com" aria-label="Email"
-                        >Email</a
-                    >
+        <!-- Social Side Bar (Desktop) -->
+        <div class="social-sidebar left">
+            <ul class="social-list">
+                <li>
                     <a
                         href="https://github.com/BaSaBu1"
                         target="_blank"
                         rel="noopener"
                         aria-label="GitHub"
-                        >GitHub</a
                     >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                            ></path>
+                        </svg>
+                    </a>
+                </li>
+                <li>
                     <a
                         href="https://www.linkedin.com/in/batsambuu-batbold/"
                         target="_blank"
                         rel="noopener"
                         aria-label="LinkedIn"
-                        >LinkedIn</a
                     >
-                </div>
-            </div>
-        </footer>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <path
+                                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                            ></path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="https://www.instagram.com/_.basabu._/"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="Instagram"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <rect
+                                x="2"
+                                y="2"
+                                width="20"
+                                height="20"
+                                rx="5"
+                                ry="5"
+                            ></rect>
+                            <path
+                                d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                            ></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Email Side Bar (Desktop) -->
+        <div class="social-sidebar right">
+            <a href="mailto:batsambuub2425@gmail.com" class="email-link"
+                >batsambuub2425@gmail.com</a
+            >
+        </div>
 
         <!-- Back to Top Button -->
-        <button id="backToTopBtn" class="back-to-top" aria-label="Back to top">
-            <span class="back-to-top-icon">↑</span>
+        <button id="backToTop" class="back-to-top" aria-label="Back to top">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <polyline points="18 15 12 9 6 15"></polyline>
+            </svg>
         </button>
 
         <script>
-            const backToTopBtn = document.getElementById("backToTopBtn");
+            // Mobile Navigation Toggle
+            const navToggle = document.getElementById("nav-toggle");
+            const navMenu = document.getElementById("nav-menu");
+            const navbar = document.getElementById("navbar");
 
-            window.addEventListener("scroll", function () {
-                if (window.pageYOffset > 300) {
-                    backToTopBtn.classList.add("show");
+            navToggle.addEventListener("click", () => {
+                navToggle.classList.toggle("active");
+                navMenu.classList.toggle("active");
+                document.body.classList.toggle("nav-open");
+            });
+
+            // Close mobile menu when clicking a link
+            document.querySelectorAll(".nav-link").forEach((link) => {
+                link.addEventListener("click", () => {
+                    navToggle.classList.remove("active");
+                    navMenu.classList.remove("active");
+                    document.body.classList.remove("nav-open");
+                });
+            });
+
+            // Navbar scroll effect
+            let lastScroll = 0;
+            window.addEventListener("scroll", () => {
+                const currentScroll = window.pageYOffset;
+
+                if (currentScroll > 50) {
+                    navbar.classList.add("scrolled");
                 } else {
-                    backToTopBtn.classList.remove("show");
+                    navbar.classList.remove("scrolled");
+                }
+
+                if (currentScroll > lastScroll && currentScroll > 100) {
+                    navbar.classList.add("hidden");
+                } else {
+                    navbar.classList.remove("hidden");
+                }
+
+                lastScroll = currentScroll;
+            });
+
+            // Experience Tabs
+            const tabBtns = document.querySelectorAll(".tab-btn");
+            const tabPanels = document.querySelectorAll(".tab-panel");
+
+            tabBtns.forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    const tabId = btn.dataset.tab;
+
+                    tabBtns.forEach((b) => {
+                        b.classList.remove("active");
+                        b.setAttribute("aria-selected", "false");
+                    });
+                    tabPanels.forEach((p) => p.classList.remove("active"));
+
+                    btn.classList.add("active");
+                    btn.setAttribute("aria-selected", "true");
+                    document.getElementById(tabId).classList.add("active");
+                });
+            });
+
+            // Back to Top Button
+            const backToTopBtn = document.getElementById("backToTop");
+
+            window.addEventListener("scroll", () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add("visible");
+                } else {
+                    backToTopBtn.classList.remove("visible");
                 }
             });
 
-            backToTopBtn.addEventListener("click", function () {
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth",
+            backToTopBtn.addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+                anchor.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(
+                        this.getAttribute("href"),
+                    );
+                    if (target) {
+                        const navHeight = navbar.offsetHeight;
+                        const targetPosition =
+                            target.offsetTop - navHeight - 20;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: "smooth",
+                        });
+                    }
                 });
+            });
+
+            // Intersection Observer for animations
+            const observerOptions = {
+                root: null,
+                rootMargin: "0px",
+                threshold: 0.1,
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll(".section").forEach((section) => {
+                observer.observe(section);
             });
         </script>
     </body>
