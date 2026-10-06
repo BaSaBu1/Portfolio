@@ -352,7 +352,7 @@ export const mosaicGalleries = [
 ];
 
 export const photography = {
-    text: "I like observing my surroundings and listening to the sounds of life. Photography is a form of art I enjoy that helps me remember and store these moments. Sometimes I simply take out my phone to capture sudden moments, or go on a walk with my camera to explore the beauty around me. I’m always learning and experimenting, but I’ve realized I’m less interested in becoming a professional and more in following my feelings, letting my art grow naturally as I experience the world.",
+    text: "I like observing my surroundings and listening to the sounds of life. Photography helps me remember and store these moments. I’m always learning and experimenting, letting my art grow naturally as I experience the world.",
     stats: "12 galleries · 152 photos",
 };
 
