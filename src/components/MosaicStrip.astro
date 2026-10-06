@@ -118,6 +118,15 @@ import { links, mosaicGalleries, photography } from "../data/site";
         position: relative;
         padding-top: 12px;
         scroll-snap-align: start;
+        transition: transform 0.35s var(--ease);
+    }
+    /* pointer devices: the whole album lifts a little */
+    @media (hover: hover) {
+        .covers li:hover,
+        .covers li:focus-within {
+            z-index: 2;
+            transform: translateY(-4px) scale(1.04);
+        }
     }
     .covers li::before,
     .covers li::after {
@@ -135,10 +144,12 @@ import { links, mosaicGalleries, photography } from "../data/site";
         inset: 6px 8px auto;
         background: color-mix(in srgb, var(--ink) 34%, var(--paper));
     }
-    .covers li:hover::before {
+    .covers li:hover::before,
+    .covers li:focus-within::before {
         transform: translateY(-3px) rotate(-1.2deg);
     }
-    .covers li:hover::after {
+    .covers li:hover::after,
+    .covers li:focus-within::after {
         transform: translateY(-2px) rotate(0.8deg);
     }
     .covers a {
