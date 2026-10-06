@@ -243,8 +243,10 @@ Astro.locals.notes = ["name", "ger", "alkh", "seal", "map", "knot"];
         <MosaicStrip />
     </section>
 
+    <AlkhDivider />
+
     <!-- Contact -->
-    <section class="section container section-tight" id="contact">
+    <section class="section container" id="contact">
         <div class="contact" data-reveal>
             <div class="contact-intro">
                 <h2 class="contact-title">{contact.title}</h2>
@@ -794,12 +796,10 @@ Astro.locals.notes = ["name", "ger", "alkh", "seal", "map", "knot"];
         font-size: 0.78rem;
     }
 
-    /* open layout, same ink rule as the rest of the page (no box) */
+    /* open layout (no box); the hammer divider above opens the closing section */
     .contact {
         display: grid;
         gap: clamp(24px, 4vw, 40px);
-        padding-top: clamp(24px, 3.5vw, 40px);
-        border-top: 1px solid var(--ink);
     }
     .contact-intro {
         display: grid;
