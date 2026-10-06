@@ -11,9 +11,11 @@ import { url } from "../lib/url";
 interface Props {
     title: string;
     description: string;
+    /** the opening knot animation; only the home page has it */
+    intro?: boolean;
 }
 
-const { title, description } = Astro.props;
+const { title, description, intro = false } = Astro.props;
 // footnote ids in reading order, set by the page (see src/pages/*.astro)
 const noteOrder = Astro.locals.notes ?? [];
 const canonical = new URL(Astro.url.pathname, Astro.site);
@@ -24,7 +26,7 @@ const fonts =
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-intro={intro ? "on" : undefined}>
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -58,6 +60,7 @@ const fonts =
                 root.classList.add("js");
                 try {
                     if (
+                        root.dataset.intro === "on" &&
                         !matchMedia("(prefers-reduced-motion: reduce)").matches &&
                         !sessionStorage.getItem("intro-seen")
                     ) {
@@ -72,7 +75,7 @@ const fonts =
         </script>
     </head>
     <body>
-        <Intro />
+        {intro && <Intro />}
         <a class="skip-link" href="#main">Skip to content</a>
         <Header />
         <main id="main">
