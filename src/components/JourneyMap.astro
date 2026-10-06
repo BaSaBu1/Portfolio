@@ -51,6 +51,18 @@ const radius = SIZE / 2 - 4;
         </figcaption>
     </figure>
 
+    <!-- phones and tablets: tap (or swipe) through the stops instead of scrolling -->
+    <div class="stops" role="tablist" aria-label="Places">
+        {
+            journey.map((stop, i) => (
+                <button type="button" role="tab" aria-selected={i === 0 ? "true" : "false"} data-stop={i}>
+                    <b>{stop.name}</b>
+                    <small>{stop.years.replace(/ /g, "")}</small>
+                </button>
+            ))
+        }
+    </div>
+
     <ol class="steps">
         {
             journey.map((stop, i) => (
@@ -273,6 +285,67 @@ const radius = SIZE / 2 - 4;
     @media (max-width: 1023px) {
         .step {
             min-height: 28svh;
+        }
+    }
+
+    /* tap mode (phones and tablets, set by the client script) */
+    .stops {
+        display: none;
+    }
+    .journey.is-tap .globe-wrap {
+        position: static;
+    }
+    .journey.is-tap .stops {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        border-bottom: 1px solid var(--rule);
+    }
+    .stops button {
+        display: grid;
+        gap: 2px;
+        justify-items: center;
+        min-height: 52px;
+        padding: 10px 4px 9px;
+        border: 0;
+        border-bottom: 2px solid transparent;
+        margin-bottom: -1px;
+        background: none;
+        color: var(--ink-3);
+        cursor: pointer;
+        transition:
+            color 0.2s,
+            border-color 0.2s;
+    }
+    .stops b {
+        font-family: var(--serif);
+        font-size: clamp(0.92rem, 0.8rem + 0.6vw, 1.1rem);
+        font-weight: 400;
+        line-height: 1.15;
+    }
+    .stops small {
+        font-family: var(--mono);
+        font-size: 0.66rem;
+    }
+    .stops button[aria-selected="true"] {
+        color: var(--ink);
+        border-bottom-color: var(--accent);
+    }
+    .journey.is-tap .step {
+        min-height: 0;
+        padding-block: 18px 4px;
+        border-bottom: 0;
+        opacity: 1 !important;
+    }
+    .journey.is-tap .step:not(.is-active) {
+        display: none;
+    }
+    .journey.is-tap .step.is-active {
+        animation: caption-in 0.35s var(--ease);
+    }
+    @keyframes caption-in {
+        from {
+            opacity: 0;
+            transform: translateY(6px);
         }
     }
     @media (min-width: 600px) and (max-width: 1023px) {

@@ -113,11 +113,68 @@ let onScrollJourney = () => {};
 
 if (journey && !reducedMotion.matches) {
     const steps = [...journey.querySelectorAll<HTMLElement>("[data-step]")];
+    const tabs = [...journey.querySelectorAll<HTMLButtonElement>("[data-stop]")];
     const kmOut = journey.querySelector<HTMLElement>("[data-km]");
     const legKm: number[] = JSON.parse(journey.dataset.legs ?? "[]");
     const format = new Intl.NumberFormat("en-US");
     let renderGlobe: ((p: number) => void) | undefined;
     journey.classList.add("is-live");
+
+    // p runs from 0 (first stop) to steps.length - 1 (last stop)
+    const draw = (p: number) => {
+        const km = legKm.reduce((sum, leg, i) => sum + leg * Math.min(1, Math.max(0, p - i)), 0);
+        renderGlobe?.(p);
+        if (kmOut) kmOut.textContent = format.format(Math.round(km / 10) * 10);
+    };
+    const setActive = (active: number) => {
+        steps.forEach((s, i) => s.classList.toggle("is-active", i === active));
+        tabs.forEach((t, i) => t.setAttribute("aria-selected", String(i === active)));
+    };
+
+    /* Phones and tablets: tap or swipe through the stops; the globe turns to each one
+       (passing through the stops in between) instead of being driven by scrolling. */
+    const tapMode = matchMedia("(max-width: 1023px)");
+    let tapP = 0;
+    let tapTarget = 0;
+    let tween = 0;
+    const goTo = (index: number) => {
+        tapTarget = Math.max(0, Math.min(steps.length - 1, index));
+        setActive(tapTarget);
+        cancelAnimationFrame(tween);
+        const from = tapP;
+        const duration = Math.min(1600, 650 + 450 * Math.abs(tapTarget - from));
+        const start = performance.now();
+        const frame = (now: number) => {
+            const t = Math.min(1, (now - start) / duration);
+            const eased = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+            tapP = from + (tapTarget - from) * eased;
+            draw(tapP);
+            if (t < 1) tween = requestAnimationFrame(frame);
+        };
+        tween = requestAnimationFrame(frame);
+    };
+    tabs.forEach((tab, i) => tab.addEventListener("click", () => goTo(i)));
+    const stepList = journey.querySelector<HTMLElement>(".steps");
+    let touchX: number | null = null;
+    stepList?.addEventListener("touchstart", (e) => (touchX = e.touches[0].clientX), { passive: true });
+    stepList?.addEventListener(
+        "touchend",
+        (e) => {
+            if (touchX === null || !tapMode.matches) return;
+            const dx = e.changedTouches[0].clientX - touchX;
+            touchX = null;
+            if (Math.abs(dx) > 45) goTo(tapTarget + (dx < 0 ? 1 : -1));
+        },
+        { passive: true },
+    );
+    const applyMode = () => {
+        journey.classList.toggle("is-tap", tapMode.matches);
+        if (tapMode.matches) {
+            setActive(tapTarget);
+            draw(tapP);
+        } else onScrollJourney();
+    };
+    tapMode.addEventListener("change", applyMode);
 
     // The globe code (d3-geo + land data) loads only when the section gets close.
     const loader = new IntersectionObserver(
@@ -126,13 +183,15 @@ if (journey && !reducedMotion.matches) {
             loader.disconnect();
             const { mountGlobe } = await import("./globe");
             renderGlobe = mountGlobe(journey);
-            onScrollJourney();
+            if (tapMode.matches) draw(tapP);
+            else onScrollJourney();
         },
         { rootMargin: "120% 0px" },
     );
     loader.observe(journey);
 
     onScrollJourney = () => {
+        if (tapMode.matches) return;
         const anchor = window.innerHeight * (window.innerWidth < 1024 ? 0.62 : 0.5);
         const centers = steps.map((s) => {
             const r = s.getBoundingClientRect();
@@ -150,12 +209,10 @@ if (journey && !reducedMotion.matches) {
                 }
             }
 
-        const km = legKm.reduce((sum, leg, i) => sum + leg * Math.min(1, Math.max(0, p - i)), 0);
-        renderGlobe?.(p);
-        const active = Math.min(steps.length - 1, Math.round(p));
-        steps.forEach((s, i) => s.classList.toggle("is-active", i === active));
-        if (kmOut) kmOut.textContent = format.format(Math.round(km / 10) * 10);
+        draw(p);
+        setActive(Math.min(steps.length - 1, Math.round(p)));
     };
+    applyMode();
 }
 
 /* ---------- one rAF-throttled scroll loop ---------- */
