@@ -88,10 +88,10 @@ const placed = columns.map((c, i) => {
         opacity: 0;
     }
     :global(.js) .seal-wrap.is-in .seal {
-        animation: stamp 0.75s both 0.35s;
+        animation: stamp 0.75s both 0.1s;
     }
     :global(.js) .seal-wrap.is-in::after {
-        animation: squeeze 0.9s ease-out both 0.62s;
+        animation: squeeze 0.9s ease-out both 0.37s;
     }
     :global(.show-intro) .seal-wrap .seal,
     :global(.show-intro) .seal-wrap::after {
@@ -139,7 +139,7 @@ const placed = columns.map((c, i) => {
 
     /* the line the seal signs gets a small knock on impact */
     :global(.js .quote:has(.seal-wrap.is-in)) {
-        animation: thud 0.42s ease-out 0.62s;
+        animation: thud 0.42s ease-out 0.37s;
     }
     :global(.show-intro .quote) {
         animation-play-state: paused !important;
