@@ -371,7 +371,7 @@ export const notes = {
     },
     ger: {
         title: "Toono and uni, the roof of a ger",
-        text: "Behind my photo is the ceiling of a Mongolian ger, seen from inside looking up: the toono, the crown ring that is the ger’s window to the sky, and the uni, the roof poles that run out from it. Both are traditionally painted orange-red.",
+        text: "Behind my photo is the ceiling of a Mongolian ger, seen from inside looking up: the toono, the crown ring that is the ger’s window to the sky, and the uni, the roof poles that run out from it.",
     },
     alkh: {
         title: "Alkh khee, the hammer pattern",

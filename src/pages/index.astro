@@ -358,10 +358,19 @@ Astro.locals.notes = ["name", "ger", "alkh", "seal", "map", "knot"];
         }
     }
     .portrait figcaption {
+        display: flex;
+        align-items: center;
+        gap: 6px;
         margin-top: 8px;
         font-family: var(--mono);
         font-size: 0.75rem;
+        line-height: 1;
         color: var(--ink-3);
+    }
+    /* marker sits on the caption's center line, not raised like a superscript */
+    .portrait figcaption :global(.fn) {
+        vertical-align: middle;
+        font-size: 0.68rem;
     }
 
     .facts {
@@ -419,7 +428,7 @@ Astro.locals.notes = ["name", "ger", "alkh", "seal", "map", "knot"];
             margin: 0 0 20px;
         }
         .portrait figcaption {
-            text-align: center;
+            justify-content: center;
         }
     }
     @media (min-width: 600px) {
