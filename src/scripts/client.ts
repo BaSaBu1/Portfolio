@@ -101,7 +101,7 @@ if ("IntersectionObserver" in window) {
     // should stamp where people are looking, not at the bottom edge)
     const late = all.filter((el) => el.getAttribute("data-observe") === "late");
     watch(all.filter((el) => !late.includes(el)), "0px 0px -12% 0px");
-    watch(late, "0px 0px -20% 0px");
+    watch(late, "0px 0px -8% 0px");
 } else {
     observed.forEach((el) => el.classList.add("is-in"));
 }
