@@ -105,11 +105,11 @@ import { person } from "../data/site";
     .intro-knot :global(.k-main) {
         stroke-dasharray: 1;
         stroke-dashoffset: 1;
-        animation: intro-draw 1.9s cubic-bezier(0.65, 0, 0.35, 1) 0.2s forwards;
+        animation: intro-draw 1.6s cubic-bezier(0.65, 0, 0.35, 1) 0.15s forwards;
     }
     .intro-knot :global(.k-patches) {
         opacity: 0;
-        animation: intro-fade 0.4s ease 1.95s forwards;
+        animation: intro-fade 0.3s ease 1.65s forwards;
     }
     .intro-name {
         font-family: var(--serif);
@@ -118,7 +118,16 @@ import { person } from "../data/site";
         color: var(--ink);
         opacity: 0;
         transform: translateY(8px);
-        animation: intro-name 0.7s var(--ease) 1.5s forwards;
+        animation: intro-name 0.6s var(--ease) 1.3s forwards;
+    }
+
+    /* once the knot is complete it glows once in vermilion, then flies to the logo */
+    .intro-knot :global(svg) {
+        transform-origin: center;
+        animation: intro-glow 0.6s ease-in-out 2s both;
+    }
+    .is-skipping .intro-knot :global(svg) {
+        animation: none;
     }
 
     .is-skipping .intro-knot :global(.k-main),
@@ -143,6 +152,19 @@ import { person } from "../data/site";
     @keyframes intro-fade {
         to {
             opacity: 1;
+        }
+    }
+    @keyframes intro-glow {
+        0%,
+        100% {
+            color: var(--ink);
+            transform: scale(1);
+            filter: none;
+        }
+        45% {
+            color: var(--accent);
+            transform: scale(1.04);
+            filter: drop-shadow(0 0 14px color-mix(in srgb, var(--accent) 35%, transparent));
         }
     }
     @keyframes intro-name {
