@@ -19,32 +19,40 @@ const n = (Astro.locals.notes ?? []).indexOf(id) + 1;
             popovertarget={`note-${id}`}
             aria-label={`Note ${n}: ${notes[id].title}`}
         >
-            {n}
+            <span>{n}</span>
         </button>
     )
 }
 
 <style>
+    /* whole-pixel circle so the digit doesn't land on a rounding boundary */
     .fn {
         position: relative;
         display: inline-grid;
         place-items: center;
-        width: 1.35em;
-        height: 1.35em;
+        box-sizing: border-box;
+        width: 16px;
+        height: 16px;
         padding: 0;
         border: 1px solid currentColor;
         border-radius: 50%;
         background: transparent;
         color: var(--accent);
         font-family: var(--mono);
-        font-size: 0.68rem;
+        font-size: 10px;
         font-weight: 500;
         line-height: 1;
+        font-variant-numeric: tabular-nums;
         vertical-align: super;
         cursor: pointer;
         transition:
             background 0.2s,
             color 0.2s;
+    }
+    /* DM Mono's digits sit a little high and left of their box: nudge to the optical center */
+    .fn span {
+        display: block;
+        transform: translate(0.03em, 0.06em);
     }
     /* invisible 44px touch target */
     .fn::after {
