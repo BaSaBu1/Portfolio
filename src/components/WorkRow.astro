@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import type { WorkItem } from "../data/site";
 import khumath from "../assets/khumath.png";
 import mapgen from "../assets/mapgen.png";
+import mosaic from "../assets/mosaic.png";
 import topolens from "../assets/topolens.png";
 import art2vec from "../assets/art2vec.png";
 import nba2k from "../assets/nba2k.png";
@@ -12,7 +13,7 @@ interface Props {
 }
 
 const { item } = Astro.props;
-const images = { khumath, mapgen, topolens, art2vec, nba2k };
+const images = { khumath, mapgen, mosaic, topolens, art2vec, nba2k };
 ---
 
 <article class="work" data-reveal>

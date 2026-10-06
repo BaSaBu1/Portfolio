@@ -8,7 +8,7 @@ export const person = {
     tagline: "I solve problems — on paper, in data, and in code.",
     meta: "Mathematics & Computer Science, Macalester College ’27 · from Khövsgöl, Mongolia",
     seeking:
-        "Applying to PhD programs for Fall 2027 · open to full-time quantitative, data, and software roles.",
+        "Applying to PhD Programs for Fall 2027 · Open to Quantitative, Data, and Software roles.",
     email: "batsambuub2425@gmail.com",
 };
 
@@ -40,11 +40,17 @@ export const portraitCaption = "Fig. 1. The author.";
 export const facts = [
     { value: "IMO Bronze", label: "International Mathematical Olympiad, 2021" },
     { value: "3.96 GPA", label: "Mathematics & Computer Science, Macalester" },
-    { value: "1st Place", label: "ASA DataFest 2025, data analysis competition" },
-    { value: "Published", label: "Symposium on Computational Geometry (SoCG), 2026" },
+    {
+        value: "1st Place",
+        label: "ASA DataFest 2025, data analysis competition",
+    },
+    {
+        value: "Published",
+        label: "Symposium on Computational Geometry (SoCG), 2026",
+    },
 ];
 
-export type WorkImage = "khumath" | "mapgen" | "topolens" | "art2vec" | "nba2k";
+export type WorkImage = "khumath" | "mapgen" | "mosaic" | "topolens" | "art2vec" | "nba2k";
 
 export type WorkItem = {
     title: string;
@@ -88,6 +94,20 @@ export const work: WorkItem[] = [
         imageAlt: "Procedurally generated 3D terrain rendered in Blender",
     },
     {
+        title: "Mosaic",
+        kicker: "Photography platform · Live",
+        problem:
+            "I wanted a home for my photos, so I built one: a gallery platform with serverless image processing on Cloudflare R2, automatic color-palette extraction, EXIF parsing, and on-demand loading for full-resolution images.",
+        metrics: [
+            { value: "152", label: "photos hosted" },
+            { value: "12", label: "galleries" },
+        ],
+        stack: ["Next.js", "TypeScript", "PostgreSQL", "Cloudflare R2"],
+        href: "https://mosaic-palettes.vercel.app/",
+        image: "mosaic",
+        imageAlt: "Mosaic gallery page with photo collections",
+    },
+    {
         title: "TopoLens",
         kicker: "Research software · 2026",
         problem:
@@ -122,7 +142,10 @@ export const moreWork = [
         label: "NBA 2K rating predictor",
         href: "https://basabu1-nba-2k-rating-predictor-app-yhrvyq.streamlit.app/",
     },
-    { label: "Power diagrams", href: "https://basabu1.github.io/Power-Diagram/" },
+    {
+        label: "Power diagrams",
+        href: "https://basabu1.github.io/Power-Diagram/",
+    },
     {
         label: "3D convex hull (CGAL)",
         href: "https://github.com/BaSaBu1/3D-Convex-Hull-CGAL-",
@@ -328,9 +351,8 @@ export const mosaicGalleries = [
     },
 ];
 
-export const mosaicProject = {
-    text: "I built Mosaic to give these photos a home. It’s a gallery platform with serverless image processing on Cloudflare R2, automatic color-palette extraction, EXIF parsing, and on-demand loading for full-resolution images.",
-    stack: ["Next.js", "TypeScript", "PostgreSQL", "Cloudflare R2"],
+export const photography = {
+    text: "I like observing my surroundings and listening to the sounds of life. Photography is a form of art I enjoy that helps me remember and store these moments. Sometimes I simply take out my phone to capture sudden moments, or go on a walk with my camera to explore the beauty around me. I’m always learning and experimenting, but I’ve realized I’m less interested in becoming a professional and more in following my feelings, letting my art grow naturally as I experience the world.",
     stats: "12 galleries · 152 photos",
 };
 
