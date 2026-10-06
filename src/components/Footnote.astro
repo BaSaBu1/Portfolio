@@ -49,10 +49,8 @@ const n = (Astro.locals.notes ?? []).indexOf(id) + 1;
             background 0.2s,
             color 0.2s;
     }
-    /* DM Mono's digits sit a little high and left of their box: nudge to the optical center */
     .fn span {
         display: block;
-        transform: translate(0.03em, 0.06em);
     }
     /* invisible 44px touch target */
     .fn::after {
