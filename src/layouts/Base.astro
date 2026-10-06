@@ -27,7 +27,7 @@ const fonts =
 ---
 
 <!doctype html>
-<html lang="en" data-intro={intro ? "on" : undefined}>
+<html lang="en" data-has-intro={intro ? "" : undefined}>
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -61,7 +61,7 @@ const fonts =
                 root.classList.add("js");
                 try {
                     if (
-                        root.dataset.intro === "on" &&
+                        root.hasAttribute("data-has-intro") &&
                         !matchMedia("(prefers-reduced-motion: reduce)").matches &&
                         !sessionStorage.getItem("intro-seen")
                     ) {

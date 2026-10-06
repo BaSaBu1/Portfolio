@@ -18,7 +18,7 @@ import { person } from "../data/site";
 
 <script>
     const root = document.documentElement;
-    const intro = document.querySelector<HTMLElement>("[data-intro]");
+    const intro = document.querySelector<HTMLElement>(".intro[data-intro]");
     const knot = intro?.querySelector<HTMLElement>("[data-intro-knot]");
 
     if (intro && knot && root.classList.contains("show-intro")) {
