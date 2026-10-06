@@ -369,6 +369,10 @@ export const notes = {
         title: "Batsambuu, in Mongol bichig",
         text: "My name in Mongol bichig, the traditional Mongolian script, written top to bottom. Bat means firm and steadfast. Sambuu, which came into Mongolian from Tibetan, means good or excellent. Put together, roughly: steadfastly good. A lot to live up to, but I’m trying.",
     },
+    ger: {
+        title: "Toono and uni, the roof of a ger",
+        text: "Behind my photo is the ceiling of a Mongolian ger, seen from inside looking up: the toono, the crown ring that is the ger’s window to the sky, and the uni, the roof poles that run out from it. Both are traditionally painted orange-red.",
+    },
     alkh: {
         title: "Alkh khee, the hammer pattern",
         text: "A row of hammers locked into each other, usually read as strength and endurance. I like it because no piece holds on its own, and that’s been true of everything I’ve done so far: none of it happened without my family, teachers, and friends.",

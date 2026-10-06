@@ -5,6 +5,7 @@ import AlkhDivider from "../components/AlkhDivider.astro";
 import Footnote from "../components/Footnote.astro";
 import JourneyMap from "../components/JourneyMap.astro";
 import MosaicStrip from "../components/MosaicStrip.astro";
+import GerRoof from "../components/GerRoof.astro";
 import ResumeMenu from "../components/ResumeMenu.astro";
 import Seal from "../components/Seal.astro";
 import VerticalName from "../components/VerticalName.astro";
@@ -27,7 +28,7 @@ import {
 import { url } from "../lib/url";
 
 // Footnotes in the order they appear on this page; they're numbered 1, 2, 3… from this.
-Astro.locals.notes = ["name", "alkh", "seal", "map", "knot"];
+Astro.locals.notes = ["name", "ger", "alkh", "seal", "map", "knot"];
 ---
 
 <Base
@@ -63,6 +64,7 @@ Astro.locals.notes = ["name", "alkh", "seal", "map", "knot"];
 
         <figure class="portrait">
             <div class="portrait-frame">
+                <GerRoof />
                 <Image
                     src={portrait}
                     alt="Portrait of Batsambuu Batbold"
@@ -72,7 +74,7 @@ Astro.locals.notes = ["name", "alkh", "seal", "map", "knot"];
                     fetchpriority="high"
                 />
             </div>
-            <figcaption>{portraitCaption}</figcaption>
+            <figcaption>{portraitCaption} <Footnote id="ger" /></figcaption>
         </figure>
 
         <ul class="facts" aria-label="Quick facts">
@@ -336,6 +338,7 @@ Astro.locals.notes = ["name", "alkh", "seal", "map", "knot"];
         max-width: 420px;
     }
     .portrait-frame {
+        position: relative;
         overflow: hidden;
         aspect-ratio: 4 / 5;
         /* arch top (a half circle across the width), softly rounded bottom */
@@ -343,6 +346,7 @@ Astro.locals.notes = ["name", "alkh", "seal", "map", "knot"];
         background: radial-gradient(ellipse 85% 75% at 50% 36%, #f1ece2, #ddd5c6);
     }
     .portrait-frame :global(img) {
+        position: relative;
         width: 100%;
         height: 100%;
         object-fit: cover;

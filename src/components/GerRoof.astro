@@ -1,0 +1,52 @@
+---
+// A ger ceiling seen from inside, looking up, behind the portrait. The toono (crown
+// ring, with its crossbars) sits at the top edge; many thin uni (roof poles) run from it
+// out past the frame, the way the ribbed roof fills your view inside a real ger.
+// Traditionally both are painted orange-red, hence the vermilion.
+// Frame coordinates: 400 × 500 (4:5).
+const cx = 200;
+const cy = -30; // toono center, just above the frame
+const ro = 58; // toono outer radius
+const ri = 46; // toono inner radius
+const reach = 760; // poles run past the frame edges
+const poles = 84;
+
+const fmt = (n: number) => n.toFixed(1);
+const uni = Array.from({ length: poles }, (_, i) => {
+    const a = (2 * Math.PI * (i + 0.5)) / poles;
+    const dx = Math.cos(a);
+    const dy = Math.sin(a);
+    // thin at the toono, slightly wider toward the viewer
+    const p = (r: number, w: number, side: number) =>
+        `${fmt(cx + dx * r - dy * w * side)},${fmt(cy + dy * r + dx * w * side)}`;
+    return `M${p(ro + 1, 0.7, 1)} L${p(reach, 4.5, 1)} L${p(reach, 4.5, -1)} L${p(ro + 1, 0.7, -1)} Z`;
+}).join(" ");
+
+const k = ri * Math.SQRT1_2;
+const bars = `M${cx - ri},${cy} L${cx + ri},${cy} M${cx},${cy - ri} L${cx},${cy + ri} M${fmt(cx - k)},${fmt(cy + k)} L${fmt(cx + k)},${fmt(cy - k)} M${fmt(cx + k)},${fmt(cy + k)} L${fmt(cx - k)},${fmt(cy - k)}`;
+---
+
+<svg class="ger" viewBox="0 0 400 500" aria-hidden="true">
+    <path class="uni" d={uni}></path>
+    <circle class="toono" cx={cx} cy={cy} r={(ro + ri) / 2} stroke-width={ro - ri}></circle>
+    <path class="toono" d={bars} stroke-width="4"></path>
+</svg>
+
+<style>
+    .ger {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    }
+    .uni {
+        fill: var(--accent);
+        opacity: 0.22;
+    }
+    .toono {
+        fill: none;
+        stroke: var(--accent);
+        opacity: 0.42;
+    }
+</style>
