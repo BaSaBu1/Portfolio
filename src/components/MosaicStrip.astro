@@ -4,7 +4,7 @@ import { links, mosaicGalleries, photography } from "../data/site";
 ---
 
 <div class="mosaic">
-    <ul class="covers" aria-label="Photo galleries on Mosaic">
+    <ul class="covers" data-covers aria-label="Photo galleries on Mosaic">
         {
             mosaicGalleries.map((g) => (
                 <li>
@@ -28,6 +28,12 @@ import { links, mosaicGalleries, photography } from "../data/site";
             ))
         }
     </ul>
+    <!-- phones only: shows the strip scrolls sideways and where you are in it -->
+    <div class="swipe" aria-hidden="true">
+        <span class="track"><i data-thumb></i></span>
+        <span class="count" data-count>1 / {mosaicGalleries.length}</span>
+        <span class="hint">Swipe →</span>
+    </div>
 
     <div class="project" data-reveal>
         <p class="text">{photography.text}</p>
@@ -39,11 +45,59 @@ import { links, mosaicGalleries, photography } from "../data/site";
     </div>
 </div>
 
+<script>
+    const strip = document.querySelector<HTMLElement>("[data-covers]");
+    const thumb = document.querySelector<HTMLElement>("[data-thumb]");
+    const count = document.querySelector<HTMLElement>("[data-count]");
+    const phone = matchMedia("(max-width: 599px)");
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+
+    if (strip && thumb) {
+        const items = strip.children.length;
+        let swiped = false;
+
+        const update = () => {
+            const max = strip.scrollWidth - strip.clientWidth;
+            const visible = strip.clientWidth / strip.scrollWidth;
+            const progress = max > 0 ? strip.scrollLeft / max : 0;
+            thumb.style.width = `${visible * 100}%`;
+            thumb.style.transform = `translateX(${(progress * (1 - visible) * 100) / visible}%)`;
+            if (count) count.textContent = `${Math.min(items, Math.round(progress * (items - 1)) + 1)} / ${items}`;
+        };
+        strip.addEventListener(
+            "scroll",
+            () => {
+                swiped = true;
+                requestAnimationFrame(update);
+            },
+            { passive: true },
+        );
+        window.addEventListener("resize", update);
+        update();
+
+        // one gentle nudge the first time the strip comes into view, so it's clear it moves
+        const io = new IntersectionObserver(
+            ([entry]) => {
+                if (!entry.isIntersecting) return;
+                io.disconnect();
+                if (!phone.matches || reduced.matches) return;
+                window.setTimeout(() => {
+                    if (swiped) return;
+                    strip.scrollBy({ left: 70, behavior: "smooth" });
+                    window.setTimeout(() => strip.scrollTo({ left: 0, behavior: "smooth" }), 650);
+                }, 400);
+            },
+            { threshold: 0.6 },
+        );
+        io.observe(strip);
+    }
+</script>
+
 <style>
     .covers {
         display: grid;
         grid-auto-flow: column;
-        grid-auto-columns: 62%;
+        grid-auto-columns: 64%;
         gap: 12px;
         margin-inline: calc(var(--gutter) * -1);
         padding-inline: var(--gutter);
@@ -114,7 +168,37 @@ import { links, mosaicGalleries, photography } from "../data/site";
         line-height: 1.4;
     }
 
+    .swipe {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 12px;
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        color: var(--ink-3);
+    }
+    .track {
+        position: relative;
+        flex: 1;
+        height: 2px;
+        overflow: hidden;
+        background: var(--rule);
+    }
+    .track i {
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 40%;
+        background: var(--ink-2);
+        transition: transform 0.1s linear;
+    }
+    .hint {
+        color: var(--ink-2);
+    }
+
     @media (min-width: 600px) {
+        .swipe {
+            display: none;
+        }
         .covers {
             grid-auto-flow: row;
             grid-template-columns: repeat(3, minmax(0, 1fr));
