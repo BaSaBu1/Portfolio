@@ -262,6 +262,24 @@ document.querySelectorAll<HTMLAnchorElement>("[data-note-jump]").forEach((link) 
     });
 });
 
+/* ---------- analytics: count résumé, email, and outbound clicks (GoatCounter) ---------- */
+
+type GoatCounter = { count?: (vars: { path: string; title?: string; event?: boolean }) => void };
+
+document.addEventListener("click", (event) => {
+    const gc = (window as Window & { goatcounter?: GoatCounter }).goatcounter;
+    const link = (event.target as Element | null)?.closest<HTMLAnchorElement>("a[href]");
+    if (!gc?.count || !link) return;
+    let path: string | undefined;
+    if (link.protocol === "mailto:") path = "email";
+    else if (link.pathname.endsWith(".pdf")) path = `resume: ${link.pathname.split("/").pop()}`;
+    else if (link.host !== location.host) path = `out: ${link.host}${link.pathname}`;
+    if (!path) return;
+    // a résumé link's title is just its name ("Math & Data"), not the whole card
+    const title = (link.querySelector(".name") ?? link).textContent?.trim().replace(/\s+/g, " ");
+    gc.count({ path, title, event: true });
+});
+
 /* ---------- one rAF-throttled scroll loop ---------- */
 
 let ticking = false;
