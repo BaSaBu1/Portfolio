@@ -50,7 +50,13 @@ export const facts = [
     },
 ];
 
-export type WorkImage = "khumath" | "mapgen" | "mosaic" | "topolens" | "art2vec" | "nba2k";
+export type WorkImage =
+    | "khumath"
+    | "mapgen"
+    | "mosaic"
+    | "topolens"
+    | "art2vec"
+    | "nba2k";
 
 export type WorkItem = {
     title: string;
@@ -377,7 +383,7 @@ export const notes = {
     },
     ger: {
         title: "Toono and uni, the roof of a ger",
-        text: "Behind my photo is the ceiling of a Mongolian ger, seen from inside looking up: the toono, the crown ring that is the ger’s window to the sky, and the uni, the roof poles that run out from it.",
+        text: "Behind my photo is the ceiling of a Mongolian traditional housing, called ger, seen from inside looking up: the toono, the crown ring that is the ger’s window to the sky, and the uni, the roof poles that run out from it.",
     },
     alkh: {
         title: "Alkh khee, the hammer pattern",
