@@ -102,7 +102,30 @@ const half = ribbon ? 12 : 14;
         transition-delay: 2.7s;
     }
 
+    /* Once the footer knot has fully drawn and woven, it breathes once in vermilion,
+       then settles back to ink: the line is complete. */
+    .knot-ribbon[data-knot="view"].is-in {
+        transform-origin: center;
+        animation: complete 1.5s ease-in-out 3.35s both;
+    }
+    @keyframes complete {
+        0%,
+        100% {
+            color: inherit;
+            transform: scale(1);
+            filter: none;
+        }
+        45% {
+            color: var(--accent);
+            transform: scale(1.035);
+            filter: drop-shadow(0 0 10px color-mix(in srgb, var(--accent) 35%, transparent));
+        }
+    }
+
     @media (prefers-reduced-motion: reduce) {
+        .knot-ribbon[data-knot="view"].is-in {
+            animation: none;
+        }
         .knot path,
         .knot g {
             transition: none !important;
