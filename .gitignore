@@ -3,3 +3,6 @@ dist/
 .astro/
 .DS_Store
 *.log
+
+# private photo, never commit
+src/assets/propic.jpg
