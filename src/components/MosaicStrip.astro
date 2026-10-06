@@ -22,6 +22,9 @@ import { links, mosaicGalleries, photography } from "../data/site";
                         <span class="cap">
                             <b>{g.title}</b>
                             <small>{g.subtitle}</small>
+                            <span class="open">
+                                {g.photos} photos <span class="arrow" aria-hidden="true">→</span>
+                            </span>
                         </span>
                     </a>
                 </li>
@@ -110,11 +113,37 @@ import { links, mosaicGalleries, photography } from "../data/site";
     .covers::-webkit-scrollbar {
         display: none;
     }
+    /* each cover is an album: two card edges peek out above it like a stack of prints */
     .covers li {
+        position: relative;
+        padding-top: 12px;
         scroll-snap-align: start;
+    }
+    .covers li::before,
+    .covers li::after {
+        content: "";
+        position: absolute;
+        height: 40px;
+        border-radius: 4px;
+        transition: transform 0.35s var(--ease);
+    }
+    .covers li::before {
+        inset: 0 16px auto;
+        background: color-mix(in srgb, var(--ink) 18%, var(--paper));
+    }
+    .covers li::after {
+        inset: 6px 8px auto;
+        background: color-mix(in srgb, var(--ink) 34%, var(--paper));
+    }
+    .covers li:hover::before {
+        transform: translateY(-3px) rotate(-1.2deg);
+    }
+    .covers li:hover::after {
+        transform: translateY(-2px) rotate(0.8deg);
     }
     .covers a {
         position: relative;
+        z-index: 1;
         display: block;
         overflow: hidden;
         aspect-ratio: 4 / 5;
@@ -144,6 +173,15 @@ import { links, mosaicGalleries, photography } from "../data/site";
         font-size: 1.05rem;
         font-weight: 400;
         line-height: 1.2;
+    }
+    .open {
+        margin-top: 6px;
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        letter-spacing: 0.02em;
+    }
+    .covers a:hover .open .arrow {
+        transform: translateX(3px);
     }
     .cap small {
         font-size: 0.72rem;
