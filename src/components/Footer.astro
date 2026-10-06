@@ -1,0 +1,104 @@
+---
+import OlziiKnot from "./OlziiKnot.astro";
+import Footnote from "./Footnote.astro";
+import { notes, person } from "../data/site";
+import { totalKm, formatKm } from "../lib/journey";
+
+// the page's footnotes, in reading order
+const order = Astro.locals.notes ?? [];
+const km = formatKm(totalKm).toLocaleString("en-US");
+---
+
+<footer class="site-footer">
+    <section class="container notes" aria-labelledby="notes-title">
+        <h2 id="notes-title" class="label">Notes on the details</h2>
+        <ol>
+            {
+                order.map((id, i) => (
+                    <li>
+                        <span class="num">{i + 1}</span>
+                        <div>
+                            <h3>{notes[id].title}</h3>
+                            <p>{notes[id].text.replace("{km}", km)}</p>
+                        </div>
+                    </li>
+                ))
+            }
+        </ol>
+    </section>
+
+    <div class="container end">
+        <div class="end-knot">
+            <OlziiKnot variant="ribbon" draw="view" class="footer-knot" />
+            <Footnote id="knot" />
+        </div>
+        <p>Designed & built by {person.name} · {new Date().getFullYear()}</p>
+    </div>
+</footer>
+
+<style>
+    .site-footer {
+        border-top: 1px solid var(--rule);
+        padding-top: clamp(36px, 5vw, 56px);
+    }
+    .notes h2 {
+        margin-bottom: 20px;
+    }
+    .notes ol {
+        display: grid;
+        gap: 16px 48px;
+    }
+    .notes li {
+        display: grid;
+        grid-template-columns: 22px minmax(0, 1fr);
+        gap: 10px;
+        font-size: 0.86rem;
+        line-height: 1.55;
+        color: var(--ink-2);
+    }
+    .num {
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        color: var(--accent);
+        padding-top: 3px;
+    }
+    .notes h3 {
+        margin-bottom: 4px;
+        font-size: 1.1rem;
+        color: var(--ink);
+    }
+
+    .end {
+        display: grid;
+        justify-items: center;
+        gap: 14px;
+        padding-block: clamp(40px, 6vw, 64px) 32px;
+        text-align: center;
+        font-size: 0.85rem;
+        color: var(--ink-3);
+    }
+    .end-knot {
+        position: relative;
+        margin-bottom: 10px;
+        color: var(--ink);
+    }
+    /* the marker hangs off the knot's corner, so it doesn't push the knot off-center */
+    .end-knot :global(.fn) {
+        position: absolute;
+        top: 0;
+        left: calc(100% + 4px);
+    }
+    .end-knot :global(.footer-knot) {
+        width: clamp(96px, 12vw, 140px);
+        height: auto;
+        aspect-ratio: 1;
+    }
+    @media (min-width: 768px) {
+        .notes li {
+            font-size: 0.9rem;
+        }
+        .notes ol {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+</style>

@@ -1,0 +1,312 @@
+---
+import OlziiKnot from "./OlziiKnot.astro";
+import ResumeMenu from "./ResumeMenu.astro";
+import { person, resumes } from "../data/site";
+import { url } from "../lib/url";
+
+const nav = [
+    // in page order
+    { label: "About", href: url("#about") },
+    { label: "Work", href: url("#work") },
+    { label: "Education", href: url("#education") },
+    { label: "Experience", href: url("#experience") },
+    { label: "Awards", href: url("#awards") },
+    { label: "Photography", href: url("#photography") },
+];
+---
+
+<header class="site-header" data-header>
+    <div class="container bar">
+        <a class="brand" href={url("")} aria-label={`${person.name}, home`}>
+            <OlziiKnot class="brand-knot" />
+            <span class="brand-name">{person.name}</span>
+        </a>
+
+        <nav class="nav" aria-label="Primary">
+            <ul>
+                {
+                    nav.map((item) => (
+                        <li>
+                            <a href={item.href} data-nav-link>
+                                {item.label}
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
+            <ResumeMenu align="right" compact />
+        </nav>
+
+        <button
+            class="menu-btn"
+            type="button"
+            aria-expanded="false"
+            aria-controls="menu-sheet"
+            aria-label="Menu"
+            data-menu-btn
+        >
+            <span class="menu-label">Menu</span>
+            <span class="menu-icon" aria-hidden="true"><i></i><i></i></span>
+        </button>
+    </div>
+
+    <div class="sheet" id="menu-sheet" data-menu hidden>
+        <nav class="container" aria-label="Menu">
+            <ul class="sheet-links">
+                {
+                    nav.map((item, i) => (
+                        <li style={`--i:${i}`}>
+                            <a href={item.href} data-menu-link>
+                                {item.label}
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
+            <p class="label">Résumé</p>
+            <ul class="sheet-resumes">
+                {
+                    resumes.map((r) => (
+                        <li>
+                            <a href={url(r.file)} target="_blank" rel="noopener">
+                                <span>{r.label}</span>
+                                <small>{r.detail}</small>
+                                <span class="arrow" aria-hidden="true">
+                                    ↗
+                                </span>
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
+            <a class="sheet-mail" href={`mailto:${person.email}`}>{person.email}</a>
+        </nav>
+    </div>
+</header>
+
+<style>
+    .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: var(--paper);
+        border-bottom: 1px solid transparent;
+        transition:
+            transform 0.35s var(--ease),
+            border-color 0.3s;
+    }
+    .site-header.is-scrolled {
+        border-bottom-color: var(--rule);
+    }
+    .site-header.is-hidden {
+        transform: translateY(-100%);
+    }
+    .bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        height: var(--header-h);
+    }
+    .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        min-height: 44px;
+        text-decoration: none;
+    }
+    .brand:hover {
+        color: var(--ink);
+    }
+    .brand :global(.brand-knot) {
+        width: 30px;
+        height: 30px;
+        flex: none;
+    }
+    .brand:hover :global(.k-glint),
+    .brand:focus-visible :global(.k-glint) {
+        opacity: 1;
+        animation: glint 1.6s linear infinite;
+    }
+    @keyframes glint {
+        to {
+            stroke-dashoffset: -1;
+        }
+    }
+    .brand-name {
+        font-family: var(--serif);
+        font-size: 1.15rem;
+        letter-spacing: -0.005em;
+        white-space: nowrap;
+    }
+
+    .nav {
+        display: none;
+        align-items: center;
+        gap: 28px;
+    }
+    .nav ul {
+        display: flex;
+        gap: 26px;
+    }
+    .nav a[data-nav-link] {
+        position: relative;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--ink-2);
+        text-decoration: none;
+        padding-block: 10px;
+    }
+    .nav a[data-nav-link]::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 4px;
+        height: 1px;
+        background: var(--accent);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s var(--ease);
+    }
+    .nav a[data-nav-link]:hover,
+    .nav a[data-nav-link].is-active {
+        color: var(--ink);
+    }
+    .nav a[data-nav-link]:hover::after,
+    .nav a[data-nav-link].is-active::after {
+        transform: scaleX(1);
+    }
+
+    .menu-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        min-height: 44px;
+        padding: 0 4px 0 12px;
+        border: 0;
+        background: none;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+    }
+    .menu-icon {
+        position: relative;
+        width: 22px;
+        height: 12px;
+    }
+    .menu-icon i {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 1.5px;
+        background: currentColor;
+        transition: transform 0.3s var(--ease);
+    }
+    .menu-icon i:first-child {
+        top: 2px;
+    }
+    .menu-icon i:last-child {
+        bottom: 2px;
+    }
+    .menu-btn[aria-expanded="true"] .menu-icon i:first-child {
+        transform: translateY(3.25px) rotate(45deg);
+    }
+    .menu-btn[aria-expanded="true"] .menu-icon i:last-child {
+        transform: translateY(-3.25px) rotate(-45deg);
+    }
+
+    .sheet {
+        position: fixed;
+        inset: var(--header-h) 0 0 0;
+        z-index: 49;
+        overflow-y: auto;
+        padding-block: 24px max(32px, env(safe-area-inset-bottom));
+        background: var(--paper);
+        border-top: 1px solid var(--rule);
+    }
+    .sheet[hidden] {
+        display: none;
+    }
+    .sheet-links {
+        margin-bottom: 32px;
+    }
+    .sheet-links li {
+        border-bottom: 1px solid var(--rule);
+        animation: sheet-in 0.4s var(--ease) both;
+        animation-delay: calc(var(--i) * 40ms);
+    }
+    .sheet-links a {
+        display: block;
+        padding: 14px 0;
+        font-family: var(--serif);
+        font-size: clamp(1.8rem, 7vw, 2.4rem);
+        line-height: 1.15;
+        text-decoration: none;
+    }
+    .sheet .label {
+        margin-bottom: 8px;
+    }
+    .sheet-resumes {
+        display: grid;
+        gap: 8px;
+        margin-bottom: 28px;
+    }
+    .sheet-resumes a {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        min-height: 56px;
+        padding: 10px 14px;
+        border: 1px solid var(--rule);
+        border-radius: 6px;
+        text-decoration: none;
+    }
+    .sheet-resumes span:first-child {
+        font-weight: 600;
+    }
+    .sheet-resumes small {
+        grid-column: 1;
+        color: var(--ink-3);
+    }
+    .sheet-resumes .arrow {
+        grid-row: 1 / span 2;
+        grid-column: 2;
+        color: var(--accent);
+    }
+    .sheet-mail {
+        font-family: var(--mono);
+        font-size: 0.9rem;
+        color: var(--ink-2);
+        overflow-wrap: anywhere;
+    }
+    @keyframes sheet-in {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .nav {
+            display: flex;
+        }
+        .menu-btn,
+        .sheet {
+            display: none !important;
+        }
+    }
+    @media (max-width: 380px) {
+        .brand-name {
+            font-size: 1.02rem;
+        }
+        .menu-label {
+            display: none;
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .sheet-links li {
+            animation: none;
+        }
+    }
+</style>

@@ -1,0 +1,171 @@
+---
+// A tamga-style seal: "Batu | Sambuu" carved in Mongol bichig, two columns read left to
+// right, cut out of a vermilion square. The script is real glyph outlines (see lib/mongol),
+// knocked out of the red with a mask so the paper shows through like a real impression.
+import { verticalScript } from "../lib/mongol";
+
+interface Props {
+    class?: string;
+}
+
+const { class: className } = Astro.props;
+const uid = Math.random().toString(36).slice(2, 8);
+const columns = await Promise.all(["ᠪᠠᠲᠤ", "ᠰᠠᠮᠪᠤᠤ"].map(verticalScript));
+
+// Seal geometry (viewBox 0 0 100 100): red block, an inner carved frame, two text columns.
+const area = { top: 17, bottom: 83, left: 21, right: 79, gap: 9 };
+const colW = (area.right - area.left - area.gap) / 2;
+const colH = area.bottom - area.top;
+const placed = columns.map((c, i) => {
+    // fill each column: stretch along the writing direction, keep stroke weight even
+    const sx = colW / c.width;
+    const sy = colH / c.height;
+    const x = area.left + i * (colW + area.gap);
+    // stroke thickens the regular-weight glyphs into a carved, seal-like weight (~1.5 units)
+    return { d: c.d, transform: `translate(${x} ${area.top}) scale(${sx.toFixed(5)} ${sy.toFixed(5)})`, stroke: (1.5 / sx).toFixed(1) };
+});
+---
+
+<span class:list={["seal-wrap", className]} data-observe="late">
+    <svg class="seal" viewBox="0 0 100 100" role="img" aria-label="Red seal: Batsambuu in Mongolian script">
+        <defs>
+            <mask id={`cut-${uid}`} maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
+                <rect width="100" height="100" fill="#fff"></rect>
+                <rect x="8.5" y="8.5" width="83" height="83" rx="2" fill="none" stroke="#000" stroke-width="2.4"
+                ></rect>
+                {
+                    placed.map((p) => (
+                        <path d={p.d} transform={p.transform} fill="#000" stroke="#000" stroke-width={p.stroke} />
+                    ))
+                }
+            </mask>
+            <filter id={`ink-${uid}`} x="-6%" y="-6%" width="112%" height="112%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="2" seed="4" result="grain"
+                ></feTurbulence>
+                <feDisplacementMap in="SourceGraphic" in2="grain" scale="2.4" xChannelSelector="R" yChannelSelector="G" result="rough"
+                ></feDisplacementMap>
+                <!-- mostly solid ink with small dry specks, like a real impression -->
+                <feTurbulence type="fractalNoise" baseFrequency="0.2" numOctaves="2" seed="11" result="blots"
+                ></feTurbulence>
+                <feColorMatrix in="blots" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -9 0 0 0 6.6" result="coverage"
+                ></feColorMatrix>
+                <feComposite in="rough" in2="coverage" operator="in"></feComposite>
+            </filter>
+        </defs>
+        <g filter={`url(#ink-${uid})`}>
+            <rect x="2" y="2" width="96" height="96" rx="3.5" fill="var(--seal)" mask={`url(#cut-${uid})`}></rect>
+        </g>
+    </svg>
+</span>
+
+<style>
+    .seal-wrap {
+        position: relative;
+        display: inline-block;
+        flex: none;
+        width: clamp(86px, 7vw, 108px);
+        aspect-ratio: 1;
+    }
+    .seal {
+        width: 100%;
+        height: 100%;
+        transform: rotate(-3deg);
+    }
+    /* faint ink squeeze around the edge on impact */
+    .seal-wrap::after {
+        content: "";
+        position: absolute;
+        inset: 4%;
+        border-radius: 6px;
+        background: var(--seal);
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /* Stamp: lifted and tilted, it drops, slams down, squashes, and settles.
+       Paused while the opening intro is on screen. */
+    :global(.js) .seal-wrap:not(.is-in) .seal {
+        opacity: 0;
+    }
+    :global(.js) .seal-wrap.is-in .seal {
+        animation: stamp 0.75s both 0.35s;
+    }
+    :global(.js) .seal-wrap.is-in::after {
+        animation: squeeze 0.9s ease-out both 0.62s;
+    }
+    :global(.show-intro) .seal-wrap .seal,
+    :global(.show-intro) .seal-wrap::after {
+        animation-play-state: paused;
+    }
+    @keyframes stamp {
+        0% {
+            opacity: 0;
+            transform: translateY(-46px) scale(2.1) rotate(-15deg);
+            filter: drop-shadow(0 34px 22px rgb(0 0 0 / 0.28)) blur(1.2px);
+            animation-timing-function: cubic-bezier(0.55, 0, 0.9, 0.45);
+        }
+        35% {
+            opacity: 1;
+        }
+        38% {
+            transform: translateY(0) scale(0.9) rotate(-4deg);
+            filter: drop-shadow(0 0 0 rgb(0 0 0 / 0)) blur(0);
+            animation-timing-function: cubic-bezier(0.2, 0.8, 0.3, 1);
+        }
+        55% {
+            transform: scale(1.045) rotate(-2.6deg);
+        }
+        75% {
+            transform: scale(0.99) rotate(-3.1deg);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1) rotate(-3deg);
+            filter: none;
+        }
+    }
+    @keyframes squeeze {
+        0% {
+            opacity: 0.32;
+            transform: scale(0.96);
+            filter: blur(1px);
+        }
+        100% {
+            opacity: 0;
+            transform: scale(1.22);
+            filter: blur(6px);
+        }
+    }
+
+    /* the line the seal signs gets a small knock on impact */
+    :global(.js .quote:has(.seal-wrap.is-in)) {
+        animation: thud 0.42s ease-out 0.62s;
+    }
+    :global(.show-intro .quote) {
+        animation-play-state: paused !important;
+    }
+    @keyframes thud {
+        0%,
+        100% {
+            translate: 0 0;
+        }
+        25% {
+            translate: 0 2.5px;
+        }
+        55% {
+            translate: 0 -1px;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        :global(.js) .seal-wrap:not(.is-in) .seal,
+        :global(.js) .seal-wrap.is-in .seal {
+            opacity: 1;
+            animation: none;
+        }
+        :global(.js) .seal-wrap.is-in::after,
+        :global(.js .quote:has(.seal-wrap.is-in)) {
+            animation: none;
+        }
+    }
+</style>

@@ -1,26 +1,41 @@
-﻿# Batsambuu Batbold Portfolio Website
+# Batsambuu Batbold · Portfolio
 
-Welcome to my personal portfolio website! This website showcases my work, experience, interests, and provides ways to contact me.
+Personal site: mathematics, data, and software, with a few Mongolian details.
 
 [View the website](https://basabu1.github.io/Portfolio/)
 
-## About This Page
+## Stack
 
-This portfolio website is built using **HTML** and **CSS** after completing FreeCodeCamp - Responsive Web Design course. It is designed to highlight my background, skills, projects, and interests, with a clean and responsive layout.
+-   [Astro](https://astro.build) static site, near-zero JavaScript
+-   `d3-geo` + `world-atlas` for the journey globe (pre-rendered at build time; the
+    scroll-driven version loads only when the section is near)
+-   `sharp` (via Astro) for image optimization, the favicon, and the social preview image
+-   GitHub Actions → GitHub Pages
 
-### Features
+## Editing content
 
--   **Home Page** – Brief introduction and overview
--   **About Page** – Personal background and interests
--   **Experience Page** – Experience, projects, and awards
--   **Gallery Page** – My personal photography collection
--   **Contact Page** – Social media links
+Nearly all text lives in **`src/data/site.ts`**: contact links, facts, projects,
+experience, honors, journey stops, Mosaic galleries, and the footnotes. Layout lives in
+`src/components/` and `src/pages/`.
 
-## Technologies Used
+Résumé PDFs are in `public/`. Replace a file with the same name to update it.
 
--   HTML
--   CSS
--   Git & GitHub for version control
--   GitHub Pages for hosting
+Footnotes are numbered per page, in reading order: each page lists the note ids it uses
+at the top of its file (`Astro.locals.notes = [...]` in `src/pages/*.astro`).
 
+The Mongolian script (hero name and seal) is turned into vector shapes at build time
+from Noto Sans Mongolian (`src/lib/mongol.ts`), so no web font is loaded for it.
 
+## Development
+
+```bash
+npm install
+npm run dev      # http://localhost:4321/Portfolio/
+npm run build    # outputs to dist/
+npm run preview
+```
+
+## Deployment
+
+Every push to `main` builds and deploys through `.github/workflows/deploy.yml`.
+One-time setup: GitHub repo → Settings → Pages → Source: **GitHub Actions**.

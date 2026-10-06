@@ -1,0 +1,320 @@
+---
+import Footnote from "./Footnote.astro";
+import { journey } from "../data/site";
+import { SIZE } from "../lib/globe";
+import { formatKm, legsKm, overview, totalKm } from "../lib/journey";
+
+const total = formatKm(totalKm);
+const last = journey.length - 1;
+const radius = SIZE / 2 - 4;
+---
+
+<div
+    class="journey"
+    data-journey
+    data-stops={JSON.stringify(journey.map((s) => s.coords))}
+    data-legs={JSON.stringify(legsKm.map(Math.round))}
+>
+    <figure class="globe-wrap">
+        <div class="globe">
+            <svg viewBox={`0 0 ${SIZE} ${SIZE}`} aria-hidden="true">
+                <defs>
+                    <pattern id="halftone" width="7" height="7" patternUnits="userSpaceOnUse">
+                        <circle cx="3.5" cy="3.5" r="1.5" fill="currentColor"></circle>
+                    </pattern>
+                </defs>
+                <circle class="sphere" cx={SIZE / 2} cy={SIZE / 2} r={radius}></circle>
+                <path class="graticule" d={overview.graticule} data-g="graticule"></path>
+                <path class="land" d={overview.land} data-g="land"></path>
+                <path class="route-ghost" d={overview.route} data-g="route"></path>
+                {overview.legs.map((d) => <path class="leg" d={d} data-leg />)}
+                <circle class="rim" cx={SIZE / 2} cy={SIZE / 2} r={radius}></circle>
+            </svg>
+            {
+                overview.pins.map((pin, i) => (
+                    <span
+                        class:list={["pin", `pin-${i}`, "is-reached"]}
+                        style={`left:${pin.x.toFixed(2)}%;top:${pin.y.toFixed(2)}%`}
+                        data-pin
+                    >
+                        <span class="pin-label">
+                            <b>{journey[i].name}</b>
+                            <small>{journey[i].years}</small>
+                        </span>
+                    </span>
+                ))
+            }
+        </div>
+        <figcaption class="globe-caption">
+            <span class="km"><span data-km>{total.toLocaleString("en-US")}</span> km</span>
+            <span class="label">Great-circle routes <Footnote id="map" /></span>
+        </figcaption>
+    </figure>
+
+    <ol class="steps">
+        {
+            journey.map((stop, i) => (
+                <li class:list={["step", { "is-active": i === 0 }]} data-step>
+                    <p class="label">
+                        {String(i + 1).padStart(2, "0")} · {stop.years}
+                    </p>
+                    <h3>
+                        {stop.name}
+                        <span>{stop.region}</span>
+                    </h3>
+                    <p>{stop.text}</p>
+                    {i === last && (
+                        <a class="next" href="#contact">
+                            Next coordinate: <span>?</span>
+                        </a>
+                    )}
+                </li>
+            ))
+        }
+    </ol>
+</div>
+
+<style>
+    .journey {
+        display: grid;
+        margin-top: clamp(24px, 4vw, 48px);
+    }
+
+    .globe-wrap {
+        position: sticky;
+        top: var(--sticky-top);
+        z-index: 2;
+        display: grid;
+        justify-items: center;
+        gap: 8px;
+        /* headroom for pin labels near the top of the globe */
+        padding-block: 30px 12px;
+        background: var(--paper);
+        border-bottom: 1px solid var(--rule);
+        transition: top 0.35s var(--ease);
+    }
+    .globe {
+        position: relative;
+        width: min(100%, 34svh);
+        aspect-ratio: 1;
+        color: var(--ink-3);
+    }
+    .globe svg {
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+    }
+    .sphere {
+        fill: var(--paper-2);
+    }
+    .rim {
+        fill: none;
+        stroke: var(--ink-3);
+        stroke-width: 1.5;
+    }
+    .graticule {
+        fill: none;
+        stroke: var(--ink-3);
+        stroke-width: 0.8;
+        opacity: 0.35;
+    }
+    .land {
+        fill: url(#halftone);
+        opacity: 0.9;
+    }
+    .route-ghost,
+    .leg {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+    .route-ghost {
+        stroke: var(--ink-2);
+        stroke-width: 2;
+        stroke-dasharray: 2 7;
+        opacity: 0.7;
+    }
+    .leg {
+        stroke: var(--accent);
+        stroke-width: 4;
+    }
+
+    .pin {
+        position: absolute;
+        width: 0;
+        height: 0;
+        transition: opacity 0.25s;
+    }
+    .pin.is-hidden {
+        opacity: 0;
+    }
+    .pin::before {
+        content: "";
+        position: absolute;
+        left: -5px;
+        top: -5px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: 1.5px solid var(--accent);
+        background: var(--paper);
+        transition: background 0.3s;
+    }
+    .pin.is-reached::before {
+        background: var(--accent);
+    }
+    .pin-label {
+        position: absolute;
+        bottom: 9px;
+        left: 0;
+        transform: translateX(-50%);
+        padding: 1px 5px;
+        border-radius: 3px;
+        background: color-mix(in srgb, var(--paper) 80%, transparent);
+        display: grid;
+        justify-items: center;
+        font-size: clamp(0.7rem, 0.62rem + 0.3vw, 0.82rem);
+        line-height: 1.25;
+        color: var(--ink);
+        white-space: nowrap;
+    }
+    .pin-label b {
+        font-weight: 600;
+    }
+    .pin-label small {
+        font-family: var(--mono);
+        font-size: 0.82em;
+        color: var(--ink-3);
+    }
+    /* Mörön and Ulaanbaatar sit close together: push their labels apart. */
+    .pin-0 .pin-label {
+        left: -6px;
+        transform: translateX(-100%);
+        justify-items: end;
+    }
+    .pin-1 .pin-label {
+        justify-items: start;
+    }
+    .pin-1 .pin-label {
+        top: 7px;
+        bottom: auto;
+        left: 4px;
+        transform: none;
+    }
+
+    .globe-caption {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        width: 100%;
+    }
+    .km {
+        font-family: var(--serif);
+        font-size: clamp(1.35rem, 1.1rem + 1vw, 1.9rem);
+        font-variant-numeric: tabular-nums;
+        line-height: 1;
+    }
+
+    .step {
+        padding-block: clamp(24px, 5vh, 48px);
+        border-bottom: 1px solid var(--rule);
+        transition: opacity 0.4s;
+    }
+    .step:last-child {
+        border-bottom: 0;
+    }
+    :global(.js) .journey.is-live .step:not(.is-active) {
+        opacity: 0.35;
+    }
+    .step .label {
+        margin-bottom: 10px;
+    }
+    .step h3 {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 4px 12px;
+        margin-bottom: 12px;
+        font-size: clamp(1.7rem, 1.3rem + 1.6vw, 2.4rem);
+    }
+    .step h3 span {
+        font-family: var(--sans);
+        font-size: 0.9rem;
+        letter-spacing: 0;
+        color: var(--ink-3);
+    }
+    .step p:not(.label) {
+        max-width: 46ch;
+        color: var(--ink-2);
+    }
+    .next {
+        display: inline-flex;
+        gap: 8px;
+        align-items: baseline;
+        margin-top: 18px;
+        font-family: var(--serif);
+        font-size: 1.3rem;
+        font-style: italic;
+        text-decoration: none;
+        color: var(--accent);
+    }
+    .next span {
+        display: inline-grid;
+        place-items: center;
+        width: 1.5em;
+        height: 1.5em;
+        border: 1px dashed currentColor;
+        border-radius: 50%;
+        font-style: normal;
+        font-size: 0.9em;
+    }
+
+    @media (max-width: 1023px) {
+        .step {
+            min-height: 28svh;
+        }
+    }
+    @media (min-width: 600px) and (max-width: 1023px) {
+        .globe {
+            width: min(100%, 38svh);
+        }
+    }
+    @media (min-width: 1024px) {
+        .journey {
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+            gap: clamp(32px, 5vw, 80px);
+            align-items: start;
+        }
+        .globe-wrap {
+            top: calc(var(--sticky-top) + 24px);
+            padding: 0;
+            border: 0;
+            background: none;
+        }
+        .globe {
+            width: min(100%, calc(100svh - var(--header-h) - 160px));
+        }
+        .globe-caption {
+            max-width: min(100%, calc(100svh - var(--header-h) - 160px));
+        }
+        .step {
+            min-height: 44vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+    /* Short landscape screens: no sticky globe. */
+    @media (max-height: 500px) and (orientation: landscape) {
+        .globe-wrap {
+            position: static;
+        }
+        .globe {
+            width: min(100%, 80svh);
+        }
+        .step {
+            min-height: 0;
+        }
+    }
+</style>

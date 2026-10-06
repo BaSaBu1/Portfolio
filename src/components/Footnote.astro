@@ -1,0 +1,59 @@
+---
+import { notes, type NoteId } from "../data/site";
+
+interface Props {
+    id: NoteId;
+    class?: string;
+}
+
+const { id, class: className } = Astro.props;
+// Numbered by the page's reading order (Astro.locals.notes), like citations.
+const n = (Astro.locals.notes ?? []).indexOf(id) + 1;
+---
+
+{
+    n > 0 && (
+        <button
+            type="button"
+            class:list={["fn", className]}
+            popovertarget={`note-${id}`}
+            aria-label={`Note ${n}: ${notes[id].title}`}
+        >
+            {n}
+        </button>
+    )
+}
+
+<style>
+    .fn {
+        position: relative;
+        display: inline-grid;
+        place-items: center;
+        width: 1.35em;
+        height: 1.35em;
+        padding: 0;
+        border: 1px solid currentColor;
+        border-radius: 50%;
+        background: transparent;
+        color: var(--accent);
+        font-family: var(--mono);
+        font-size: 0.68rem;
+        font-weight: 500;
+        line-height: 1;
+        vertical-align: super;
+        cursor: pointer;
+        transition:
+            background 0.2s,
+            color 0.2s;
+    }
+    /* invisible 44px touch target */
+    .fn::after {
+        content: "";
+        position: absolute;
+        inset: -14px;
+    }
+    .fn:hover {
+        background: var(--accent);
+        color: var(--on-accent);
+    }
+</style>

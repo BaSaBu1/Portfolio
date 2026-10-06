@@ -1,0 +1,191 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Intro from "../components/Intro.astro";
+import BackToTop from "../components/BackToTop.astro";
+import { notes, person } from "../data/site";
+import { totalKm, formatKm } from "../lib/journey";
+import { url } from "../lib/url";
+
+interface Props {
+    title: string;
+    description: string;
+}
+
+const { title, description } = Astro.props;
+// footnote ids in reading order, set by the page (see src/pages/*.astro)
+const noteOrder = Astro.locals.notes ?? [];
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(url("og.png"), Astro.site);
+const km = formatKm(totalKm).toLocaleString("en-US");
+const fonts =
+    "https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap";
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="author" content={person.name} />
+        <link rel="canonical" href={canonical} />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={canonical} />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+
+        <meta name="theme-color" content="#f6f3ec" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#131210" media="(prefers-color-scheme: dark)" />
+        <link rel="icon" href={url("favicon.svg")} type="image/svg+xml" />
+        <link rel="icon" href={url("favicon-32.png")} sizes="32x32" type="image/png" />
+        <link rel="apple-touch-icon" href={url("apple-touch-icon.png")} />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="stylesheet" href={fonts} />
+
+        <script is:inline>
+            (function () {
+                var root = document.documentElement;
+                root.classList.add("js");
+                try {
+                    if (
+                        !matchMedia("(prefers-reduced-motion: reduce)").matches &&
+                        !sessionStorage.getItem("intro-seen")
+                    ) {
+                        root.classList.add("show-intro");
+                        // failsafe: never leave the page covered if the intro script fails
+                        setTimeout(function () {
+                            root.classList.remove("show-intro");
+                        }, 6000);
+                    }
+                } catch (e) {}
+            })();
+        </script>
+    </head>
+    <body>
+        <Intro />
+        <a class="skip-link" href="#main">Skip to content</a>
+        <Header />
+        <main id="main">
+            <slot />
+        </main>
+        <Footer />
+        <BackToTop />
+
+        {
+            noteOrder.map((id, i) => (
+                <div id={`note-${id}`} class="note-card" popover>
+                    <p class="label">Note {i + 1}</p>
+                    <h3>{notes[id].title}</h3>
+                    <p>{notes[id].text.replace("{km}", km)}</p>
+                    <button
+                        type="button"
+                        class="note-close"
+                        popovertarget={`note-${id}`}
+                        popovertargetaction="hide"
+                        aria-label="Close note"
+                    >
+                        ×
+                    </button>
+                </div>
+            ))
+        }
+
+        <script>
+            import "../scripts/client";
+        </script>
+    </body>
+</html>
+
+<style is:global>
+    html.show-intro {
+        overflow: hidden;
+    }
+    /* the intro knot lands here; the real logo appears as the overlay leaves */
+    .brand-knot {
+        transition: opacity 0.3s ease;
+    }
+    .show-intro .brand-knot {
+        opacity: 0;
+    }
+
+    .note-card {
+        inset: auto 16px max(16px, env(safe-area-inset-bottom)) 16px;
+        width: auto;
+        max-width: 440px;
+        margin: 0 auto;
+        padding: 22px 24px 24px;
+        border: 1px solid var(--rule);
+        border-radius: 8px;
+        background: var(--paper);
+        color: var(--ink-2);
+        font-size: 0.95rem;
+        box-shadow: 0 24px 60px -28px rgb(0 0 0 / 0.45);
+        opacity: 1;
+        transform: none;
+        transition:
+            opacity 0.25s var(--ease),
+            transform 0.25s var(--ease),
+            overlay 0.25s allow-discrete,
+            display 0.25s allow-discrete;
+    }
+    @starting-style {
+        .note-card:popover-open {
+            opacity: 0;
+            transform: translateY(12px);
+        }
+    }
+    .note-card:not(:popover-open) {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    .note-card .label {
+        margin-bottom: 6px;
+        color: var(--accent);
+    }
+    .note-card h3 {
+        margin-bottom: 10px;
+        padding-right: 28px;
+        font-size: 1.35rem;
+        color: var(--ink);
+    }
+    .note-close {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 44px;
+        height: 44px;
+        border: 0;
+        background: none;
+        color: var(--ink-3);
+        font-size: 1.5rem;
+        line-height: 1;
+        cursor: pointer;
+    }
+    .note-close:hover {
+        color: var(--accent);
+    }
+    @media (max-width: 599px) {
+        .note-card {
+            inset: auto 0 0 0;
+            max-width: none;
+            padding-bottom: max(28px, env(safe-area-inset-bottom));
+            border-width: 1px 0 0;
+            border-radius: 14px 14px 0 0;
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .note-card {
+            transition: none;
+        }
+    }
+</style>

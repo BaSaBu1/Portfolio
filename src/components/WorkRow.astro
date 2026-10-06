@@ -1,0 +1,148 @@
+---
+import { Image } from "astro:assets";
+import type { WorkItem } from "../data/site";
+import khumath from "../assets/khumath.png";
+import mapgen from "../assets/mapgen.png";
+import topolens from "../assets/topolens.png";
+import art2vec from "../assets/art2vec.png";
+import nba2k from "../assets/nba2k.png";
+
+interface Props {
+    item: WorkItem;
+}
+
+const { item } = Astro.props;
+const images = { khumath, mapgen, topolens, art2vec, nba2k };
+---
+
+<article class="work" data-reveal>
+    <div class="thumb">
+        <Image
+            src={images[item.image]}
+            alt={item.imageAlt}
+            widths={[480, 760, 1100]}
+            sizes="(min-width: 1024px) 380px, (min-width: 600px) 40vw, 100vw"
+            loading="lazy"
+        />
+    </div>
+    <div class="body">
+        <p class="label">{item.kicker}</p>
+        <h3>
+            <a href={item.href} target="_blank" rel="noopener">
+                {item.title} <span class="arrow" aria-hidden="true">↗</span>
+            </a>
+        </h3>
+        <p class="problem">{item.problem}</p>
+        <p class="stack">{item.stack.join(" · ")}</p>
+    </div>
+    <ul class="metrics">
+        {
+            item.metrics.map((m) => (
+                <li>
+                    <b>{m.value}</b>
+                    <span>{m.label}</span>
+                </li>
+            ))
+        }
+    </ul>
+</article>
+
+<style>
+    .work {
+        position: relative;
+        display: grid;
+        gap: 20px;
+        padding-block: clamp(22px, 3vw, 32px);
+        border-top: 1px solid var(--rule);
+    }
+    .thumb {
+        overflow: hidden;
+        aspect-ratio: 2 / 1;
+        border: 1px solid var(--rule);
+        border-radius: 4px;
+        background: var(--paper-2);
+    }
+    .thumb :global(img) {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top center;
+        transition: transform 0.7s var(--ease);
+    }
+    .work:hover .thumb :global(img) {
+        transform: scale(1.03);
+    }
+    .body .label {
+        margin-bottom: 8px;
+    }
+    h3 {
+        margin-bottom: 12px;
+        font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.1rem);
+    }
+    h3 a {
+        text-decoration: none;
+    }
+    /* the whole row is clickable */
+    h3 a::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+    }
+    .work:hover h3 a {
+        color: var(--accent);
+    }
+    .arrow {
+        font-size: 0.7em;
+        vertical-align: 0.15em;
+    }
+    .problem {
+        max-width: 58ch;
+        margin-bottom: 12px;
+        color: var(--ink-2);
+    }
+    .metrics {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 28px;
+    }
+    .metrics li {
+        display: grid;
+    }
+    .metrics b {
+        font-family: var(--serif);
+        font-size: 1.5rem;
+        font-weight: 400;
+        line-height: 1.1;
+    }
+    .metrics span {
+        font-size: 0.8rem;
+        color: var(--ink-3);
+    }
+
+    @media (min-width: 600px) {
+        .thumb {
+            aspect-ratio: 16 / 10;
+        }
+        .work {
+            grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+            column-gap: clamp(24px, 4vw, 40px);
+            align-items: start;
+        }
+        .thumb {
+            grid-row: span 2;
+        }
+    }
+    @media (min-width: 1024px) {
+        .work {
+            grid-template-columns: 340px minmax(0, 1fr) 190px;
+        }
+        .thumb {
+            grid-row: auto;
+        }
+        .metrics {
+            flex-direction: column;
+            gap: 16px;
+            padding-top: 26px;
+        }
+    }
+</style>

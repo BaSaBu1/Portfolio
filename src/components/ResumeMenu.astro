@@ -1,0 +1,125 @@
+---
+import { resumes } from "../data/site";
+import { url } from "../lib/url";
+
+interface Props {
+    align?: "left" | "right";
+    compact?: boolean;
+}
+
+const { align = "left", compact = false } = Astro.props;
+---
+
+<details class:list={["resume", `align-${align}`, { compact }]} data-resume>
+    <summary class="btn">
+        Résumé <span class="chev" aria-hidden="true"></span>
+    </summary>
+    <div class="pop">
+        <p class="label">Choose a focus</p>
+        {
+            resumes.map((r) => (
+                <a href={url(r.file)} target="_blank" rel="noopener">
+                    <span class="name">{r.label}</span>
+                    <span class="detail">{r.detail}</span>
+                    <span class="arrow" aria-hidden="true">
+                        ↗
+                    </span>
+                </a>
+            ))
+        }
+    </div>
+</details>
+
+<style>
+    .resume {
+        position: relative;
+    }
+    summary {
+        list-style: none;
+    }
+    summary::-webkit-details-marker {
+        display: none;
+    }
+    .compact summary {
+        min-height: 38px;
+        padding: 0 14px;
+        font-size: 0.85rem;
+    }
+    .chev {
+        width: 7px;
+        height: 7px;
+        margin-top: -3px;
+        border-right: 1.5px solid currentColor;
+        border-bottom: 1.5px solid currentColor;
+        transform: rotate(45deg);
+        transition: transform 0.2s var(--ease);
+    }
+    .resume[open] .chev {
+        transform: translateY(3px) rotate(-135deg);
+    }
+    .pop {
+        position: absolute;
+        top: calc(100% + 8px);
+        z-index: 30;
+        width: min(300px, calc(100vw - 32px));
+        padding: 14px;
+        border: 1px solid var(--rule);
+        border-radius: 6px;
+        background: var(--paper);
+        box-shadow: 0 20px 40px -24px rgb(0 0 0 / 0.35);
+        animation: pop-in 0.18s var(--ease);
+    }
+    .align-left .pop {
+        left: 0;
+    }
+    .align-right .pop {
+        right: 0;
+    }
+    .pop .label {
+        margin-bottom: 6px;
+    }
+    .pop a {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 2px 12px;
+        align-items: center;
+        min-height: 44px;
+        padding: 10px 8px;
+        margin-inline: -8px;
+        border-radius: 4px;
+        text-decoration: none;
+    }
+    .pop a + a {
+        border-top: 1px solid var(--rule);
+        border-radius: 0 0 4px 4px;
+    }
+    .pop a:hover {
+        background: var(--paper-2);
+    }
+    .name {
+        font-family: var(--serif);
+        font-size: 1.15rem;
+        line-height: 1.2;
+    }
+    .detail {
+        grid-column: 1;
+        font-size: 0.8rem;
+        color: var(--ink-3);
+    }
+    .pop .arrow {
+        grid-row: 1 / span 2;
+        grid-column: 2;
+        color: var(--accent);
+    }
+    @keyframes pop-in {
+        from {
+            opacity: 0;
+            transform: translateY(-4px);
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .pop {
+            animation: none;
+        }
+    }
+</style>

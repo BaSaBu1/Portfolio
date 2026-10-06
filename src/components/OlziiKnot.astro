@@ -1,0 +1,111 @@
+---
+import { knot, patch } from "../lib/knot";
+
+interface Props {
+    variant?: "line" | "ribbon";
+    draw?: "view" | "none";
+    class?: string;
+}
+
+const { variant = "line", draw = "none", class: className } = Astro.props;
+const ribbon = variant === "ribbon";
+// stroke widths in viewBox units (the knot's viewBox is ~220 units wide)
+const main = ribbon ? 10 : 13;
+const inner = 5.5;
+const gap = 9;
+const half = ribbon ? 12 : 14;
+---
+
+<svg
+    class:list={["knot", `knot-${variant}`, className]}
+    viewBox={knot.viewBox}
+    aria-hidden="true"
+    data-knot={draw === "view" ? "view" : undefined}
+    data-observe={draw === "view" ? "" : undefined}
+>
+    {
+        ribbon ? (
+            <>
+                <path class="k-main k-edge" d={knot.d} pathLength="1" stroke-width={main} />
+                <path class="k-main k-fill" d={knot.d} pathLength="1" stroke-width={inner} />
+                <g class="k-patches">
+                    {knot.crossings.map((c) => (
+                        <>
+                            <path class="k-edge" d={patch(c, half)} stroke-width={main} />
+                            <path class="k-fill" d={patch(c, half + 1)} stroke-width={inner} />
+                        </>
+                    ))}
+                </g>
+            </>
+        ) : (
+            <>
+                <path class="k-main k-edge" d={knot.d} pathLength="1" stroke-width={main} />
+                <path class="k-glint" d={knot.d} pathLength="1" stroke-width={main} />
+                <g class="k-patches">
+                    {knot.crossings.map((c) => (
+                        <>
+                            <path class="k-gap" d={patch(c, half)} stroke-width={main + gap * 2} />
+                            <path class="k-edge" d={patch(c, half + 1)} stroke-width={main} />
+                        </>
+                    ))}
+                </g>
+            </>
+        )
+    }
+</svg>
+
+<style>
+    .knot {
+        overflow: visible;
+    }
+    .knot path {
+        fill: none;
+        stroke-linejoin: round;
+    }
+    .k-edge {
+        stroke: currentColor;
+    }
+    .k-fill,
+    .k-gap {
+        stroke: var(--paper);
+    }
+    .k-patches path {
+        stroke-linecap: butt;
+    }
+    .k-glint {
+        stroke: var(--accent);
+        stroke-dasharray: 0.16 0.84;
+        stroke-dashoffset: 0;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    /* Draw-in when scrolled into view (footer knot). */
+    :global(.js) .knot[data-knot="view"]:not(.is-in) .k-main {
+        stroke-dasharray: 1;
+        stroke-dashoffset: 1;
+    }
+    :global(.js) .knot[data-knot="view"]:not(.is-in) .k-patches {
+        opacity: 0;
+    }
+    .knot[data-knot] .k-main {
+        stroke-dasharray: 1;
+        transition: stroke-dashoffset 2.4s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    .knot[data-knot] .k-patches {
+        transition: opacity 0.5s ease 2.1s;
+    }
+    .knot-ribbon[data-knot] .k-main {
+        transition-duration: 3s;
+    }
+    .knot-ribbon[data-knot] .k-patches {
+        transition-delay: 2.7s;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .knot path,
+        .knot g {
+            transition: none !important;
+        }
+    }
+</style>

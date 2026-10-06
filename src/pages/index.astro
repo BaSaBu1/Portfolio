@@ -1,0 +1,846 @@
+---
+import { Image } from "astro:assets";
+import Base from "../layouts/Base.astro";
+import AlkhDivider from "../components/AlkhDivider.astro";
+import Footnote from "../components/Footnote.astro";
+import JourneyMap from "../components/JourneyMap.astro";
+import MosaicStrip from "../components/MosaicStrip.astro";
+import ResumeMenu from "../components/ResumeMenu.astro";
+import Seal from "../components/Seal.astro";
+import VerticalName from "../components/VerticalName.astro";
+import WorkRow from "../components/WorkRow.astro";
+import portrait from "../assets/portrait.png";
+import {
+    awards,
+    contact,
+    education,
+    experience,
+    facts,
+    journeyIntro,
+    links,
+    moreWork,
+    person,
+    portraitCaption,
+    pullquote,
+    work,
+} from "../data/site";
+import { url } from "../lib/url";
+
+// Footnotes in the order they appear on this page; they're numbered 1, 2, 3… from this.
+Astro.locals.notes = ["name", "alkh", "seal", "map", "knot"];
+---
+
+<Base
+    title={`${person.name} · Mathematics, data, and software`}
+    description="Batsambuu Batbold: mathematics and computer science at Macalester College, IMO bronze medalist, applying to PhD programs for Fall 2027 and open to quantitative, data, and software roles."
+>
+    <!-- Hero -->
+    <section class="hero container" id="top">
+        <div class="hero-script">
+            <VerticalName />
+        </div>
+
+        <div class="hero-text">
+            <h1 class="name">
+                {person.first}
+                <span>{person.last}</span>
+            </h1>
+            <p class="tagline">{person.tagline}</p>
+            <p class="meta">{person.meta}</p>
+            <p class="seeking"><span class="dot" aria-hidden="true"></span>{person.seeking}</p>
+        </div>
+
+        <div class="actions hero-actions">
+            <a class="btn btn-primary" href={`mailto:${person.email}`}>Email me</a>
+            <ResumeMenu />
+            <a class="btn ghost" href={links.linkedin} target="_blank" rel="noopener"
+                >LinkedIn <span class="arrow" aria-hidden="true">↗</span></a
+            >
+            <a class="btn ghost" href={links.github} target="_blank" rel="noopener"
+                >GitHub <span class="arrow" aria-hidden="true">↗</span></a
+            >
+        </div>
+
+        <figure class="portrait">
+            <div class="portrait-frame">
+                <Image
+                    src={portrait}
+                    alt="Portrait of Batsambuu Batbold"
+                    widths={[360, 560, 728]}
+                    sizes="(min-width: 1024px) 340px, (min-width: 600px) 34vw, 88vw"
+                    loading="eager"
+                    fetchpriority="high"
+                />
+            </div>
+            <figcaption>{portraitCaption}</figcaption>
+        </figure>
+
+        <ul class="facts" aria-label="Quick facts">
+            {
+                facts.map((f) => (
+                    <li>
+                        <b>{f.value}</b>
+                        <span>{f.label}</span>
+                    </li>
+                ))
+            }
+        </ul>
+    </section>
+
+    <AlkhDivider note />
+
+    <!-- About me -->
+    <section class="about-me container" id="about">
+        <p class="label about-label" data-reveal>About me</p>
+        <div class="about-body">
+            <div class="quote" data-reveal>
+                <blockquote>{pullquote}</blockquote>
+                <div class="sign">
+                    <Seal />
+                    <Footnote id="seal" />
+                </div>
+            </div>
+            <p class="story-link" data-reveal>
+                <a href={url("story/")}>Read the full story <span class="arrow" aria-hidden="true">→</span></a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Work -->
+    <section class="section container" id="work">
+        <header class="section-head" data-reveal>
+            <h2 class="section-title">Selected work</h2>
+            <p class="section-note">Things I built, and the problems behind them.</p>
+        </header>
+        {work.map((item) => <WorkRow item={item} />)}
+        <p class="more" data-reveal>
+            <span class="label">More</span>
+            {
+                moreWork.map((m) => (
+                    <a href={m.href} target="_blank" rel="noopener">
+                        {m.label}
+                    </a>
+                ))
+            }
+            <a href={links.github} target="_blank" rel="noopener">All on GitHub ↗</a>
+        </p>
+    </section>
+
+    <!-- Education -->
+    <section class="section container section-tight" id="education">
+        <header class="section-head" data-reveal>
+            <h2 class="section-title">Education</h2>
+        </header>
+        <ul class="schools">
+            {
+                education.schools.map((s) => (
+                    <li data-reveal>
+                        <p class="label">{s.date}</p>
+                        <div class="school-head">
+                            <h3>{s.school}</h3>
+                            <p>{s.place}</p>
+                        </div>
+                        <p class="school-detail">{s.detail}</p>
+                    </li>
+                ))
+            }
+        </ul>
+        <dl class="study" data-reveal>
+            <div>
+                <dt class="label">Relevant coursework</dt>
+                <dd>{education.coursework.join(" · ")}</dd>
+            </div>
+            <div>
+                <dt class="label">Interests</dt>
+                <dd>{education.interests}</dd>
+            </div>
+        </dl>
+    </section>
+
+    <!-- Experience -->
+    <section class="section container section-tight" id="experience">
+        <header class="section-head" data-reveal>
+            <h2 class="section-title">Experience</h2>
+            <p class="legend label"><span class="legend-dot" aria-hidden="true"></span> Ongoing</p>
+        </header>
+        <ol class="xp">
+            {
+                experience.map((x) => (
+                    <li class:list={{ "is-current": x.current }} data-reveal>
+                        <p class="xp-date label">{x.date}</p>
+                        <div class="xp-head">
+                            <h3>{x.role}</h3>
+                            <p>{x.org}</p>
+                        </div>
+                        <p class="xp-text">
+                            {x.text}
+                            {x.link && (
+                                <>
+                                    {" "}
+                                    <a href={x.link.href} target="_blank" rel="noopener">
+                                        {x.link.label}&nbsp;↗
+                                    </a>
+                                </>
+                            )}
+                        </p>
+                    </li>
+                ))
+            }
+        </ol>
+    </section>
+
+    <!-- Awards -->
+    <section class="section container section-tight" id="awards">
+        <header class="section-head" data-reveal>
+            <h2 class="section-title">Awards</h2>
+        </header>
+        <a class="imo" href={awards.feature.href} target="_blank" rel="noopener" data-reveal>
+            <span class="imo-mark">IMO</span>
+            <span class="imo-body">
+                <span class="label">{awards.feature.event} · {awards.feature.year}</span>
+                <span class="imo-title">{awards.feature.title}</span>
+                <span class="imo-text">{awards.feature.text}</span>
+                <span class="imo-link">Official result <span class="arrow" aria-hidden="true">↗</span></span>
+            </span>
+        </a>
+        <ul class="awards">
+            {
+                awards.list.map((a) => (
+                    <li data-reveal>
+                        <span class="label">{a.year}</span>
+                        <b>{a.title}</b>
+                        <span>{a.text}</span>
+                    </li>
+                ))
+            }
+        </ul>
+    </section>
+
+    <AlkhDivider />
+
+    <!-- Journey -->
+    <section class="section container" id="journey">
+        <header class="section-head" data-reveal>
+            <h2 class="section-title">Journey</h2>
+        </header>
+        <p class="journey-intro" data-reveal>{journeyIntro}</p>
+        <JourneyMap />
+    </section>
+
+    <!-- Photography -->
+    <section class="section container section-flush" id="photography">
+        <header class="section-head" data-reveal>
+            <h2 class="section-title">Photography</h2>
+            <figure class="epigraph">
+                <blockquote>
+                    “Practicing an art, no matter how well or badly, is a way to make your soul grow.”
+                </blockquote>
+                <figcaption>— Kurt Vonnegut</figcaption>
+            </figure>
+        </header>
+        <MosaicStrip />
+    </section>
+
+    <!-- Contact -->
+    <section class="section container" id="contact">
+        <div class="contact" data-reveal>
+            <div class="contact-intro">
+                <h2 class="contact-title">{contact.title}</h2>
+                <p class="contact-text">{contact.text}</p>
+                <p class="seeking"><span class="dot" aria-hidden="true"></span>{person.seeking}</p>
+            </div>
+            <div class="contact-reach">
+                <a class="mail" href={`mailto:${person.email}`}>{person.email}</a>
+                <div class="actions">
+                    <ResumeMenu />
+                    <a class="btn ghost" href={links.linkedin} target="_blank" rel="noopener"
+                        >LinkedIn <span class="arrow" aria-hidden="true">↗</span></a
+                    >
+                    <a class="btn ghost" href={links.github} target="_blank" rel="noopener"
+                        >GitHub <span class="arrow" aria-hidden="true">↗</span></a
+                    >
+                    <a class="btn ghost" href={links.instagram} target="_blank" rel="noopener"
+                        >Instagram <span class="arrow" aria-hidden="true">↗</span></a
+                    >
+                </div>
+            </div>
+        </div>
+    </section>
+</Base>
+
+<style>
+    /* ---------- hero ---------- */
+    .hero {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        column-gap: clamp(14px, 3vw, 28px);
+        padding-top: clamp(20px, 4vw, 48px);
+        padding-bottom: clamp(28px, 4vw, 44px);
+    }
+    .hero-text {
+        container-type: inline-size;
+    }
+    .name {
+        /* sized by its own column so "Batsambuu" never runs into the portrait */
+        font-size: clamp(2.6rem, 20.5cqi, 6.6rem);
+        line-height: 0.92;
+        letter-spacing: -0.035em;
+    }
+    .name span {
+        display: block;
+        font-style: italic;
+        color: var(--ink-2);
+    }
+    .tagline {
+        margin-top: clamp(18px, 3vw, 28px);
+        max-width: 22ch;
+        font-family: var(--serif);
+        font-size: clamp(1.4rem, 1.1rem + 1.4vw, 2.1rem);
+        line-height: 1.2;
+    }
+    .meta {
+        margin-top: 14px;
+        color: var(--ink-2);
+        font-size: 0.95rem;
+    }
+    .seeking {
+        display: flex;
+        gap: 10px;
+        align-items: baseline;
+        max-width: 52ch;
+        margin-top: 8px;
+        color: var(--ink-2);
+        font-size: 0.95rem;
+    }
+    .dot {
+        flex: none;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent);
+        transform: translateY(-1px);
+    }
+    .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 22px;
+    }
+    .ghost {
+        border-color: var(--rule);
+    }
+
+    .portrait {
+        grid-column: 1 / -1;
+        margin-top: 36px;
+        max-width: 420px;
+    }
+    .portrait-frame {
+        overflow: hidden;
+        aspect-ratio: 4 / 5;
+        /* arch top (a half circle across the width), softly rounded bottom */
+        border-radius: 50% 50% 10px 10px / 40% 40% 10px 10px;
+        background: radial-gradient(ellipse 85% 75% at 50% 36%, #f1ece2, #ddd5c6);
+    }
+    .portrait-frame :global(img) {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top center;
+    }
+    @media (prefers-color-scheme: dark) {
+        .portrait-frame {
+            background: radial-gradient(ellipse 85% 75% at 50% 36%, #3b3732, #1d1c1a);
+        }
+    }
+    .portrait figcaption {
+        margin-top: 8px;
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        color: var(--ink-3);
+    }
+
+    .facts {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: clamp(24px, 4vw, 40px);
+        border-top: 1px solid var(--ink);
+    }
+    .facts li {
+        display: grid;
+        align-content: start;
+        gap: 6px;
+        padding: 16px 12px 16px 0;
+        border-bottom: 1px solid var(--rule);
+    }
+    .facts li:nth-child(odd) {
+        border-right: 1px solid var(--rule);
+    }
+    .facts li:nth-child(even) {
+        padding-left: 16px;
+    }
+    .facts b {
+        font-family: var(--serif);
+        font-size: clamp(1.45rem, 1.1rem + 1.5vw, 2.15rem);
+        font-weight: 400;
+        line-height: 1.05;
+    }
+    .facts span {
+        font-size: 0.82rem;
+        line-height: 1.4;
+        color: var(--ink-3);
+    }
+
+    @media (max-width: 599px) {
+        .hero-actions {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 8px;
+        }
+        .hero-actions .btn-primary {
+            grid-column: 1 / -1;
+        }
+        .hero-actions .btn,
+        .hero-actions :global(.resume summary) {
+            width: 100%;
+            padding-inline: 8px;
+        }
+        /* on phones the photo comes first, centered, at a modest size */
+        .portrait {
+            order: -1;
+            justify-self: center;
+            width: min(50vw, 210px);
+            margin: 0 0 20px;
+        }
+        .portrait figcaption {
+            text-align: center;
+        }
+    }
+    @media (min-width: 600px) {
+        .hero {
+            grid-template-columns: auto minmax(0, 1fr) minmax(0, 0.62fr);
+            grid-template-rows: auto 1fr;
+            align-items: start;
+        }
+        .hero-script {
+            grid-row: 1 / span 2;
+            align-self: stretch;
+        }
+        .hero-actions {
+            grid-column: 2;
+        }
+        .portrait {
+            grid-column: 3;
+            grid-row: 1 / span 2;
+            margin-top: 6px;
+        }
+        .facts {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+        .facts li,
+        .facts li:nth-child(even) {
+            padding: 18px 16px;
+            border-right: 1px solid var(--rule);
+            border-bottom: 0;
+        }
+        .facts li:first-child {
+            padding-left: 0;
+        }
+        .facts li:last-child {
+            border-right: 0;
+        }
+    }
+    @media (min-width: 600px) and (max-width: 1023px) {
+        .hero-actions {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            max-width: 340px;
+        }
+        .hero-actions .btn,
+        .hero-actions :global(.resume summary) {
+            width: 100%;
+        }
+    }
+    @media (min-width: 1024px) {
+        .hero {
+            grid-template-columns: auto minmax(0, 1fr) 340px;
+            column-gap: 40px;
+        }
+    }
+
+    /* ---------- about me ---------- */
+    .about-me {
+        display: grid;
+        gap: 14px;
+        padding-block: clamp(32px, 5vw, 60px) 0;
+    }
+    .about-body {
+        display: grid;
+        gap: 20px;
+        justify-items: start;
+    }
+    /* the seal signs the quote at its lower right, like a seal at the end of a text */
+    .quote {
+        display: grid;
+        width: fit-content;
+        max-width: 100%;
+    }
+    .quote .sign {
+        justify-self: end;
+        margin-top: clamp(6px, 1.2vw, 14px);
+    }
+    .quote blockquote {
+        max-width: 30ch;
+        font-family: var(--serif);
+        font-style: italic;
+        font-size: clamp(1.6rem, 1.1rem + 2.4vw, 2.8rem);
+        line-height: 1.2;
+        letter-spacing: -0.01em;
+    }
+    .sign {
+        display: flex;
+        align-items: flex-start;
+        gap: 6px;
+    }
+    .story-link {
+        font-weight: 600;
+    }
+    @media (min-width: 1024px) {
+        .about-me {
+            grid-template-columns: 170px minmax(0, 1fr);
+            column-gap: 32px;
+        }
+        .about-label {
+            padding-top: 14px;
+        }
+    }
+
+    /* ---------- work ---------- */
+    .more {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 6px 20px;
+        padding-top: 22px;
+        border-top: 1px solid var(--rule);
+        font-size: 0.92rem;
+    }
+    .more a {
+        color: var(--ink-2);
+    }
+
+    .section-tight {
+        padding-top: 0;
+    }
+
+    /* ---------- experience: newest first, as a timeline ---------- */
+    .legend {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .legend-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--accent);
+    }
+    .xp {
+        position: relative;
+        padding-left: 30px;
+    }
+    .xp::before {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 30px;
+        bottom: 30px;
+        width: 1px;
+        background: var(--ink-3);
+        opacity: 0.6;
+    }
+    .xp li {
+        position: relative;
+        display: grid;
+        gap: 6px;
+        padding-block: 16px;
+    }
+    .xp li + li {
+        border-top: 1px solid var(--rule);
+    }
+    .xp li::before {
+        content: "";
+        position: absolute;
+        left: -30px;
+        top: 20px;
+        width: 11px;
+        height: 11px;
+        border: 1.5px solid var(--ink-2);
+        border-radius: 50%;
+        background: var(--paper);
+    }
+    .xp li.is-current::before {
+        border-color: var(--accent);
+        background: var(--accent);
+    }
+    .xp h3 {
+        font-size: clamp(1.3rem, 1.1rem + 0.7vw, 1.55rem);
+    }
+    .xp-head p {
+        color: var(--ink-3);
+        font-size: 0.9rem;
+    }
+    .xp-text {
+        color: var(--ink-2);
+        max-width: 60ch;
+    }
+    @media (min-width: 600px) {
+        .xp li {
+            grid-template-columns: 150px minmax(0, 1fr);
+            column-gap: 24px;
+        }
+        .xp li::before {
+            top: 22px;
+        }
+        .xp-date {
+            grid-row: span 2;
+            padding-top: 4px;
+        }
+    }
+    @media (min-width: 1024px) {
+        .xp li {
+            grid-template-columns: 150px minmax(0, 0.9fr) minmax(0, 1.1fr);
+            column-gap: 32px;
+        }
+        .xp-date {
+            grid-row: auto;
+        }
+    }
+
+    /* ---------- education: compact, same columns as experience ---------- */
+    .schools {
+        border-top: 1px solid var(--ink);
+    }
+    .schools li {
+        display: grid;
+        gap: 6px;
+        padding-block: 16px;
+    }
+    .schools li + li {
+        border-top: 1px solid var(--rule);
+    }
+    .school-head h3 {
+        font-size: clamp(1.3rem, 1.1rem + 0.7vw, 1.55rem);
+    }
+    .school-head p {
+        color: var(--ink-3);
+        font-size: 0.9rem;
+    }
+    .school-detail {
+        color: var(--ink-2);
+    }
+    .study {
+        display: grid;
+        gap: 14px 40px;
+        margin: 0;
+        padding-top: 16px;
+        border-top: 1px solid var(--rule);
+    }
+    .study > div {
+        display: grid;
+        gap: 4px;
+        align-content: start;
+    }
+    .study dd {
+        margin: 0;
+        color: var(--ink-2);
+    }
+    @media (min-width: 768px) {
+        .study {
+            grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+        }
+    }
+    @media (min-width: 600px) {
+        .schools li {
+            grid-template-columns: 150px minmax(0, 1fr);
+            column-gap: 24px;
+            align-items: baseline;
+        }
+        .schools li > .label {
+            grid-row: span 2;
+        }
+    }
+    @media (min-width: 1024px) {
+        .schools li {
+            grid-template-columns: 150px minmax(0, 0.9fr) minmax(0, 1.1fr);
+            column-gap: 32px;
+        }
+        .schools li > .label {
+            grid-row: auto;
+        }
+    }
+
+    /* ---------- awards ---------- */
+    .imo {
+        display: grid;
+        gap: 12px 32px;
+        padding: clamp(18px, 3vw, 28px) 0;
+        border-top: 1px solid var(--ink);
+        border-bottom: 1px solid var(--rule);
+        text-decoration: none;
+    }
+    .imo-mark {
+        font-family: var(--serif);
+        font-size: clamp(4.5rem, 3rem + 7vw, 8.5rem);
+        line-height: 0.85;
+        letter-spacing: -0.04em;
+        color: var(--accent);
+    }
+    .imo-body {
+        display: grid;
+        gap: 6px;
+        align-content: center;
+    }
+    .imo-title {
+        font-family: var(--serif);
+        font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.2rem);
+        line-height: 1.1;
+    }
+    .imo-text {
+        max-width: 54ch;
+        color: var(--ink-2);
+    }
+    .imo-link {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--ink);
+    }
+    .imo:hover .imo-link {
+        color: var(--accent);
+    }
+    .awards li {
+        display: grid;
+        gap: 2px;
+        padding-block: 13px;
+        border-bottom: 1px solid var(--rule);
+    }
+    .awards b {
+        font-weight: 600;
+    }
+    .awards li > span:last-child {
+        color: var(--ink-2);
+        font-size: 0.92rem;
+    }
+    @media (min-width: 600px) {
+        .imo {
+            grid-template-columns: auto minmax(0, 1fr);
+            align-items: center;
+        }
+        .awards li {
+            grid-template-columns: 170px minmax(0, 1fr) minmax(0, 1fr);
+            column-gap: 24px;
+            align-items: baseline;
+        }
+    }
+    @media (min-width: 600px) and (max-width: 1023px) {
+        .awards li {
+            grid-template-columns: 130px minmax(0, 1fr);
+        }
+        .awards li > span:last-child {
+            grid-column: 2;
+        }
+    }
+
+    /* ---------- journey ---------- */
+    .journey-intro {
+        max-width: 44ch;
+        font-family: var(--serif);
+        font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.6rem);
+        line-height: 1.4;
+    }
+
+    .section-flush {
+        padding-top: clamp(32px, 5vw, 56px);
+    }
+
+    /* ---------- contact ---------- */
+    /* ---------- photography epigraph ---------- */
+    .epigraph {
+        display: grid;
+        gap: 6px;
+        max-width: 36ch;
+        margin: 0;
+        color: var(--ink-3);
+        font-size: 0.95rem;
+    }
+    .epigraph blockquote {
+        margin: 0;
+        font-style: italic;
+    }
+    .epigraph figcaption {
+        justify-self: end;
+        font-family: var(--mono);
+        font-size: 0.78rem;
+    }
+
+    /* open layout, same ink rule as the rest of the page (no box) */
+    .contact {
+        display: grid;
+        gap: clamp(24px, 4vw, 40px);
+        padding-top: clamp(24px, 3.5vw, 40px);
+        border-top: 1px solid var(--ink);
+    }
+    .contact-intro {
+        display: grid;
+        gap: 12px;
+        align-content: start;
+    }
+    .contact-title {
+        font-size: clamp(2rem, 1.4rem + 3vw, 3.6rem);
+    }
+    .contact-text {
+        max-width: 46ch;
+        color: var(--ink-2);
+    }
+    .contact .seeking {
+        margin-top: 0;
+    }
+    .contact-reach {
+        display: grid;
+        gap: 18px;
+        align-content: end;
+        justify-items: start;
+    }
+    .mail {
+        font-family: var(--serif);
+        font-size: clamp(1.45rem, 0.9rem + 2.6vw, 2.6rem);
+        line-height: 1.15;
+        overflow-wrap: anywhere;
+        text-decoration-color: var(--accent);
+        text-decoration-thickness: 2px;
+        text-underline-offset: 0.18em;
+    }
+    .contact .actions {
+        margin-top: 0;
+    }
+    @media (min-width: 1024px) {
+        .contact {
+            /* the email column sizes to the address, so it never breaks mid-word */
+            grid-template-columns: minmax(0, 1fr) auto;
+            column-gap: 48px;
+        }
+        .mail {
+            font-size: clamp(1.6rem, 0.8rem + 1.6vw, 2.4rem);
+            white-space: nowrap;
+        }
+        .contact-reach {
+            justify-items: end;
+            text-align: right;
+        }
+        .contact .actions {
+            justify-content: flex-end;
+        }
+    }
+</style>

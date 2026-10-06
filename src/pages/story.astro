@@ -1,0 +1,288 @@
+---
+import Base from "../layouts/Base.astro";
+import AlkhDivider from "../components/AlkhDivider.astro";
+import Footnote from "../components/Footnote.astro";
+import Seal from "../components/Seal.astro";
+import VerticalName from "../components/VerticalName.astro";
+import { person, pullquote } from "../data/site";
+import { url } from "../lib/url";
+
+// Footnotes in the order they appear on this page; they're numbered 1, 2, 3… from this.
+Astro.locals.notes = ["name", "seal", "alkh", "knot"];
+---
+
+<Base
+    title={`My story · ${person.name}`}
+    description="Where the work comes from: northern Mongolia, mathematics, many classrooms, and the people who made each next step possible."
+>
+    <article class="story container" id="top">
+        <a class="back" href={url("")}><span aria-hidden="true">←</span> Back to the main page</a>
+
+        <header class="story-head">
+            <VerticalName />
+            <div>
+                <p class="label">My story</p>
+                <h1>Where the work comes from.</h1>
+                <p class="lede">
+                    Northern Mongolia, mathematics, many classrooms, and the people who made each
+                    next step possible.
+                </p>
+            </div>
+        </header>
+
+        <section class="chapter" aria-labelledby="background">
+            <h2 id="background"><span class="label">01</span> Background</h2>
+            <div class="prose">
+                <p>
+                    I grew up in Mörön, in the northern part of Mongolia, a full day’s drive from
+                    Ulaanbaatar, the world’s coldest capital. Life there wasn’t extraordinary; people
+                    mostly minded their own business, and my parents were no different. They had
+                    never left our town or gone to college, but they gave my sister and me a happy
+                    childhood. At first this seemed like a limitation. I now see it as my greatest
+                    advantage: because they had never experienced college or life abroad, they never
+                    hesitated to let me chase every opportunity I could find.
+                </p>
+                <p>
+                    That freedom let me study math for hours without interruption, even though I was
+                    the strongest at home and could have helped with the physically demanding chores.
+                    Eventually it opened doors I could never have imagined. After winning a silver
+                    medal at the national math olympiad, I received a full scholarship to one of
+                    Mongolia’s most prestigious high schools and moved to the capital alone. This was
+                    during Covid, and living by myself at such a young age was the hardest challenge
+                    I had faced. But it also gave me focus. I chased my high school dream: to be
+                    selected as one of the six top math students in the country, represent Mongolia,
+                    and win a medal at the International Mathematical Olympiad. I did. I had
+                    fulfilled my dream, and I was ready for the next chapter.
+                </p>
+                <p>
+                    Growing up in a rural town, I never realized how much English mattered. No one
+                    around me spoke it, except my older sister in later years. Luckily, the principal
+                    of my high school noticed my determination and encouraged me to apply to United
+                    World College in Maastricht, the Netherlands. For two years I lived among students
+                    from around the world, learning English, embracing new cultures, and discovering
+                    who I could become. Those years changed me the most. I went from a boy leaving
+                    his country for the first time to someone confident facing any challenge, with
+                    friends across six continents.
+                </p>
+                <p>
+                    Now I’m in the U.S., studying at a liberal arts college. I’m exploring a wide
+                    range of subjects, from art history and environmental studies to economics, and
+                    discovering new passions in computer science and data science. I’m meeting
+                    people from different backgrounds, learning from them, and shaping the next
+                    chapter of my life. I’m not here because I was born into wealth or privilege, but
+                    because of supportive parents, inspiring teachers, and friends I could always
+                    count on.
+                </p>
+            </div>
+            <div class="quote">
+                <div class="signed">
+                    <blockquote>{pullquote}</blockquote>
+                    <div class="sign">
+                        <Seal />
+                        <Footnote id="seal" />
+                    </div>
+                </div>
+            </div>
+        </section>
+    </article>
+
+    <AlkhDivider note />
+
+    <article class="story container">
+        <section class="chapter" aria-labelledby="interests">
+            <h2 id="interests"><span class="label">02</span> Interests</h2>
+            <div class="cards">
+                <div class="card">
+                    <p class="label">Basketball</p>
+                    <blockquote class="small">
+                        “Three seconds left, Batsambuu catches the ball, three, two, one, he shoots
+                        it, BANGGG! BUZZER BEATER!”
+                    </blockquote>
+                    <p>
+                        That’s how seven-year-old me commentated on myself, playing basketball with
+                        socks for a ball and a chair for a basket, after watching the 2010 NBA
+                        Finals. One player, Kobe, stood out from the rest, and seeing the joy he
+                        brought to twenty thousand fans at Staples Center showed me what a great
+                        sport basketball is. Since then I’ve enjoyed everything about it: playing,
+                        watching, the stories around it, and even the video games.
+                    </p>
+                </div>
+                <div class="card">
+                    <p class="label">Video games</p>
+                    <blockquote class="small">
+                        “Wanting something does not give you the right to have it.”
+                        <cite>Assassin’s Creed II</cite>
+                    </blockquote>
+                    <p>
+                        Video games are how I relax and step away from reality. I often prefer a good
+                        game to a movie or a book, because games combine art and technology so
+                        beautifully. They teach lessons, stir a wide range of emotions, and let you
+                        do things you never would in real life: arguing with friends over a choice,
+                        losing myself in a puzzle, or riding a horse across the open world of Ancient
+                        Egypt. It’s a kind of storytelling that makes you part of the story.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="chapter" aria-labelledby="beliefs">
+            <h2 id="beliefs"><span class="label">03</span> On education</h2>
+            <div class="prose">
+                <p>
+                    I believe better education is the key to a better world. I have studied in a
+                    rural public school, a prestigious private school, an international boarding
+                    school, and now a liberal arts college, and each taught me something different
+                    about the power of good teaching. Because of that, I believe education should be
+                    accessible to everyone, no matter where they are born.
+                </p>
+                <p>
+                    It has become a central part of my dream to build a world-class educational
+                    institution, giving more children the chance to discover and pursue their
+                    passions. As steps toward it, I tutor high school students in Mongolia as much as
+                    I can, run free olympiad camps and online contests, and built{" "}
+                    <a href="https://khu-math.vercel.app/" target="_blank" rel="noopener">KHU Math</a>{" "}
+                    so that a student in any town can practice the way I did.
+                </p>
+            </div>
+        </section>
+
+        <a class="back back-end" href={url("")}><span aria-hidden="true">←</span> Back to the main page</a>
+    </article>
+</Base>
+
+<style>
+    .story {
+        max-width: 860px;
+    }
+    .back {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 44px;
+        margin-top: 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-decoration: none;
+        color: var(--ink-2);
+    }
+    .back-end {
+        margin-block: 8px clamp(36px, 6vw, 64px);
+    }
+    .story-head {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        column-gap: clamp(16px, 3vw, 32px);
+        align-items: stretch;
+        padding-block: clamp(24px, 5vw, 56px) clamp(20px, 3vw, 36px);
+    }
+    .story-head .label {
+        margin-bottom: 14px;
+    }
+    h1 {
+        font-size: clamp(2.6rem, 1.6rem + 5vw, 5rem);
+        line-height: 0.98;
+        letter-spacing: -0.03em;
+    }
+    .lede {
+        margin-top: 18px;
+        max-width: 44ch;
+        font-family: var(--serif);
+        font-size: clamp(1.2rem, 1rem + 0.8vw, 1.5rem);
+        color: var(--ink-2);
+    }
+    .chapter {
+        padding-block: clamp(28px, 4.5vw, 48px);
+    }
+    .chapter h2 {
+        display: flex;
+        align-items: baseline;
+        gap: 14px;
+        margin-bottom: 20px;
+        font-size: clamp(1.8rem, 1.4rem + 1.6vw, 2.5rem);
+    }
+    .chapter h2 .label {
+        color: var(--accent);
+    }
+    .prose {
+        display: grid;
+        gap: 1.1em;
+        max-width: 64ch;
+        font-size: 1.06rem;
+        line-height: 1.75;
+        color: var(--ink-2);
+    }
+    /* drop cap spanning exactly two lines: top aligned with the first line's capitals,
+       bottom on the second line's baseline */
+    .prose p:first-child::first-letter {
+        -webkit-initial-letter: 2;
+        initial-letter: 2;
+        margin-right: 0.14em;
+        font-family: var(--serif);
+        color: var(--ink);
+    }
+    @supports not ((initial-letter: 2) or (-webkit-initial-letter: 2)) {
+        .prose p:first-child::first-letter {
+            float: left;
+            margin: 0.1em 0.12em 0 0;
+            font-size: 3.5em;
+            line-height: 0.82;
+        }
+    }
+    .quote {
+        margin-top: clamp(32px, 5vw, 52px);
+        padding-top: clamp(24px, 3.5vw, 32px);
+        border-top: 1px solid var(--ink);
+    }
+    /* the seal signs the quote at its lower right */
+    .signed {
+        display: grid;
+        width: fit-content;
+        max-width: 100%;
+    }
+    .signed .sign {
+        justify-self: end;
+        margin-top: clamp(6px, 1.2vw, 14px);
+    }
+    blockquote {
+        max-width: 30ch;
+        font-family: var(--serif);
+        font-style: italic;
+        font-size: clamp(1.5rem, 1.1rem + 2vw, 2.4rem);
+        line-height: 1.22;
+    }
+    .sign {
+        display: flex;
+        align-items: flex-start;
+        gap: 6px;
+    }
+    .cards {
+        display: grid;
+        gap: 32px 40px;
+    }
+    .card {
+        display: grid;
+        gap: 14px;
+        align-content: start;
+        padding-top: 18px;
+        border-top: 1px solid var(--ink);
+        color: var(--ink-2);
+    }
+    blockquote.small {
+        max-width: none;
+        font-size: 1.25rem;
+        color: var(--ink);
+    }
+    cite {
+        display: block;
+        margin-top: 6px;
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        font-style: normal;
+        color: var(--ink-3);
+    }
+    @media (min-width: 768px) {
+        .cards {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+</style>

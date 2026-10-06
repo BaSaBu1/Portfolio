@@ -1,0 +1,154 @@
+---
+// Full-screen opening: the Ölzii draws itself, the name fades in, then the knot flies
+// into the header logo while the page appears. Once per browser session; skippable;
+// never shown with reduced motion (the `show-intro` class is set in Base.astro's <head>).
+import OlziiKnot from "./OlziiKnot.astro";
+import { person } from "../data/site";
+---
+
+<div class="intro" data-intro aria-hidden="true">
+    <div class="intro-bg"></div>
+    <div class="intro-stage">
+        <div class="intro-knot" data-intro-knot>
+            <OlziiKnot variant="ribbon" />
+        </div>
+        <p class="intro-name">{person.name}</p>
+    </div>
+</div>
+
+<script>
+    const root = document.documentElement;
+    const intro = document.querySelector<HTMLElement>("[data-intro]");
+    const knot = intro?.querySelector<HTMLElement>("[data-intro-knot]");
+
+    if (intro && knot && root.classList.contains("show-intro")) {
+        let leaving = false;
+        let finished = false;
+
+        const finish = () => {
+            if (finished) return;
+            finished = true;
+            root.classList.remove("show-intro");
+            intro.remove();
+            try {
+                sessionStorage.setItem("intro-seen", "1");
+            } catch {
+                /* storage unavailable: the intro plays again next visit */
+            }
+        };
+
+        const leave = () => {
+            if (leaving) return;
+            leaving = true;
+            removeSkip();
+            const logo = document.querySelector(".brand-knot");
+            const from = knot.getBoundingClientRect();
+            const to = logo?.getBoundingClientRect();
+            if (to && to.width > 0 && from.width > 0) {
+                const scale = to.width / from.width;
+                const dx = to.left + to.width / 2 - (from.left + from.width / 2);
+                const dy = to.top + to.height / 2 - (from.top + from.height / 2);
+                knot.style.transform = `translate(${dx}px, ${dy}px) scale(${scale})`;
+            }
+            intro.classList.add("is-leaving");
+            window.setTimeout(finish, 950);
+        };
+
+        const skip = () => {
+            window.clearTimeout(timer);
+            intro.classList.add("is-skipping");
+            leave();
+        };
+        const events = ["pointerdown", "keydown", "wheel", "touchstart"] as const;
+        const removeSkip = () => events.forEach((e) => window.removeEventListener(e, skip));
+        events.forEach((e) => window.addEventListener(e, skip, { passive: true }));
+
+        const timer = window.setTimeout(leave, 2700);
+    }
+</script>
+
+<style>
+    .intro {
+        display: none;
+    }
+    :global(.show-intro) .intro {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+    }
+    .intro-bg {
+        position: absolute;
+        inset: 0;
+        background: var(--paper);
+        transition: opacity 0.75s ease 0.15s;
+    }
+    .intro-stage {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-content: center;
+        justify-items: center;
+        gap: clamp(18px, 3vh, 28px);
+    }
+    .intro-knot {
+        width: min(44vmin, 280px);
+        aspect-ratio: 1;
+        color: var(--ink);
+        transform-origin: center;
+        transition: transform 0.9s cubic-bezier(0.7, 0, 0.2, 1);
+    }
+    .intro-knot :global(svg) {
+        width: 100%;
+        height: 100%;
+    }
+    .intro-knot :global(.k-main) {
+        stroke-dasharray: 1;
+        stroke-dashoffset: 1;
+        animation: intro-draw 1.9s cubic-bezier(0.65, 0, 0.35, 1) 0.2s forwards;
+    }
+    .intro-knot :global(.k-patches) {
+        opacity: 0;
+        animation: intro-fade 0.4s ease 1.95s forwards;
+    }
+    .intro-name {
+        font-family: var(--serif);
+        font-size: clamp(1.2rem, 1rem + 1vw, 1.6rem);
+        letter-spacing: 0.02em;
+        color: var(--ink);
+        opacity: 0;
+        transform: translateY(8px);
+        animation: intro-name 0.7s var(--ease) 1.5s forwards;
+    }
+
+    .is-skipping .intro-knot :global(.k-main),
+    .is-skipping .intro-knot :global(.k-patches),
+    .is-skipping .intro-name {
+        animation-duration: 0.01s;
+        animation-delay: 0s;
+    }
+    .is-leaving .intro-bg {
+        opacity: 0;
+    }
+    .is-leaving .intro-name {
+        opacity: 0 !important;
+        transition: opacity 0.3s;
+    }
+
+    @keyframes intro-draw {
+        to {
+            stroke-dashoffset: 0;
+        }
+    }
+    @keyframes intro-fade {
+        to {
+            opacity: 1;
+        }
+    }
+    @keyframes intro-name {
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+</style>

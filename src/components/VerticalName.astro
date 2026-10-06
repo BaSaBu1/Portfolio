@@ -1,0 +1,71 @@
+---
+import Footnote from "./Footnote.astro";
+import { person } from "../data/site";
+import { verticalScript } from "../lib/mongol";
+
+// The name as real shapes (no web font), written top to bottom.
+const name = await verticalScript(person.script);
+const pad = 60;
+const viewBox = `${-pad} ${-pad} ${name.width + pad * 2} ${name.height + pad * 2}`;
+---
+
+<div class="script-col">
+    <svg
+        class="vname"
+        viewBox={viewBox}
+        role="img"
+        aria-label="Batsambuu, in Mongolian script"
+        lang="mn-Mong"
+    >
+        <path d={name.d} fill="currentColor" stroke="currentColor" stroke-width="12"
+        ></path>
+    </svg>
+    <Footnote id="name" />
+</div>
+
+<style>
+    .script-col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        height: 100%;
+        padding-right: clamp(12px, 2.5vw, 22px);
+        border-right: 1px solid var(--rule);
+    }
+    .vname {
+        width: auto;
+        height: clamp(150px, 120px + 7vw, 210px);
+        color: var(--ink);
+        overflow: visible;
+    }
+
+    /* Writing: ink appears down the column, the direction the script is written.
+       Waits for the opening intro to finish (show-intro is removed then). */
+    :global(.js) .vname {
+        -webkit-mask-image: linear-gradient(to bottom, #000 40%, transparent 60%);
+        mask-image: linear-gradient(to bottom, #000 40%, transparent 60%);
+        -webkit-mask-size: 100% 250%;
+        mask-size: 100% 250%;
+        -webkit-mask-position: 0 100%;
+        mask-position: 0 100%;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+    }
+    :global(.js:not(.show-intro)) .vname {
+        animation: write 1.8s cubic-bezier(0.45, 0.05, 0.35, 1) 0.25s forwards;
+    }
+    @keyframes write {
+        to {
+            -webkit-mask-position: 0 0;
+            mask-position: 0 0;
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        :global(.js) .vname {
+            -webkit-mask-image: none;
+            mask-image: none;
+            animation: none !important;
+        }
+    }
+</style>
