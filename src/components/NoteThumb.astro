@@ -1,0 +1,126 @@
+---
+// Small picture of the detail a note explains, for the "Notes on the details" list.
+// Each one is drawn from the same source as the real thing on the page.
+import GerRoof from "./GerRoof.astro";
+import OlziiKnot from "./OlziiKnot.astro";
+import Seal from "./Seal.astro";
+import { person, type NoteId } from "../data/site";
+import { ALKH_PERIOD, alkhTilePath } from "../lib/alkh";
+import { verticalScript } from "../lib/mongol";
+
+interface Props {
+    id: NoteId;
+}
+
+const { id } = Astro.props;
+const script = id === "name" ? await verticalScript(person.script) : undefined;
+const patternId = `thumb-alkh-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<span class:list={["thumb", `thumb-${id}`]} aria-hidden="true">
+    {
+        id === "name" && script && (
+            <svg viewBox={`-60 -60 ${script.width + 120} ${script.height + 120}`} class="t-name">
+                <path d={script.d} fill="currentColor" stroke="currentColor" stroke-width="12" />
+            </svg>
+        )
+    }
+    {
+        id === "ger" && (
+            <span class="t-ger">
+                <GerRoof />
+            </span>
+        )
+    }
+    {
+        id === "alkh" && (
+            <svg viewBox="0 0 60 20" class="t-alkh">
+                <defs>
+                    <pattern id={patternId} width={ALKH_PERIOD} height="20" patternUnits="userSpaceOnUse">
+                        <path d={alkhTilePath} fill="none" stroke="currentColor" stroke-width="1.6" />
+                    </pattern>
+                </defs>
+                <rect width="60" height="20" fill={`url(#${patternId})`} />
+            </svg>
+        )
+    }
+    {id === "seal" && <Seal still class="t-seal" />}
+    {
+        id === "map" && (
+            <svg viewBox="0 0 48 48" class="t-map">
+                <circle cx="24" cy="24" r="19" class="globe-fill" />
+                <ellipse cx="24" cy="24" rx="8" ry="19" class="globe-line" />
+                <path d="M5 24 H43 M8 14 H40 M8 34 H40" class="globe-line" />
+                <circle cx="24" cy="24" r="19" class="globe-rim" />
+                <path d="M14 30 Q21 9 35 19" class="globe-route" />
+                <circle cx="14" cy="30" r="2.2" class="globe-pin" />
+                <circle cx="35" cy="19" r="2.2" class="globe-pin" />
+            </svg>
+        )
+    }
+    {id === "knot" && <OlziiKnot class="t-knot" />}
+</span>
+
+<style>
+    .thumb {
+        display: grid;
+        place-items: center;
+        width: 52px;
+        height: 52px;
+        color: var(--ink);
+    }
+    .t-name {
+        height: 48px;
+        width: auto;
+    }
+    .t-ger {
+        position: relative;
+        width: 36px;
+        height: 45px;
+        overflow: hidden;
+        border-radius: 50% 50% 4px 4px / 40% 40% 4px 4px;
+        background: radial-gradient(ellipse 85% 75% at 50% 36%, #f1ece2, #ddd5c6);
+    }
+    @media (prefers-color-scheme: dark) {
+        .t-ger {
+            background: radial-gradient(ellipse 85% 75% at 50% 36%, #3b3732, #1d1c1a);
+        }
+    }
+    .t-alkh {
+        width: 52px;
+        height: auto;
+        color: var(--ink-2);
+    }
+    .thumb :global(.t-seal) {
+        width: 40px;
+    }
+    .t-map {
+        width: 46px;
+        height: 46px;
+    }
+    .globe-fill {
+        fill: var(--paper-2);
+    }
+    .globe-line,
+    .globe-rim {
+        fill: none;
+        stroke: var(--ink-3);
+        stroke-width: 0.8;
+    }
+    .globe-rim {
+        stroke-width: 1.2;
+    }
+    .globe-route {
+        fill: none;
+        stroke: var(--accent);
+        stroke-width: 2;
+        stroke-linecap: round;
+    }
+    .globe-pin {
+        fill: var(--accent);
+    }
+    .thumb :global(.t-knot) {
+        width: 38px;
+        height: 38px;
+    }
+</style>

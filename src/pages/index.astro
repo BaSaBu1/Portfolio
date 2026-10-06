@@ -62,7 +62,7 @@ Astro.locals.notes = ["name", "ger", "alkh", "seal", "map", "knot"];
             >
         </div>
 
-        <figure class="portrait">
+        <figure class="portrait" data-note-anchor>
             <div class="portrait-frame">
                 <GerRoof />
                 <Image
@@ -97,7 +97,7 @@ Astro.locals.notes = ["name", "ger", "alkh", "seal", "map", "knot"];
         <div class="about-body">
             <div class="quote" data-reveal>
                 <blockquote>{pullquote}</blockquote>
-                <div class="sign">
+                <div class="sign" data-note-anchor>
                     <Seal />
                     <Footnote id="seal" />
                 </div>

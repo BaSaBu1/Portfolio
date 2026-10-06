@@ -6,9 +6,11 @@ import { verticalScript } from "../lib/mongol";
 
 interface Props {
     class?: string;
+    // static (no stamp animation), e.g. for the notes thumbnail
+    still?: boolean;
 }
 
-const { class: className } = Astro.props;
+const { class: className, still = false } = Astro.props;
 const uid = Math.random().toString(36).slice(2, 8);
 const columns = await Promise.all(["ᠪᠠᠲᠤ", "ᠰᠠᠮᠪᠤᠤ"].map(verticalScript));
 
@@ -26,7 +28,7 @@ const placed = columns.map((c, i) => {
 });
 ---
 
-<span class:list={["seal-wrap", className]} data-observe="late">
+<span class:list={["seal-wrap", { still }, className]} data-observe={still ? undefined : "late"}>
     <svg class="seal" viewBox="0 0 100 100" role="img" aria-label="Red seal: Batsambuu in Mongolian script">
         <defs>
             <mask id={`cut-${uid}`} maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
@@ -155,6 +157,15 @@ const placed = columns.map((c, i) => {
         55% {
             translate: 0 -1px;
         }
+    }
+
+    :global(.js) .seal-wrap.still .seal {
+        opacity: 1;
+        transform: rotate(-3deg);
+        animation: none;
+    }
+    .seal-wrap.still::after {
+        display: none;
     }
 
     @media (prefers-reduced-motion: reduce) {

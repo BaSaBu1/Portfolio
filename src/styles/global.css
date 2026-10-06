@@ -286,3 +286,29 @@ a:hover .arrow {
         transition: none;
     }
 }
+
+/* highlight for the detail a note points back to (placed by the client script) */
+.note-flash {
+    position: fixed;
+    z-index: 5;
+    border-radius: 12px;
+    pointer-events: none;
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--accent) 45%, transparent);
+    opacity: 0;
+    animation: note-flash 1.9s var(--ease);
+}
+
+@keyframes note-flash {
+    20%,
+    65% {
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .note-flash {
+        animation-duration: 2.5s;
+        animation-timing-function: steps(1, end);
+    }
+}

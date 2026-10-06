@@ -15,7 +15,7 @@ const radius = SIZE / 2 - 4;
     data-stops={JSON.stringify(journey.map((s) => s.coords))}
     data-legs={JSON.stringify(legsKm.map(Math.round))}
 >
-    <figure class="globe-wrap">
+    <figure class="globe-wrap" data-note-anchor>
         <div class="globe">
             <svg viewBox={`0 0 ${SIZE} ${SIZE}`} aria-hidden="true">
                 <defs>

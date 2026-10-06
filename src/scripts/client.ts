@@ -215,6 +215,53 @@ if (journey && !reducedMotion.matches) {
     applyMode();
 }
 
+/* ---------- notes list: jump back to the detail a note explains ---------- */
+
+let flash: HTMLElement | undefined;
+let follow = 0;
+
+// A soft vermilion glow, padded evenly around the drawing. It follows the drawing every
+// frame, so it stays centred on it while the page settles (the globe is sticky).
+function highlight(target: HTMLElement) {
+    flash?.remove();
+    cancelAnimationFrame(follow);
+    const el = document.createElement("div");
+    el.className = "note-flash";
+    const pad = 10;
+    const place = () => {
+        const r = target.getBoundingClientRect();
+        el.style.left = `${r.left - pad}px`;
+        el.style.top = `${r.top - pad}px`;
+        el.style.width = `${r.width + pad * 2}px`;
+        el.style.height = `${r.height + pad * 2}px`;
+        if (el.isConnected) follow = requestAnimationFrame(place);
+    };
+    document.body.append(el);
+    flash = el;
+    place();
+    el.addEventListener(
+        "animationend",
+        () => {
+            el.remove();
+            cancelAnimationFrame(follow);
+        },
+        { once: true },
+    );
+}
+
+document.querySelectorAll<HTMLAnchorElement>("[data-note-jump]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+        const marker = document.getElementById(`ref-${link.dataset.noteJump}`);
+        if (!marker) return;
+        event.preventDefault();
+        // the drawing itself (first child of its wrapper), not the wrapper or the marker
+        const anchor = marker.closest<HTMLElement>("[data-note-anchor]");
+        const target = (anchor?.firstElementChild as HTMLElement | null) ?? marker;
+        target.scrollIntoView({ behavior: reducedMotion.matches ? "auto" : "smooth", block: "center" });
+        window.setTimeout(() => highlight(target), reducedMotion.matches ? 0 : 500);
+    });
+});
+
 /* ---------- one rAF-throttled scroll loop ---------- */
 
 let ticking = false;
