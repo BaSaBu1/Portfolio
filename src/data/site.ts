@@ -178,7 +178,7 @@ export const experience: ExperienceItem[] = [
         role: "Research Assistant & Software Developer",
         org: "Macalester College",
         text: "Built TopoLens, a website for exploring gaps in a network of scientific concepts from 70 million papers, and wrote layout algorithms for networks with 10,000+ nodes.",
-        link: { label: "Open TopoLens", href: links.topolens },
+        link: { label: "TopoLens", href: links.topolens },
     },
     {
         date: "Dec 2025 – Jan 2026",
